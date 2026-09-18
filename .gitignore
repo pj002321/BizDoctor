@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- 상권 신호등 파이프라인: 대용량 생성 산출물 (스크립트로 재생성 가능) ---
+seoul_panel_raw.parquet
+seoul_panel_model_ready.csv
+synthetic_companies.csv
+synthetic_sales_timeseries.csv
+shinhan_warehouse.db
+tableau/tableau_panel.csv
+# data/csvFile.zip 로 이미 커밋된 번들의 루트 사본
+/csvFile.zip
