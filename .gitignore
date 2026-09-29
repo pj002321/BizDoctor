@@ -226,3 +226,4 @@ shinhan_warehouse.db
 tableau/tableau_panel.csv
 # data/csvFile.zip 로 이미 커밋된 번들의 루트 사본
 /csvFile.zip
+.claude/.headroom_wrap_marker.json
