@@ -15,6 +15,11 @@
 """
 import math
 import pandas as pd
+import os
+from pathlib import Path
+
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
 
 Z = 1.959963985  # 95%
 

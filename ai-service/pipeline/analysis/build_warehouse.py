@@ -14,6 +14,11 @@
 """
 import sqlite3
 import pandas as pd
+import os
+from pathlib import Path
+
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
 
 DB = "shinhan_warehouse.db"
 
@@ -54,7 +59,7 @@ print(f"  kosis_hardship   {len(kosis):>8,}행")
 # 4. 신용보증기금 부실사유
 #    (컬럼명이 정상 디코딩되는 BOM 파일을 사용)
 # ------------------------------------------------------------------
-sgf = pd.read_csv("rawdata/sgf176_utf8_bom.csv", encoding="utf-8-sig")
+sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding="utf-8-sig")
 sgf.to_sql("sgf_default", con, if_exists="replace", index=False)
 print(f"  sgf_default      {len(sgf):>8,}행")
 

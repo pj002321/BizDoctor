@@ -10,6 +10,11 @@
 """
 import pandas as pd
 import numpy as np
+import os
+from pathlib import Path
+
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
 
 # ------------------------------------------------------------------
 # 1. 서울 점포-행정동 패널데이터 로드 (2023~2025, 3개년 12개 분기)

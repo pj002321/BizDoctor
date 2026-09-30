@@ -227,3 +227,18 @@ tableau/tableau_panel.csv
 # data/csvFile.zip 로 이미 커밋된 번들의 루트 사본
 /csvFile.zip
 .claude/.headroom_wrap_marker.json
+
+# 파이프라인 산출물 — 전부 재생성 가능하다. 원본(raw/)만 추적한다.
+/ai-service/data/*
+!/ai-service/data/raw/
+
+# Claude Code 개인 설정 (내 PC 경로·로컬 프록시). 팀 규칙은 .claude/settings.json 에 둔다.
+.claude/settings.local.json
+
+# Next.js
+/node_modules
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local

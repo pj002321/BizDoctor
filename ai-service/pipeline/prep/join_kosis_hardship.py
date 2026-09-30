@@ -15,8 +15,13 @@ KOSIS 애로사항 데이터 파싱 → YELLOW risk_type 세부유형(업종별)
 """
 import openpyxl
 import pandas as pd
+import os
+from pathlib import Path
 
-SRC = "rawdata/시도_산업중분류별_사업체운영_애로사항별_기업체수_복수응답__20260813013849.xlsx"
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
+
+SRC = "raw/시도_산업중분류별_사업체운영_애로사항별_기업체수_복수응답__20260813013849.xlsx"
 
 wb = openpyxl.load_workbook(SRC)
 ws = wb["데이터"]

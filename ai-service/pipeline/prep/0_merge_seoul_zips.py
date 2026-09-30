@@ -13,8 +13,13 @@ seoul_panel_raw.parquet 으로 저장한다.
 import glob
 import zipfile
 import pandas as pd
+import os
+from pathlib import Path
 
-ZIP_FILES = sorted(glob.glob("rawdata/서울시*상권분석서비스*.zip"))
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
+
+ZIP_FILES = sorted(glob.glob("raw/서울시*상권분석서비스*.zip"))
 print("발견된 zip 파일:", ZIP_FILES)
 if len(ZIP_FILES) != 3:
     print("⚠ 3개가 아님! 파일명을 확인하거나 아래 ZIP_FILES 리스트에 직접 경로를 적어주세요.")

@@ -52,6 +52,19 @@ BizDoctor/
 - **추론 · RAG · LLM(F-DIA · F-RAG · F-LLM)**: ai-service 를 거친다. 모델(Keras)과
   인덱스가 Python 쪽에 있기 때문이다.
 
+### 웹 명령
+
+```bash
+npm run dev        # localhost:3000
+npm run build
+npm run typecheck  # tsc --noEmit
+npm run lint       # biome
+npm test           # vitest (features/*/domain 만)
+```
+
+서버 전용 모듈(`shared/supabase/server.ts`, `shared/aiService/client.ts`)은 `import "server-only"`
+로 시작한다. Client Component 가 import 하면 빌드가 깨진다 — 지우지 않는다.
+
 ## 반드시 지킬 것
 
 `docs/스펙.md` 6장의 요약이다. 어기면 틀린 결과가 사용자에게 그대로 나간다.
@@ -154,13 +167,30 @@ pyarrow). 의존성이 없으면 전역이 아니라 `.venv` 에 설치한다.
 느린 건 5단계뿐이다(60 epoch, `val_loss` 조기 종료). 재실행하면 출력을 그 자리에서
 덮어쓴다 — 버전 관리 없음.
 
-`analysis/` (mongo · warehouse · sql · tableau) 는 분석·발표용이다. 서비스 런타임과 무관하다.
+```powershell
+.\.venv\Scripts\python.exe ai-service\pipeline\prep\0_merge_seoul_zips.py   # 어디서 실행해도 된다
+```
 
-### ⚠ 알려진 문제: 구조 이동 후 경로가 깨져 있다
+모든 스크립트는 시작할 때 `os.chdir(ai-service/data)` 한다. 원본은 `data/raw/`, 산출물은
+`data/` 바로 아래에 쌓이고 gitignore 된다(`raw/` 만 추적).
 
-스크립트가 아직 **cwd 기준 상대경로**를 하드코딩한다(`rawdata/...`, `seoul_panel_raw.parquet` 등).
-원본은 `ai-service/data/raw/` 로 옮겨졌으므로 지금 그대로 돌리면 파일을 못 찾는다.
-`app/core/config.py` 의 `DATA_DIR` (`__file__` 기준 절대경로) 로 옮기기 전까지 실행하지 않는다.
+`analysis/` 는 로컬 SQLite 웨어하우스(`shinhan_warehouse.db`) 위에서 돈다. 여기서 나오는
+`risk_weights_by_region_industry.csv` · `tableau/tableau_*.csv` 가 DB 의 `region_risk` ·
+`region_summary` · `quarterly_trend` · `industry_rank` 테이블 원천이다. Postgres 적재
+(`pipeline/load/`, F-SYS-03) 가 생기면 SQLite 단계는 걷어낸다.
+
+## 데이터베이스
+
+**Supabase Postgres 하나만 쓴다.** MongoDB 는 쓰지 않는다 — 예전 `build_mongo_store.py`
+가 담던 것은 Postgres 로 간다.
+
+| 예전 Mongo 컬렉션 | Postgres |
+|---|---|
+| `policy_documents` (가변 태그 배열) | `policy_doc.risk_type_tags text[]` + GIN 인덱스 |
+| `risk_signals` (중첩 신호 JSON) | 진단 결과 테이블의 `jsonb` 컬럼 (F-DIA-08, P2) |
+| `model_runs` (바뀌는 하이퍼파라미터) | `model_run.params jsonb` — ERD `FACT_PREDICTION.run_id` 가 가리킨다 |
+
+스키마는 `supabase/migrations/YYYYMMDDHHMMSS_이름.sql` 로만 바꾼다.
 
 ## 인코딩 (Windows · 한글 — 버그가 반복해서 나는 곳)
 

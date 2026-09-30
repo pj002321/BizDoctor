@@ -11,6 +11,11 @@
 """
 import numpy as np
 import pandas as pd
+import os
+from pathlib import Path
+
+# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+os.chdir(Path(__file__).resolve().parents[2] / "data")
 
 RNG = np.random.default_rng(42)
 N_COMPANIES = 30000    # 생성할 가상 소상공인 수
@@ -31,13 +36,13 @@ latest = panel[panel["기준_년분기_코드"] == panel["기준_년분기_코�
 sgf = None
 for enc in ["utf-8-sig", "utf-8", "cp949", "euc-kr"]:
     try:
-        sgf = pd.read_csv("rawdata/sgf176_utf8_bom.csv", encoding=enc)
+        sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding=enc)
         print(f"인코딩 {enc}로 성공")
         break
     except UnicodeDecodeError:
         continue
 if sgf is None:
-    sgf = pd.read_csv("rawdata/sgf176_utf8.csv", encoding="utf-8", encoding_errors="replace")
+    sgf = pd.read_csv("raw/sgf176_utf8.csv", encoding="utf-8", encoding_errors="replace")
     print("모든 인코딩 실패, 깨진 문자 무시하고 강제로 읽음")
 
 # KOSIS 애로사항 데이터 기반 YELLOW 세부유형(업종별) 실통계 확률
