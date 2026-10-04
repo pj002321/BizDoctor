@@ -40,7 +40,8 @@ featured AS (
     SELECT
         "기준_년분기_코드", "행정동_코드", "행정동_코드_명",
         "서비스_업종_코드", "서비스_업종_코드_명", "KOSIS_산업1",
-        "점포_수", "폐업_률", "개업_율", "폐업_점포_수", "프랜차이즈_점포_수",
+        "점포_수", "유사_업종_점포_수",
+        "폐업_률", "개업_율", "폐업_점포_수", "프랜차이즈_점포_수",
         LEAD("폐업_률") OVER w_cell                   AS "다음분기_폐업률",
         "폐업_률" - LAG("폐업_률") OVER w_cell         AS "폐업률_변화",
         AVG("폐업_률") OVER (
@@ -49,8 +50,9 @@ featured AS (
             ROWS BETWEEN 1 PRECEDING AND CURRENT ROW
         )                                             AS "폐업률_2분기평균",
         "폐업_률" - "개업_율"                          AS "폐업개업_격차",
-        CASE WHEN "점포_수" > 0
-             THEN 1.0 * "프랜차이즈_점포_수" / "점포_수"
+        -- 점포_수 = 일반 점포, 유사_업종_점포_수 = 일반 + 프랜차이즈(전체). 전체로 나눠야 0~1.
+        CASE WHEN "유사_업종_점포_수" > 0
+             THEN 1.0 * "프랜차이즈_점포_수" / "유사_업종_점포_수"
         END                                           AS "프랜차이즈_비중",
         (CAST(RANK() OVER w_rank AS REAL)
             + (COUNT(*) OVER w_tie - 1) / 2.0)
@@ -78,7 +80,7 @@ print(f"SQL 산출 행 수: {len(sql_df):,}")
 # 2. pandas 전처리 결과와 대조
 # ------------------------------------------------------------------
 print("\n" + "=" * 68)
-print("검증 — pandas 전처리 결과와 일치하는가")
+print("검증 - pandas 전처리 결과와 일치하는가")
 print("=" * 68)
 
 pd_df = pd.read_csv("seoul_panel_model_ready.csv")
@@ -110,35 +112,27 @@ print("\n  →", "모든 피처가 pandas 결과와 일치합니다." if all_ok
 # 3. 지역 x 업종별 위험 가중치 (자소서의 "연체 가중치 산출")
 # ------------------------------------------------------------------
 print("\n" + "=" * 68)
-print("지역 x 업종별 위험 가중치 — 상위 15")
+print("지역 x 업종별 위험 가중치 - 상위 15")
 print("=" * 68)
-weights = pd.read_sql_query("""
+# 행정동은 코드로 묶는다 — 이름으로 묶으면 신사동(강남구·관악구)이 한 행으로 합쳐진다.
+# 연점포수는 전체 점포(유사_업종_점포_수) 합계다. 점포_수는 프랜차이즈를 뺀 일반 점포.
+WEIGHTS_SQL = """
     SELECT
-        "행정동_코드_명"                          AS 행정동,
+        "행정동_코드"                             AS 행정동코드,
+        MIN("행정동_코드_명")                     AS 행정동,
         "KOSIS_산업1"                             AS 산업대분류,
         COUNT(*)                                  AS 관측분기수,
-        SUM("점포_수")                            AS 연점포수,
+        SUM("유사_업종_점포_수")                  AS 연점포수,
         ROUND(AVG("폐업_률"), 2)                  AS 평균폐업률,
         ROUND(AVG("폐업률_업종내_percentile"), 4) AS 위험가중치,
         ROUND(AVG("폐업개업_격차"), 2)             AS 폐업개업격차
     FROM v_featured
-    GROUP BY "행정동_코드_명", "KOSIS_산업1"
-    HAVING COUNT(*) >= 8 AND SUM("점포_수") >= 100
+    GROUP BY "행정동_코드", "KOSIS_산업1"
+    HAVING COUNT(*) >= 8 AND SUM("유사_업종_점포_수") >= 100
     ORDER BY 위험가중치 DESC
-    LIMIT 15
-""", con)
-print(weights.to_string(index=False))
-weights_full = pd.read_sql_query("""
-    SELECT "행정동_코드_명" AS 행정동, "KOSIS_산업1" AS 산업대분류,
-           COUNT(*) AS 관측분기수, SUM("점포_수") AS 연점포수,
-           ROUND(AVG("폐업_률"),2) AS 평균폐업률,
-           ROUND(AVG("폐업률_업종내_percentile"),4) AS 위험가중치,
-           ROUND(AVG("폐업개업_격차"),2) AS 폐업개업격차
-    FROM v_featured
-    GROUP BY "행정동_코드_명", "KOSIS_산업1"
-    HAVING COUNT(*) >= 8 AND SUM("점포_수") >= 100
-    ORDER BY 위험가중치 DESC
-""", con)
+"""
+weights_full = pd.read_sql_query(WEIGHTS_SQL, con)
+print(weights_full.head(15).to_string(index=False))
 weights_full.to_csv("risk_weights_by_region_industry.csv",
                     index=False, encoding="utf-8-sig")
 print(f"\n저장: risk_weights_by_region_industry.csv ({len(weights_full):,}행)")

@@ -166,7 +166,8 @@ RISKTYPE_TO_LEVEL = {
     "상권_침체_붕괴형": "RED",
 }
 
-pred_df = df.iloc[idx_test][["company_id","행정동_코드_명","서비스_업종_코드_명","risk_type","risk_level","score"]].copy()
+# 행정동_코드도 함께 저장한다 — 이름만으로는 신사동(강남구·관악구)을 구분할 수 없다.
+pred_df = df.iloc[idx_test][["company_id","행정동_코드","행정동_코드_명","서비스_업종_코드_명","risk_type","risk_level","score"]].copy()
 pred_df["예측_risk_type"] = label_enc.inverse_transform(y_pred)
 pred_df["예측_risk_level"] = pred_df["예측_risk_type"].map(RISKTYPE_TO_LEVEL)
 pred_df["정답여부"] = pred_df["risk_type"] == pred_df["예측_risk_type"]
@@ -176,6 +177,6 @@ model.save("risk_model.keras")
 
 print("\n저장 완료: risk_model.keras, model_predictions_sample.csv")
 print("\n전체 정확도:", round((pred_df["정답여부"]).mean(), 4))
-print("RED 재현율(recall) 확인용 — 실제 RED 중 RED로 예측된 비율:")
+print("RED 재현율(recall) 확인용 - 실제 RED 중 RED로 예측된 비율:")
 red_actual = pred_df[pred_df["risk_level"] == "RED"]
 print(round((red_actual["예측_risk_level"] == "RED").mean(), 4))

@@ -52,7 +52,7 @@ ty_t, ty_p = pred["risk_type"], pred["예측_risk_type"]
 
 rows = []
 print("=" * 78)
-print("등급별 재현율 (Recall) — 실제 X 중 X로 맞힌 비율")
+print("등급별 재현율 (Recall) - 실제 X 중 X로 맞힌 비율")
 print("=" * 78)
 for L in ["GREEN", "YELLOW", "RED"]:
     m = lv_t == L
@@ -61,7 +61,7 @@ print(pd.DataFrame(rows).to_string(index=False))
 
 rows2 = []
 print("\n" + "=" * 78)
-print("등급별 정밀도 (Precision) — X로 예측한 것 중 실제 X인 비율")
+print("등급별 정밀도 (Precision) - X로 예측한 것 중 실제 X인 비율")
 print("=" * 78)
 for L in ["GREEN", "YELLOW", "RED"]:
     m = lv_p == L
@@ -72,7 +72,7 @@ print(pd.DataFrame(rows2).to_string(index=False))
 
 rows3 = []
 print("\n" + "=" * 78)
-print("유형별 재현율 — 표본이 적을수록 구간이 넓어진다")
+print("유형별 재현율 - 표본이 적을수록 구간이 넓어진다")
 print("=" * 78)
 for t in sorted(ty_t.unique()):
     m = ty_t == t

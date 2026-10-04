@@ -78,5 +78,5 @@ for name, target in INDEXES:
 con.commit()
 
 size = cur.execute("SELECT page_count * page_size FROM pragma_page_count(), pragma_page_size()").fetchone()[0]
-print(f"\n완료 — {DB} ({size/1024/1024:.1f} MB)")
+print(f"\n완료 - {DB} ({size/1024/1024:.1f} MB)")
 con.close()

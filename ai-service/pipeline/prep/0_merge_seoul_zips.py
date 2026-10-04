@@ -22,7 +22,7 @@ os.chdir(Path(__file__).resolve().parents[2] / "data")
 ZIP_FILES = sorted(glob.glob("raw/서울시*상권분석서비스*.zip"))
 print("발견된 zip 파일:", ZIP_FILES)
 if len(ZIP_FILES) != 3:
-    print("⚠ 3개가 아님! 파일명을 확인하거나 아래 ZIP_FILES 리스트에 직접 경로를 적어주세요.")
+    print("[경고] 3개가 아님! 파일명을 확인하거나 아래 ZIP_FILES 리스트에 직접 경로를 적어주세요.")
 
 dfs = []
 for zip_path in ZIP_FILES:

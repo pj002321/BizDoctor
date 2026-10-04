@@ -29,31 +29,27 @@ N_MONTHS = 6            # 최근 6개월 매출 시계열 (3개월 뒤 예측을
 # 1. 실통계 로드
 # ------------------------------------------------------------------
 panel = pd.read_csv("seoul_panel_model_ready.csv")
-# 가장 최근 분기만 사용 (2025년 4분기)
+# 가장 최근 분기만 사용. seoul_panel_model_ready.csv 는 타겟(다음분기_폐업률)이 없는
+# 마지막 분기를 버리므로 여기서 max() 는 2025Q4 가 아니라 2025Q3 이다.
 latest = panel[panel["기준_년분기_코드"] == panel["기준_년분기_코드"].max()].copy()
+print("가상 회사 기준 분기:", latest["기준_년분기_코드"].iloc[0])
 
 # 신보 부실사유코드 분포 (176번 파일)
-sgf = None
-for enc in ["utf-8-sig", "utf-8", "cp949", "euc-kr"]:
-    try:
-        sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding=enc)
-        print(f"인코딩 {enc}로 성공")
-        break
-    except UnicodeDecodeError:
-        continue
-if sgf is None:
-    sgf = pd.read_csv("raw/sgf176_utf8.csv", encoding="utf-8", encoding_errors="replace")
-    print("모든 인코딩 실패, 깨진 문자 무시하고 강제로 읽음")
+#   정상본(sgf176_utf8_bom.csv)만 읽는다. 예전에는 실패 시 sgf176_utf8.csv 를
+#   encoding_errors="replace" 로 강제로 읽었는데, 그 파일은 깨진 바이트가 구분자(,)까지
+#   먹어서 1,000행이 684행으로 줄고 컬럼이 밀린다. 그러면 7번째 컬럼에 금액이 들어와
+#   전부 '매출_폭락형' 기본값으로 매핑된다 — 오류 없이 틀린 분포가 나온다. 그래서 폴백을 없앴다.
+sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding="utf-8-sig")
+if "부실사유코드" not in sgf.columns:
+    raise SystemExit("sgf176_utf8_bom.csv 에 '부실사유코드' 컬럼이 없습니다. 파일 인코딩을 확인하세요.")
 
 # KOSIS 애로사항 데이터 기반 YELLOW 세부유형(업종별) 실통계 확률
 # 원가상승_확률 = (원재료비+최저임금영향) / (원재료비+최저임금영향+동일업종경쟁심화+보증금월세)
 # 값이 높을수록 그 업종은 "원가_상승_부담형", 낮을수록 "단기_매출_정체형" 쪽으로 배정
 yellow_prob = pd.read_csv("yellow_subtype_prob.csv").set_index("KOSIS_산업1")["원가상승_확률"]
 
-# 컬럼명이 인코딩 손상으로 깨져있을 수 있어서, 이름 대신 위치(7번째 컬럼)로 찾음
-# 원본 순서: 1채권관리ID 2최종업종차수 3제품명 4매출실적금액 5기업규모코드 6부실처리일자 7부실사유코드
-sgf = sgf.rename(columns={sgf.columns[6]: "부실사유코드"})
-print("7번째 컬럼 샘플값:", sgf["부실사유코드"].unique()[:5])
+# 정상본은 헤더가 온전하므로 위치(columns[6]) 대신 이름으로 찾는다.
+print("부실사유코드 샘플값:", sgf["부실사유코드"].unique()[:5])
 
 # ------------------------------------------------------------------
 # 2. 부실사유코드 → risk_type 매핑 (기획서 4개 RED 유형 + 정상)
@@ -75,6 +71,9 @@ CAUSE_TO_RISKTYPE = {
     "기타": "매출_폭락형",
 }
 sgf["risk_type"] = sgf["부실사유코드"].map(CAUSE_TO_RISKTYPE)
+unmapped = sgf.loc[sgf["risk_type"].isna(), "부실사유코드"].value_counts(dropna=False)
+if len(unmapped):
+    print("[경고] 매핑 안 된 부실사유코드 → '매출_폭락형' 기본값 적용:\n", unmapped)
 sgf["risk_type"] = sgf["risk_type"].fillna("매출_폭락형")  # 매핑 안 된 값은 기본값으로
 cause_dist = sgf["risk_type"].value_counts(normalize=True)
 print("=== 신보 데이터 기반 RED risk_type 분포 (부실기업 중) ===")
@@ -84,7 +83,9 @@ print()
 # ------------------------------------------------------------------
 # 3. 가상 회사 N개 생성: (행정동, 업종) 쌍을 실제 점포수 비중으로 샘플링
 # ------------------------------------------------------------------
-weights = latest["점포_수"].clip(lower=1)
+# 점포_수는 프랜차이즈를 뺀 일반 점포라, 편의점·치킨처럼 프랜차이즈가 많은 업종이 덜 뽑힌다.
+# 전체 점포(유사_업종_점포_수 = 일반 + 프랜차이즈) 비중으로 뽑는다.
+weights = latest["유사_업종_점포_수"].clip(lower=1)
 sampled_idx = RNG.choice(latest.index, size=N_COMPANIES, p=weights / weights.sum())
 companies = latest.loc[sampled_idx, ["행정동_코드", "행정동_코드_명", "서비스_업종_코드_명", "KOSIS_산업1", "폐업률_업종내_percentile", "폐업_률", "개업_율", "프랜차이즈_비중"]].reset_index(drop=True)
 companies["company_id"] = ["SGB_" + str(i).zfill(6) for i in range(N_COMPANIES)]
