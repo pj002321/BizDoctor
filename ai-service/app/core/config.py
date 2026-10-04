@@ -1,5 +1,11 @@
 import os
+import sys
 from pathlib import Path
+
+# 한글 Windows에서 출력이 cp949로 잡히는 경우가 있어 utf-8로 고정
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8")
 
 try:
     from dotenv import load_dotenv
