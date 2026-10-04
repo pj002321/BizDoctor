@@ -29,8 +29,10 @@ N_MONTHS = 6            # 최근 6개월 매출 시계열 (3개월 뒤 예측을
 # 1. 실통계 로드
 # ------------------------------------------------------------------
 panel = pd.read_csv("seoul_panel_model_ready.csv")
-# 가장 최근 분기만 사용 (2025년 4분기)
+# 가장 최근 분기만 사용. seoul_panel_model_ready.csv 는 타겟(다음분기_폐업률)이 없는
+# 마지막 분기를 버리므로 여기서 max() 는 2025Q4 가 아니라 2025Q3 이다.
 latest = panel[panel["기준_년분기_코드"] == panel["기준_년분기_코드"].max()].copy()
+print("가상 회사 기준 분기:", latest["기준_년분기_코드"].iloc[0])
 
 # 신보 부실사유코드 분포 (176번 파일)
 #   정상본(sgf176_utf8_bom.csv)만 읽는다. 예전에는 실패 시 sgf176_utf8.csv 를
@@ -81,7 +83,9 @@ print()
 # ------------------------------------------------------------------
 # 3. 가상 회사 N개 생성: (행정동, 업종) 쌍을 실제 점포수 비중으로 샘플링
 # ------------------------------------------------------------------
-weights = latest["점포_수"].clip(lower=1)
+# 점포_수는 프랜차이즈를 뺀 일반 점포라, 편의점·치킨처럼 프랜차이즈가 많은 업종이 덜 뽑힌다.
+# 전체 점포(유사_업종_점포_수 = 일반 + 프랜차이즈) 비중으로 뽑는다.
+weights = latest["유사_업종_점포_수"].clip(lower=1)
 sampled_idx = RNG.choice(latest.index, size=N_COMPANIES, p=weights / weights.sum())
 companies = latest.loc[sampled_idx, ["행정동_코드", "행정동_코드_명", "서비스_업종_코드_명", "KOSIS_산업1", "폐업률_업종내_percentile", "폐업_률", "개업_율", "프랜차이즈_비중"]].reset_index(drop=True)
 companies["company_id"] = ["SGB_" + str(i).zfill(6) for i in range(N_COMPANIES)]

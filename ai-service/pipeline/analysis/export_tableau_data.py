@@ -65,7 +65,9 @@ panel = pd.read_sql_query("""
         f."행정동_코드_명"                                            AS 행정동,
         f."서비스_업종_코드_명"                                       AS 업종,
         f."KOSIS_산업1"                                               AS 산업대분류,
-        f."점포_수"                                                   AS 점포수,
+        -- 점포수 = 전체 점포(일반 + 프랜차이즈). 점포_수는 프랜차이즈를 뺀 일반 점포라
+        -- 이걸 분모로 쓰면 편의점 실질폐업률이 3.3% → 12.3% 로 부풀려진다.
+        f."유사_업종_점포_수"                                         AS 점포수,
         f."폐업_점포_수"                                              AS 폐업점포수,
         f."폐업_률"                                                   AS 폐업률,
         f."개업_율"                                                   AS 개업률,
@@ -132,8 +134,13 @@ pred = pred.rename(columns={
 })
 pred["등급정답"] = (pred["실제등급"] == pred["예측등급"]).map({True: "정답", False: "오답"})
 pred["유형정답"] = pred["정답여부"].map({True: "정답", False: "오답"})
-pred["자치구"] = pred["행정동"].map(
-    panel.drop_duplicates("행정동").set_index("행정동")["자치구"])
+# 자치구는 행정동 코드 앞 5자리로 정한다. 이름으로 찾으면 신사동이 전부 한 자치구로 붙는다.
+if "행정동_코드" in pred.columns:
+    pred["자치구"] = pred["행정동_코드"].astype(str).str[:5].map(GU_CODE)
+else:  # train_risk_model.py 를 다시 돌리기 전의 예전 파일
+    print("  [경고] model_predictions_sample.csv 에 행정동_코드가 없어 이름으로 자치구를 찾습니다(신사동 부정확).")
+    pred["자치구"] = pred["행정동"].map(
+        panel.drop_duplicates("행정동").set_index("행정동")["자치구"])
 pred[["company_id", "자치구", "행정동", "업종", "실제등급", "예측등급",
       "실제유형", "예측유형", "등급정답", "유형정답", "위험점수"]].to_csv(
     f"{OUT_DIR}/tableau_model_results.csv", index=False, encoding="utf-8-sig")
