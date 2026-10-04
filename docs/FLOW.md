@@ -5,6 +5,8 @@
 
 ## 1. 아키텍처
 
+가상환경 활성 : .\.venv\Scripts\Activate.ps1
+
 ```
 Next.js 15 (App Router)            Python (FastAPI)
 ┌──────────────────────┐          ┌─────────────────────┐

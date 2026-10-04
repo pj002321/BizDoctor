@@ -4,7 +4,8 @@
     {
       "label": "python: venv 생성",
       "type": "shell",
-      "command": "py -3.12 -m venv .venv"
+      "command": "py -3.12 -m venv .venv",
+      "problemMatcher": []
     },
     {
       "label": "python: 패키지 설치",
