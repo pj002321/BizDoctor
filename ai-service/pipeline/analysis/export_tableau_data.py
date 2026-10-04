@@ -147,4 +147,4 @@ pred[["company_id", "자치구", "행정동", "업종", "실제등급", "예측�
 print(f"  tableau_model_results.csv   {len(pred):>7,}행")
 
 con.close()
-print(f"\n완료 — {OUT_DIR}/ 폴더의 3개 파일을 Tableau에서 열면 됩니다.")
+print(f"\n완료 - {OUT_DIR}/ 폴더의 3개 파일을 Tableau에서 열면 됩니다.")

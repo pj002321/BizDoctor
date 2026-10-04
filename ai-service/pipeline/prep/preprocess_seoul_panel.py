@@ -68,7 +68,7 @@ INDUSTRY_MAP = {
 df["KOSIS_산업1"] = df["서비스_업종_코드_명"].map(INDUSTRY_MAP)
 unmapped = df.loc[df["KOSIS_산업1"].isna(), "서비스_업종_코드_명"].unique()
 if len(unmapped) > 0:
-    print("⚠ 매핑 안 된 업종 (수동 확인 필요):", unmapped)
+    print("[경고] 매핑 안 된 업종 (수동 확인 필요):", unmapped)
 
 # ------------------------------------------------------------------
 # 3. 타겟 생성: 다음 분기 폐업_률 (행정동 x 업종 그룹 내에서 shift)

@@ -177,6 +177,6 @@ model.save("risk_model.keras")
 
 print("\n저장 완료: risk_model.keras, model_predictions_sample.csv")
 print("\n전체 정확도:", round((pred_df["정답여부"]).mean(), 4))
-print("RED 재현율(recall) 확인용 — 실제 RED 중 RED로 예측된 비율:")
+print("RED 재현율(recall) 확인용 - 실제 RED 중 RED로 예측된 비율:")
 red_actual = pred_df[pred_df["risk_level"] == "RED"]
 print(round((red_actual["예측_risk_level"] == "RED").mean(), 4))
