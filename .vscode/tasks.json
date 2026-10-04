@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "python: venv 생성",
+      "type": "shell",
+      "command": "py -3.12 -m venv .venv"
+    },
+    {
+      "label": "python: 패키지 설치",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe -m pip install -e ./ai-service",
+      "dependsOn": "python: venv 생성",
+      "problemMatcher": []
+    }
+  ]
+}
