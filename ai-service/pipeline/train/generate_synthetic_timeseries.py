@@ -33,27 +33,21 @@ panel = pd.read_csv("seoul_panel_model_ready.csv")
 latest = panel[panel["기준_년분기_코드"] == panel["기준_년분기_코드"].max()].copy()
 
 # 신보 부실사유코드 분포 (176번 파일)
-sgf = None
-for enc in ["utf-8-sig", "utf-8", "cp949", "euc-kr"]:
-    try:
-        sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding=enc)
-        print(f"인코딩 {enc}로 성공")
-        break
-    except UnicodeDecodeError:
-        continue
-if sgf is None:
-    sgf = pd.read_csv("raw/sgf176_utf8.csv", encoding="utf-8", encoding_errors="replace")
-    print("모든 인코딩 실패, 깨진 문자 무시하고 강제로 읽음")
+#   정상본(sgf176_utf8_bom.csv)만 읽는다. 예전에는 실패 시 sgf176_utf8.csv 를
+#   encoding_errors="replace" 로 강제로 읽었는데, 그 파일은 깨진 바이트가 구분자(,)까지
+#   먹어서 1,000행이 684행으로 줄고 컬럼이 밀린다. 그러면 7번째 컬럼에 금액이 들어와
+#   전부 '매출_폭락형' 기본값으로 매핑된다 — 오류 없이 틀린 분포가 나온다. 그래서 폴백을 없앴다.
+sgf = pd.read_csv("raw/sgf176_utf8_bom.csv", encoding="utf-8-sig")
+if "부실사유코드" not in sgf.columns:
+    raise SystemExit("sgf176_utf8_bom.csv 에 '부실사유코드' 컬럼이 없습니다. 파일 인코딩을 확인하세요.")
 
 # KOSIS 애로사항 데이터 기반 YELLOW 세부유형(업종별) 실통계 확률
 # 원가상승_확률 = (원재료비+최저임금영향) / (원재료비+최저임금영향+동일업종경쟁심화+보증금월세)
 # 값이 높을수록 그 업종은 "원가_상승_부담형", 낮을수록 "단기_매출_정체형" 쪽으로 배정
 yellow_prob = pd.read_csv("yellow_subtype_prob.csv").set_index("KOSIS_산업1")["원가상승_확률"]
 
-# 컬럼명이 인코딩 손상으로 깨져있을 수 있어서, 이름 대신 위치(7번째 컬럼)로 찾음
-# 원본 순서: 1채권관리ID 2최종업종차수 3제품명 4매출실적금액 5기업규모코드 6부실처리일자 7부실사유코드
-sgf = sgf.rename(columns={sgf.columns[6]: "부실사유코드"})
-print("7번째 컬럼 샘플값:", sgf["부실사유코드"].unique()[:5])
+# 정상본은 헤더가 온전하므로 위치(columns[6]) 대신 이름으로 찾는다.
+print("부실사유코드 샘플값:", sgf["부실사유코드"].unique()[:5])
 
 # ------------------------------------------------------------------
 # 2. 부실사유코드 → risk_type 매핑 (기획서 4개 RED 유형 + 정상)
@@ -75,6 +69,9 @@ CAUSE_TO_RISKTYPE = {
     "기타": "매출_폭락형",
 }
 sgf["risk_type"] = sgf["부실사유코드"].map(CAUSE_TO_RISKTYPE)
+unmapped = sgf.loc[sgf["risk_type"].isna(), "부실사유코드"].value_counts(dropna=False)
+if len(unmapped):
+    print("[경고] 매핑 안 된 부실사유코드 → '매출_폭락형' 기본값 적용:\n", unmapped)
 sgf["risk_type"] = sgf["risk_type"].fillna("매출_폭락형")  # 매핑 안 된 값은 기본값으로
 cause_dist = sgf["risk_type"].value_counts(normalize=True)
 print("=== 신보 데이터 기반 RED risk_type 분포 (부실기업 중) ===")
