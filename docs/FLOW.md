@@ -1,6 +1,7 @@
 # 상권 신호등 — 기술 스펙
 
-기능 목록은 `docs/기능정의서.csv` (Google Sheets 붙여넣기용). 이 문서는 그 기능을 무엇으로 구현하는지만 적는다.
+기능 목록 : (https://docs.google.com/spreadsheets/d/1sLiv7XrHPgiGBVySksUNHShqmgCGqy3gLWIoHjQCe-Q/edit). 
+이 문서는 그 기능을 무엇으로 구현하는지 적는다.
 
 ## 1. 아키텍처
 
