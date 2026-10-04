@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": {
+      "PYTHONUTF8": "1"
+    }
+  },
+  "tasks": [
+    {
+      "label": "pipeline: 1. zip 병합",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/0_merge_seoul_zips.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 2. 패널 전처리",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/preprocess_seoul_panel.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 3. KOSIS 조인",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/join_kosis_hardship.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 4. 가상 데이터 생성",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/train/generate_synthetic_timeseries.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 5. 모델 학습",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/train/train_risk_model.py"],
+      "problemMatcher": []
+    }
+  ]
+}
