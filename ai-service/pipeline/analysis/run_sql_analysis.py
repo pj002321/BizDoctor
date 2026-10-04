@@ -18,10 +18,15 @@ import sqlite3
 import numpy as np
 import pandas as pd
 import os
+import sys
 from pathlib import Path
 
-# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
-os.chdir(Path(__file__).resolve().parents[2] / "data")
+# ai-service/ 를 import 경로에 넣어 app/core/config.py 를 쓴다(이 줄은 config 를 찾기 위한 것).
+# 입출력 경로는 config.DATA_DIR(ai-service/data) 한 곳에서 정한다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from app.core import config  # noqa: E402
+
+os.chdir(config.DATA_DIR)
 
 DB = "shinhan_warehouse.db"
 con = sqlite3.connect(DB)
@@ -128,10 +133,13 @@ WEIGHTS_SQL = """
         ROUND(AVG("폐업개업_격차"), 2)             AS 폐업개업격차
     FROM v_featured
     GROUP BY "행정동_코드", "KOSIS_산업1"
-    HAVING COUNT(*) >= 8 AND SUM("유사_업종_점포_수") >= 100
+    HAVING COUNT(*) >= :min_obs AND SUM("유사_업종_점포_수") >= :min_stores
     ORDER BY 위험가중치 DESC
 """
-weights_full = pd.read_sql_query(WEIGHTS_SQL, con)
+weights_full = pd.read_sql_query(WEIGHTS_SQL, con, params={
+    "min_obs": config.REGION_RISK_MIN_OBS,        # 관측 8건 이상
+    "min_stores": config.REGION_RISK_MIN_STORES,  # 전체 점포 합계 100 이상
+})
 print(weights_full.head(15).to_string(index=False))
 weights_full.to_csv("risk_weights_by_region_industry.csv",
                     index=False, encoding="utf-8-sig")

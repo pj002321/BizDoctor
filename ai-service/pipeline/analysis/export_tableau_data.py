@@ -19,26 +19,20 @@ Tableau가 바로 연결할 수 있는 형태로 내보낸다.
 실행: python build_warehouse.py && python run_sql_analysis.py && python export_tableau_data.py
 """
 import os
+import sys
 import sqlite3
 import pandas as pd
 from pathlib import Path
 
-# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
-os.chdir(Path(__file__).resolve().parents[2] / "data")
+# ai-service/ 를 import 경로에 넣어 app/core/config.py 를 쓴다(이 줄은 config 를 찾기 위한 것).
+# 입출력 경로는 config.DATA_DIR(ai-service/data) 한 곳에서 정한다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from app.core import config  # noqa: E402
+
+os.chdir(config.DATA_DIR)
 
 OUT_DIR = "tableau"
 os.makedirs(OUT_DIR, exist_ok=True)
-
-# 행정표준코드 기준 서울 25개 자치구 (행정동_코드 앞 5자리)
-GU_CODE = {
-    "11110": "종로구",   "11140": "중구",     "11170": "용산구",   "11200": "성동구",
-    "11215": "광진구",   "11230": "동대문구", "11260": "중랑구",   "11290": "성북구",
-    "11305": "강북구",   "11320": "도봉구",   "11350": "노원구",   "11380": "은평구",
-    "11410": "서대문구", "11440": "마포구",   "11470": "양천구",   "11500": "강서구",
-    "11530": "구로구",   "11545": "금천구",   "11560": "영등포구", "11590": "동작구",
-    "11620": "관악구",   "11650": "서초구",   "11680": "강남구",   "11710": "송파구",
-    "11740": "강동구",
-}
 
 con = sqlite3.connect("shinhan_warehouse.db")
 
@@ -82,7 +76,7 @@ panel = pd.read_sql_query("""
 """, con)
 
 # 자치구 복원 + 분기를 날짜로 변환 (Tableau 시간축 인식용)
-panel["자치구"] = panel["행정동코드"].astype(str).str[:5].map(GU_CODE)
+panel["자치구"] = panel["행정동코드"].astype(str).str[:5].map(config.GU_CODE)
 panel["연도"] = panel["분기코드"].astype(str).str[:4].astype(int)
 panel["분기"] = panel["분기코드"].astype(str).str[4].astype(int)
 panel["분기시작일"] = pd.to_datetime(
@@ -92,7 +86,7 @@ panel["분기표기"] = panel["연도"].astype(str) + " Q" + panel["분기"].ast
 
 # 위험등급 — 대시보드 색상 구분용 (신호등 3색)
 panel["위험등급"] = pd.cut(
-    panel["위험가중치"], bins=[-0.01, 0.60, 0.85, 1.01],
+    panel["위험가중치"], bins=[-0.01, config.SIGNAL_LIGHT_GREEN_MAX, config.SIGNAL_LIGHT_YELLOW_MAX, 1.01],
     labels=["GREEN 안정", "YELLOW 주의", "RED 위험"]
 )
 
@@ -136,7 +130,7 @@ pred["등급정답"] = (pred["실제등급"] == pred["예측등급"]).map({True:
 pred["유형정답"] = pred["정답여부"].map({True: "정답", False: "오답"})
 # 자치구는 행정동 코드 앞 5자리로 정한다. 이름으로 찾으면 신사동이 전부 한 자치구로 붙는다.
 if "행정동_코드" in pred.columns:
-    pred["자치구"] = pred["행정동_코드"].astype(str).str[:5].map(GU_CODE)
+    pred["자치구"] = pred["행정동_코드"].astype(str).str[:5].map(config.GU_CODE)
 else:  # train_risk_model.py 를 다시 돌리기 전의 예전 파일
     print("  [경고] model_predictions_sample.csv 에 행정동_코드가 없어 이름으로 자치구를 찾습니다(신사동 부정확).")
     pred["자치구"] = pred["행정동"].map(

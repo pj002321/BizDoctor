@@ -94,6 +94,7 @@ WHERE "다음분기_폐업률" IS NOT NULL;
 -- FROM v_featured
 -- GROUP BY "행정동_코드", "KOSIS_산업1"
 -- HAVING COUNT(*) >= 8 AND SUM("유사_업종_점포_수") >= 100
+--   (8 · 100 은 ai-service/app/core/config.py 의 REGION_RISK_MIN_OBS · REGION_RISK_MIN_STORES 와 같게 유지)
 -- ORDER BY 위험가중치 DESC
 -- LIMIT 20;
 

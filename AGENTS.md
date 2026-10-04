@@ -175,8 +175,9 @@ pyarrow). 의존성이 없으면 전역이 아니라 `.venv` 에 설치한다.
 .\.venv\Scripts\python.exe ai-service\pipeline\prep\0_merge_seoul_zips.py   # 어디서 실행해도 된다
 ```
 
-모든 스크립트는 시작할 때 `os.chdir(ai-service/data)` 한다. 원본은 `data/raw/`, 산출물은
-`data/` 바로 아래에 쌓이고 gitignore 된다(`raw/` 만 추적).
+모든 스크립트는 시작할 때 `os.chdir(config.DATA_DIR)` 한다(`app/core/config.py`). 원본은 `data/raw/`, 산출물은
+`data/` 바로 아래에 쌓이고 gitignore 된다(`raw/` 만 추적). 신호등 기준·표본 기준·자치구 코드표 같은
+여러 스크립트가 같이 쓰는 값도 `config.py` 의 `데이터 파이프라인` 구역에 둔다. 스크립트에 숫자로 다시 적지 않는다.
 
 `analysis/` 는 로컬 SQLite 웨어하우스(`shinhan_warehouse.db`) 위에서 돈다. 여기서 나오는
 `risk_weights_by_region_industry.csv` · `tableau/tableau_*.csv` 가 DB 의 `region_risk` ·
