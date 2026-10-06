@@ -126,8 +126,8 @@ npm test           # vitest (features/*/domain 만)
 
 - `pipeline/train/generate_synthetic_timeseries.py` — `CAUSE_TO_RISKTYPE` (라벨 부여)
 - `pipeline/train/train_risk_model.py` — `RISKTYPE_TO_LEVEL`
-- `pipeline/doc/rag_pipeline.py` — `RISK_TYPE_QUERY`, `RISK_TYPE_TO_LEVEL`
-  (키가 하나라도 빠지면 `build_signal_json` 이 `KeyError`)
+- `app/domain/signal.py` — `RISK_TYPE_QUERY`, `RISK_TYPE_TO_LEVEL`
+  (키가 하나라도 빠지면 `build_signal` 이 `KeyError`)
 - `pipeline/doc/rag_documents.py` — 모든 문서의 `risk_type_tags`
 
 ### 학습 데이터의 순환 — 성능 수치를 읽는 법
@@ -146,11 +146,12 @@ RED 재현율이 우선이라 `class_weight="balanced"`.
 
 ### RAG
 
-지금은 `rag_documents.py` 의 하드코딩 문서 8건에 TF-IDF + 코사인이다. 임베딩으로
-바꾸되 인터페이스 `SimpleRAGIndex.retrieve(query, risk_type, top_k)` 는 유지한다.
-검색은 `risk_type` 태그로 먼저 거르고 유사도로 순위를 매긴다. `build_signal_json`
-이 프론트 계약(`risk_level`, `score`, `visual_theme`, `solutions[]`)을 만든다.
-`_similarity_score` 는 디버그 전용이다 — 운영 응답에서 뺀다.
+문서 원본은 `rag_documents.py` 이고, `doc/build_index.py` 가 임베딩해 `policy_doc` 에 넣는다.
+검색은 `app/knowledge/retrieve.py` 가 한다 — `risk_type` 태그가 붙은 문서를 먼저 세우고,
+같은 그룹 안에서는 임베딩·키워드 순위를 RRF 로 합쳐 정렬한다. 인터페이스
+`SimpleRAGIndex.retrieve(query, risk_type, top_k)` 는 유지한다.
+프론트 계약(`risk_level`, `risk_type`, `risk_type_confidence`, `score`, `visual_theme`,
+`solutions[]`)은 `app/domain/signal.py` 의 `build_signal` 이 만든다. 검색 점수는 계약에 넣지 않는다.
 
 ## 파이프라인
 
