@@ -7,41 +7,18 @@
   2) train_risk_model.py 가 예측한 risk_type을 쿼리로 사용해 최적 문서 검색
   3) 기획서에 정의된 solutions JSON 스키마로 변환
 
-주의:
-  - 지금은 디스크 용량 제약으로 TF-IDF(sklearn) 기반 검색을 사용함.
-  - 실제 서비스에서는 기획서대로 sentence-transformers(ko-sbert) 또는
-    상용 임베딩 API(OpenAI/Claude)로 교체하면 됨. 검색 인터페이스(retrieve 함수)는
-    동일하게 유지되므로 교체 비용이 크지 않도록 설계함.
+검색은 app/knowledge/retrieve.py (임베딩 + 키워드 하이브리드) 가 한다.
+먼저 build_index.py 로 policy_doc 을 채워야 한다.
 """
 import json
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from rag_documents import DOCUMENTS
+from app.knowledge.retrieve import retrieve
 
 # ------------------------------------------------------------------
-# 1. 벡터 인덱스 구축
+# 1. 검색 — 문서는 policy_doc(Postgres)에 있다. 색인은 build_index.py 가 만든다.
 # ------------------------------------------------------------------
 class SimpleRAGIndex:
-    def __init__(self, documents):
-        self.documents = documents
-        self.vectorizer = TfidfVectorizer()
-        corpus = [d["title"] + " " + d["content"] for d in documents]
-        self.matrix = self.vectorizer.fit_transform(corpus)
-
     def retrieve(self, query: str, risk_type: str = None, top_k: int = 3):
-        """쿼리 텍스트 + risk_type 태그로 문서 검색.
-        risk_type이 주어지면 해당 태그가 붙은 문서를 우선 후보로 좁힌 뒤 유사도 정렬."""
-        candidates = self.documents
-        if risk_type:
-            tagged = [d for d in self.documents if risk_type in d["risk_type_tags"]]
-            if tagged:
-                candidates = tagged
-
-        cand_idx = [self.documents.index(d) for d in candidates]
-        q_vec = self.vectorizer.transform([query])
-        sims = cosine_similarity(q_vec, self.matrix[cand_idx]).flatten()
-        ranked = sorted(zip(cand_idx, sims), key=lambda x: x[1], reverse=True)
-        return [(self.documents[i], score) for i, score in ranked[:top_k]]
+        return retrieve(query, risk_type, top_k)
 
 
 # ------------------------------------------------------------------
@@ -126,7 +103,7 @@ def build_signal_json(company_id: str, risk_type: str, score: float, index: Simp
 # 4. 데모 실행
 # ------------------------------------------------------------------
 if __name__ == "__main__":
-    index = SimpleRAGIndex(DOCUMENTS)
+    index = SimpleRAGIndex()
 
     demo_cases = [
         ("SGB_000099", "고금리_과다채무형", 78.5),
