@@ -1,0 +1,1216 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>비즈닥터</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --paper:#F4F6FA; --surface:#FFFFFF; --surface-2:#EAEEF4; --surface-3:#DEE4ED; --border:#DBE1EA;
+    --ink:#11151D; --ink-2:#4A5160; --ink-3:#868D9B;
+    --accent:#15599E; --accent-ink:#0D3E75; --accent-2:#2E7BCB; --accent-soft:#E6EFFA;
+    --hero-1:#16234A; --hero-2:#0C1630; --hero-3:#070C1B;
+    --red:#C13B2B; --red-bg:#FBEAE7; --red-fg:#8C2A1D;
+    --yellow:#C77D0A; --yellow-bg:#FCF0D9; --yellow-fg:#8A570A;
+    --green:#2F7D4F; --green-bg:#E5F4EA; --green-fg:#1E5C39;
+    --shadow: 0 1px 2px rgba(15,20,30,.05), 0 10px 28px -14px rgba(15,20,30,.18);
+    --shadow-lg: 0 24px 60px -24px rgba(10,14,24,.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1116; --surface:#171B22; --surface-2:#1D222A; --surface-3:#262C36; --border:#2B313C;
+      --ink:#ECEEF3; --ink-2:#AEB4C1; --ink-3:#767D8A;
+      --accent:#6FA3E8; --accent-ink:#9EC3F5; --accent-2:#5A8FD9; --accent-soft:#1A2C45;
+      --red-bg:#3A211D; --red-fg:#F2A79A;
+      --yellow-bg:#3A2C10; --yellow-fg:#F0BE72;
+      --green-bg:#173226; --green-fg:#8FD4AE;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -16px rgba(0,0,0,.6);
+      --shadow-lg: 0 26px 64px -26px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1116; --surface:#171B22; --surface-2:#1D222A; --surface-3:#262C36; --border:#2B313C;
+    --ink:#ECEEF3; --ink-2:#AEB4C1; --ink-3:#767D8A;
+    --accent:#6FA3E8; --accent-ink:#9EC3F5; --accent-2:#5A8FD9; --accent-soft:#1A2C45;
+    --red-bg:#3A211D; --red-fg:#F2A79A;
+    --yellow-bg:#3A2C10; --yellow-fg:#F0BE72;
+    --green-bg:#173226; --green-fg:#8FD4AE;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -16px rgba(0,0,0,.6);
+    --shadow-lg: 0 26px 64px -26px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  html.fs-sm{font-size:93.5%;} html.fs-lg{font-size:112%;}
+  html,body{margin:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  input{font-family:inherit;}
+  img,svg{max-width:100%;}
+  .mono{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;}
+  h1,h2,h3{text-wrap:balance; margin:0; font-family:'Noto Serif KR',serif;}
+  h3{font-family:'Noto Sans KR',sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:20px;}
+  section{padding-block:60px;}
+  @media (max-width:640px){ section{padding-block:40px;} }
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  :focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;}
+  .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+
+  /* ---- utility bar + header ---- */
+  .utility-bar{background:var(--hero-3);color:rgba(255,255,255,.72);font-size:11.5px;}
+  .utility-inner{max-width:1180px;margin:0 auto;padding:6px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  .fs-ctrl{display:flex;align-items:center;gap:2px;}
+  .fs-ctrl span{color:rgba(255,255,255,.5);margin-right:4px;}
+  .fs-ctrl button{width:20px;height:20px;border-radius:4px;border:1px solid rgba(255,255,255,.22);background:transparent;color:rgba(255,255,255,.8);font-size:10px;cursor:pointer;line-height:1;}
+  .fs-ctrl button.on{background:rgba(255,255,255,.18);color:#fff;}
+  .util-right{display:flex;gap:14px;align-items:center;}
+  .util-right a:hover{color:#fff;}
+  @media (max-width:600px){ .util-right span.util-sep{display:none;} }
+
+  header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb, var(--surface) 94%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
+  .brandmark{display:flex;align-items:center;gap:9px;}
+  .signal-mark{display:flex;flex-direction:column;gap:2.5px;padding:4px;border-radius:7px;background:linear-gradient(160deg,var(--hero-1),var(--hero-3));}
+  .signal-mark i{width:6px;height:6px;border-radius:50%;display:block;}
+  .brand-word{font-size:16px;font-weight:800;letter-spacing:-.01em;font-family:'Noto Serif KR',serif;}
+  .navlinks{display:flex;}
+  @media (max-width:860px){ .navlinks{display:none;} }
+  .navitem{position:relative;}
+  .navitem>a,.navitem>button{font-size:13.5px;font-weight:600;color:var(--ink-2);padding:10px 14px;border-radius:7px;display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;}
+  .navitem:hover>a,.navitem:hover>button{color:var(--ink);background:var(--surface-2);}
+  .navdrop{position:absolute;top:100%;left:0;min-width:190px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .12s ease, transform .12s ease;}
+  .navitem:hover .navdrop{opacity:1;visibility:visible;transform:translateY(2px);}
+  .navdrop a{display:flex;flex-direction:column;gap:1px;font-size:12.5px;font-weight:600;color:var(--ink);padding:8px 10px;border-radius:8px;}
+  .navdrop a:hover{background:var(--surface-2);}
+  .navdrop a small{font-size:11px;font-weight:400;color:var(--ink-3);}
+  .auth-area{display:flex;align-items:center;gap:10px;}
+  .btn-ghost-sm{font-size:13px;font-weight:600;color:var(--ink);background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;}
+  .btn-ghost-sm:hover{border-color:var(--ink-3);}
+  .nav-cta{font-size:13px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .nav-cta:hover{background:var(--accent-ink);}
+  .user-greet{font-size:13px;color:var(--ink-2);}
+  .user-greet b{color:var(--ink);}
+
+  /* ---- ticker strip ---- */
+  .ticker-strip{background:var(--accent-soft);border-bottom:1px solid var(--border);overflow:hidden;}
+  .ticker-inner{max-width:1180px;margin:0 auto;padding:8px 20px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--accent-ink);font-weight:600;}
+  .ticker-inner svg{flex:0 0 auto;}
+  .ticker-viewport{position:relative;flex-grow:1;height:18px;overflow:hidden;}
+  .ticker-msg{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transform:translateY(6px);transition:opacity .35s ease, transform .35s ease;}
+  .ticker-msg.active{opacity:1;transform:translateY(0);}
+  .ticker-close{background:none;border:none;color:var(--accent-ink);cursor:pointer;opacity:.6;flex:0 0 auto;padding:2px;}
+  .ticker-close:hover{opacity:1;}
+
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden;background:radial-gradient(130% 160% at 12% -20%, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%);color:#fff;}
+  .hero::before, .hero::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.32;pointer-events:none;}
+  .hero::before{width:360px;height:360px;background:var(--yellow);top:-140px;right:8%;}
+  .hero::after{width:300px;height:300px;background:var(--green);bottom:-140px;right:26%;opacity:.2;}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-block:60px 56px;}
+  @media (max-width:880px){ .hero-grid{grid-template-columns:1fr;padding-block:40px;} }
+  .hero .eyebrow{color:#9CB8F5;}
+  .hero h1{font-size:41px;line-height:1.3;letter-spacing:-.01em;margin-top:16px;font-weight:800;}
+  @media (max-width:640px){ .hero h1{font-size:29px;} }
+  .hero h1 .hl-red{color:#FF9686;}
+  .hero h1 .hl-green{color:#8CE7B4;}
+  .hero p{font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.72);margin-top:18px;max-width:52ch;font-family:'Noto Sans KR',sans-serif;}
+  .hero-ctas{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;}
+  .btn-primary{font-size:14px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:9px;padding:13px 22px;cursor:pointer;}
+  .btn-primary:hover{background:var(--accent-ink);}
+  .btn-ghost{font-size:14px;font-weight:600;color:var(--ink);background:transparent;border:1px solid var(--border);border-radius:9px;padding:13px 22px;cursor:pointer;}
+  .btn-ghost:hover{border-color:var(--ink-3);}
+  .btn-ghost-light{font-size:14px;font-weight:600;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28);border-radius:9px;padding:13px 22px;cursor:pointer;}
+  .btn-ghost-light:hover{background:rgba(255,255,255,.13);}
+
+  .glass-card{position:relative;background:rgba(255,255,255,.08);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:28px 26px;box-shadow:0 24px 60px -24px rgba(0,0,0,.6);}
+  .signal-lamp{display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:4px;}
+  .lamp-row{display:flex;align-items:center;gap:16px;width:100%;}
+  .lamp{width:36px;height:36px;border-radius:50%;flex:0 0 36px;}
+  .lamp.red{background:var(--red);}
+  .lamp.yellow{background:var(--yellow);box-shadow:0 0 0 6px rgba(199,125,10,.28);}
+  .lamp.green{background:var(--green);}
+  @media (prefers-reduced-motion:no-preference){ .lamp.yellow{animation:pulse 2.4s ease-in-out infinite;} }
+  @keyframes pulse{ 0%,100%{box-shadow:0 0 0 6px rgba(199,125,10,.28);} 50%{box-shadow:0 0 0 11px rgba(199,125,10,.28);} }
+  .lamp-info{flex-grow:1;display:flex;align-items:baseline;justify-content:space-between;}
+  .lamp-info .l{font-size:13px;font-weight:600;color:#fff;}
+  .lamp-info .v{font-size:12.5px;color:rgba(255,255,255,.58);}
+  .signal-divider{width:100%;height:1px;background:rgba(255,255,255,.16);}
+  .signal-foot{font-size:11px;color:rgba(255,255,255,.52);text-align:center;line-height:1.5;}
+
+  /* ---- quick menu grid (8 icons) ---- */
+  .quickband{background:var(--surface);border-bottom:1px solid var(--border);}
+  .quick-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-block:-1px;}
+  @media (max-width:920px){ .quick-grid{grid-template-columns:repeat(4,1fr);} }
+  @media (max-width:520px){ .quick-grid{grid-template-columns:repeat(2,1fr);} }
+  .quick-item{background:var(--surface);padding:20px 8px;text-align:center;cursor:pointer;border:none;display:flex;flex-direction:column;align-items:center;gap:9px;}
+  .quick-item:hover{background:var(--surface-2);}
+  .quick-item .qi{width:42px;height:42px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;}
+  .quick-item span{font-size:11.5px;font-weight:700;color:var(--ink);line-height:1.3;}
+
+  /* ---- notice tabs (소식·정보) ---- */
+  .notice-shell{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;}
+  .notice-tabs{display:flex;border-bottom:1px solid var(--border);}
+  .ntab{flex:1;font-size:13.5px;font-weight:700;color:var(--ink-3);background:var(--surface-2);border:none;padding:15px 10px;cursor:pointer;border-bottom:2px solid transparent;}
+  .ntab.active{color:var(--accent-ink);background:var(--surface);border-bottom-color:var(--accent);}
+  .notice-body{padding:6px 22px 10px;}
+  .npanel{display:none;}
+  .npanel.active{display:block;}
+  .nrow{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);}
+  .nrow:last-child{border-bottom:none;}
+  .ntag{flex:0 0 auto;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink);}
+  .ntag.new{background:var(--red-bg);color:var(--red-fg);}
+  .ntitle{flex-grow:1;font-size:13.5px;color:var(--ink);font-weight:500;}
+  .ndate{flex:0 0 auto;font-size:12px;color:var(--ink-3);}
+
+  /* ---- seek / mascot ---- */
+  .seek{text-align:center;}
+  .seek h2{font-size:25px;letter-spacing:-.01em;}
+  .seek-row{display:flex;justify-content:center;margin-top:26px;}
+  .mascot{width:92px;height:92px;margin:0 auto 6px;}
+  .seekbar{display:flex;align-items:center;gap:10px;max-width:480px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:8px 8px 8px 20px;box-shadow:var(--shadow);}
+  .seekbar input{flex-grow:1;border:none;background:transparent;font-size:14px;color:var(--ink);outline:none;}
+  .seekbar button{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:var(--accent);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .seekbar button:hover{background:var(--accent-ink);}
+  .seek-hint{font-size:12px;color:var(--ink-3);margin-top:12px;}
+
+  .databand{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface-2);}
+  .data-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-block:40px;}
+  @media (max-width:700px){ .data-grid{grid-template-columns:1fr;gap:24px;} }
+  .data-item .num{font-size:33px;font-weight:600;font-family:'IBM Plex Mono',monospace;color:var(--ink);}
+  .data-item .cap{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.5;}
+
+  .section-head{max-width:660px;margin-bottom:40px;}
+  .section-head h2{font-size:27px;margin-top:10px;letter-spacing:-.01em;font-weight:700;}
+  .section-head p{font-size:14.5px;color:var(--ink-2);margin-top:12px;line-height:1.65;}
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media (max-width:880px){ .feature-grid{grid-template-columns:1fr;} }
+  .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;transition:transform .15s ease, box-shadow .15s ease;}
+  @media (prefers-reduced-motion:no-preference){ .feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);} }
+  .feature-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent-ink);margin-bottom:16px;}
+  .feature-card h3{font-size:16px;font-weight:700;}
+  .feature-card p{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+
+  /* ---- 진단 신청 안내 toggle (전자민원 스타일) ---- */
+  .guide-toggle{display:flex;gap:6px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px;padding:5px;max-width:340px;margin:0 auto 24px;}
+  .gtbtn{flex:1;font-size:13px;font-weight:700;padding:10px;border-radius:8px;border:none;background:transparent;color:var(--ink-2);cursor:pointer;}
+  .gtbtn.active{background:var(--surface);color:var(--accent-ink);box-shadow:var(--shadow);}
+  .guide-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;}
+  .guide-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  @media (max-width:760px){ .guide-panel.active{grid-template-columns:1fr;} }
+  .guide-steps{counter-reset:step;}
+  .gstep{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--border);}
+  .gstep:first-child{border-top:none;}
+  .gstep .gn{counter-increment:step;flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .gstep .gn::before{content:counter(step);}
+  .gstep h4{font-size:13.5px;font-weight:700;margin:0 0 3px;}
+  .gstep p{font-size:12.5px;color:var(--ink-2);margin:0;line-height:1.5;}
+  .guide-need{background:var(--surface-2);border-radius:12px;padding:18px;}
+  .guide-need h4{font-size:13px;font-weight:700;margin:0 0 10px;}
+  .guide-need li{font-size:12.5px;color:var(--ink-2);line-height:1.7;}
+  .guide-time{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:5px 10px;border-radius:999px;margin-top:14px;}
+
+  .preview-frame{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;}
+  .preview-tabs{display:flex;gap:4px;padding:14px;border-bottom:1px solid var(--border);background:var(--surface-2);}
+  .ptab{font-size:13px;font-weight:600;color:var(--ink-2);background:transparent;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .ptab.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);}
+  .preview-body{padding:24px;}
+  @media (max-width:640px){ .preview-body{padding:16px;} }
+  .pview{display:none;}
+  .pview.active{display:block;}
+
+  .filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:18px;}
+  .chip{font-size:12px;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:6px 11px;white-space:nowrap;}
+  .fbar-divider{width:1px;height:18px;background:var(--border);}
+  .filterbar .note{font-size:12px;color:var(--ink-2);}
+  .btn-mini{font-size:12px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:7px;padding:7px 14px;cursor:pointer;margin-left:auto;}
+
+  .map-layout{display:grid;grid-template-columns:1.9fr 1fr;gap:18px;align-items:start;}
+  @media (max-width:760px){ .map-layout{grid-template-columns:1fr;} }
+  .section-label{font-size:12px;font-weight:700;color:var(--ink-2);margin-bottom:9px;}
+  .grid25{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;}
+  @media (max-width:460px){ .grid25{grid-template-columns:repeat(3,minmax(0,1fr));} }
+  .tile{border-radius:9px;padding:9px;cursor:pointer;height:68px;display:flex;flex-direction:column;justify-content:space-between;transition:box-shadow .12s ease;}
+  .tile:hover{box-shadow:0 0 0 2px var(--border);}
+  .tile.selected{box-shadow:0 0 0 3px var(--accent);}
+  .tile .name{font-size:12px;font-weight:700;}
+  .tile .rate{font-size:11px;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:13px;}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-2);}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .legend-note{font-size:10.5px;color:var(--ink-3);margin-left:auto;}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
+  .panel-title{font-size:14.5px;font-weight:700;}
+  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;}
+  .stat-row{display:flex;gap:10px;margin-bottom:15px;}
+  .stat{flex:1;background:var(--surface-2);border-radius:9px;padding:11px;}
+  .stat .k{font-size:10px;color:var(--ink-3);}
+  .stat .v{font-size:17px;font-weight:700;margin-top:3px;}
+  .rank-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border);font-size:12px;}
+  .rank-row .r{color:var(--red-fg);font-weight:600;}
+  .fineprint{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-top:13px;}
+
+  .diag-locked{text-align:center;padding:56px 20px;}
+  .diag-locked .lockicon{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+  .diag-locked h3{font-size:17px;}
+  .diag-locked p{font-size:13.5px;color:var(--ink-2);margin-top:8px;max-width:40ch;margin-inline:auto;line-height:1.6;}
+  .diag-locked button{margin-top:20px;}
+
+  .hero-diag{display:grid;grid-template-columns:128px 1fr;gap:20px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;}
+  @media (max-width:560px){ .hero-diag{grid-template-columns:1fr;} }
+  .grade-circle{width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;}
+  .grade-circle .gl{font-size:9.5px;color:rgba(255,255,255,.85);font-weight:600;}
+  .grade-circle .gv{font-size:20px;font-weight:700;color:#fff;margin-top:2px;}
+  .diag-right{display:flex;flex-direction:column;gap:12px;}
+  .diag-meta{font-size:12.5px;color:var(--ink-2);}
+  .diag-meta b{color:var(--ink);font-weight:600;}
+  .low-conf{display:inline-block;font-size:10.5px;font-weight:600;background:var(--yellow-bg);color:var(--yellow-fg);padding:3px 8px;border-radius:999px;margin-left:6px;}
+  .gauge-wrap{display:flex;align-items:center;gap:10px;}
+  .gauge{position:relative;flex-grow:1;height:9px;border-radius:999px;background:linear-gradient(90deg,var(--green) 0 45%,var(--yellow) 45% 75%,var(--red) 75% 100%);}
+  .gauge .marker{position:absolute;top:-3.5px;width:3px;height:16px;background:var(--ink);border-radius:2px;}
+  .gauge-val{font-size:14.5px;font-weight:700;white-space:nowrap;}
+
+  .dcard{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;}
+  .dcard h4{font-size:13px;margin:0 0 12px;font-family:'Noto Sans KR',sans-serif;}
+  .cause-row{display:grid;grid-template-columns:140px 1fr 36px;align-items:center;gap:9px;font-size:12px;margin-bottom:8px;}
+  .cause-bar-track{height:7px;border-radius:999px;background:var(--surface);overflow:hidden;}
+  .cause-bar-fill{height:100%;border-radius:999px;}
+  .cause-flag{font-size:9.5px;color:var(--ink-3);grid-column:1 / -1;margin-top:-4px;margin-bottom:2px;}
+
+  .report-block{margin-bottom:12px;}
+  .report-block .label{font-size:10px;font-weight:700;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .report-block p{font-size:12.5px;line-height:1.6;color:var(--ink-2);margin:0;}
+
+  .fund-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media (max-width:760px){ .fund-grid{grid-template-columns:1fr;} }
+  .fund-card{border:1px solid var(--border);background:var(--surface);border-radius:11px;padding:14px;display:flex;flex-direction:column;gap:7px;}
+  .fund-agency{font-size:10.5px;color:var(--ink-3);}
+  .fund-title{font-size:13px;font-weight:700;}
+  .fund-desc{font-size:11.5px;color:var(--ink-2);line-height:1.5;flex-grow:1;}
+  .fund-meta{font-size:10.5px;color:var(--ink-3);border-top:1px solid var(--border);padding-top:7px;}
+
+  .info-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+  .info-body{font-size:12px;color:var(--ink-2);line-height:1.6;margin-top:11px;padding-top:11px;border-top:1px solid var(--border);}
+
+  .pfooter-note{background:var(--surface-2);border:1px solid var(--border);border-radius:11px;padding:14px 16px;font-size:11px;color:var(--ink-2);line-height:1.6;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;}
+  .share-btn{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+
+  /* ---- stats tabs + bar chart ---- */
+  .stats-shell{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;}
+  .stats-tabs{display:flex;border-bottom:1px solid var(--border);}
+  .stab{flex:1;font-size:13.5px;font-weight:700;color:var(--ink-3);background:var(--surface-2);border:none;padding:16px 10px;cursor:pointer;border-bottom:2px solid transparent;}
+  .stab.active{color:var(--accent-ink);background:var(--surface);border-bottom-color:var(--accent);}
+  .stats-body{padding:26px;}
+  .spanel{display:none;}
+  .spanel.active{display:block;}
+  .bar-row{display:grid;grid-template-columns:96px 1fr 52px;align-items:center;gap:12px;margin-bottom:12px;}
+  .bar-row .bl{font-size:12.5px;font-weight:600;color:var(--ink);}
+  .bar-track{height:14px;border-radius:5px;background:var(--surface-2);overflow:hidden;}
+  .bar-fill{height:100%;border-radius:5px;}
+  .bar-row .bv{font-size:12.5px;text-align:right;font-weight:700;}
+  .stats-summary{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+  .ssum{flex:1;min-width:130px;background:var(--surface-2);border-radius:11px;padding:14px;}
+  .ssum .k{font-size:11px;color:var(--ink-3);}
+  .ssum .v{font-size:19px;font-weight:700;margin-top:3px;}
+  .stats-note{font-size:11px;color:var(--ink-3);margin-top:16px;line-height:1.6;}
+
+  /* ---- horizontal scroll-snap card rows ---- */
+  .snap-row{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px;}
+  .story-card{scroll-snap-align:start;flex:0 0 300px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;}
+  .story-tag{align-self:flex-start;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:6px;}
+  .story-quote{font-size:13.5px;line-height:1.65;color:var(--ink);font-style:normal;}
+  .story-who{font-size:12px;color:var(--ink-3);border-top:1px solid var(--border);padding-top:10px;margin-top:auto;}
+  .story-cta{font-size:12.5px;font-weight:700;color:var(--accent-ink);}
+
+  .res-card{scroll-snap-align:start;flex:0 0 280px;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .res-thumb{height:120px;display:flex;align-items:center;justify-content:center;color:#fff;}
+  .res-body{padding:16px;}
+  .res-eyebrow{font-size:10.5px;font-weight:700;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em;}
+  .res-title{font-size:13.5px;font-weight:700;margin-top:6px;}
+  .res-desc{font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.55;}
+
+  /* ---- promo grid (팝업존 스타일) ---- */
+  .promo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media (max-width:820px){ .promo-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .promo-grid{grid-template-columns:1fr;} }
+  .promo-card{border:1px solid var(--border);border-radius:13px;padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:8px;}
+  .promo-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .promo-card h4{font-size:12.5px;font-weight:700;margin:0;}
+  .promo-card p{font-size:11.5px;color:var(--ink-2);margin:0;line-height:1.5;}
+
+  /* ---- footer ---- */
+  footer{border-top:1px solid var(--border);background:var(--surface-2);}
+  .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;padding-block:40px 28px;}
+  @media (max-width:820px){ .footer-top{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .footer-top{grid-template-columns:1fr;} }
+  .foot-col h5{font-size:12px;font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:.02em;}
+  .foot-col a, .foot-col p{font-size:12.5px;color:var(--ink-2);line-height:2;}
+  .footer-desc{font-size:12px;color:var(--ink-3);max-width:40ch;line-height:1.65;margin-top:10px;}
+  .foot-links{display:flex;flex-direction:column;}
+  .foot-links a:hover{color:var(--ink);}
+  .foot-sns{display:flex;gap:8px;margin-top:14px;}
+  .foot-sns a{width:30px;height:30px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink-2);}
+  .foot-sns a:hover{color:var(--ink);border-color:var(--ink-3);}
+  .footer-legal{font-size:11px;color:var(--ink-3);line-height:1.7;border-top:1px solid var(--border);padding:18px 0 28px;}
+
+  .top-btn{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);color:var(--ink-2);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:30;opacity:0;pointer-events:none;transition:opacity .15s ease;}
+  .top-btn.show{opacity:1;pointer-events:auto;}
+  .top-btn:hover{color:var(--ink);border-color:var(--ink-3);}
+</style>
+
+<div class="utility-bar">
+  <div class="utility-inner">
+    <div class="fs-ctrl">
+      <span>글자크기</span>
+      <button type="button" data-fs="fs-sm" aria-label="작게">가-</button>
+      <button type="button" data-fs="" class="on" aria-label="기본">가</button>
+      <button type="button" data-fs="fs-lg" aria-label="크게">가+</button>
+    </div>
+    <div class="util-right">
+      <a href="#preview">전체 서비스</a>
+      <span class="util-sep">·</span>
+      <a href="#login">로그인</a>
+      <span class="util-sep">·</span>
+      <a href="/chatbot">챗봇 상담</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="nav-inner">
+    <div class="brandmark">
+      <div class="signal-mark"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></div>
+      <span class="brand-word">비즈닥터</span>
+    </div>
+    <nav class="navlinks">
+      <div class="navitem">
+        <a href="#preview" data-pview-goto="map">상권 지도</a>
+        <div class="navdrop">
+          <a href="#preview" data-pview-goto="map">신호등 지도 보기<small>25개 자치구 실질폐업률</small></a>
+          <a href="#stats">통계로 보기<small>지역별 · 업종별 순위</small></a>
+        </div>
+      </div>
+      <div class="navitem">
+        <a href="#preview" data-pview-goto="diag">사업장 진단</a>
+        <div class="navdrop">
+          <a href="#preview" data-pview-goto="diag">내 가게 진단하기<small>로그인 후 이용</small></a>
+          <a href="#apply">신청 안내<small>개인 · 법인사업자</small></a>
+        </div>
+      </div>
+      <div class="navitem">
+        <a href="#preview" data-pview-goto="diag">정책자금</a>
+        <div class="navdrop">
+          <a href="#preview" data-pview-goto="diag">추천 지원사업<small>진단 결과 기반 매칭</small></a>
+        </div>
+      </div>
+      <div class="navitem">
+        <a href="#notice">이용가이드</a>
+        <div class="navdrop">
+          <a href="#notice">공지사항</a>
+          <a href="#resources">자료실</a>
+        </div>
+      </div>
+    </nav>
+    <div class="auth-area" id="auth-logged-out">
+      <button class="btn-ghost-sm" data-scroll="login">로그인</button>
+      <button class="nav-cta" data-scroll="login">무료로 시작하기</button>
+    </div>
+    <div class="auth-area" id="auth-logged-in" hidden>
+      <span class="user-greet"><b>데모 사장님</b>, 안녕하세요</span>
+      <button class="btn-ghost-sm" id="btn-logout">로그아웃</button>
+    </div>
+  </div>
+</header>
+
+<div class="ticker-strip" id="ticker-strip">
+  <div class="wrap ticker-inner">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="ticker-viewport" id="ticker-viewport"></div>
+    <button class="ticker-close" id="ticker-close" aria-label="닫기">✕</button>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">SMALL BUSINESS EARLY-WARNING · B2C</span>
+        <h1>문 닫기 <span class="hl-red">전에</span>,<br>먼저 <span class="hl-green">신호</span>를 보냅니다</h1>
+        <p>서울 25개 자치구, 38만여 건의 상권 데이터를 기반으로 우리 동네 상권은 물론, 로그인 후에는 내 가게의 위험 신호와 받을 수 있는 정책자금까지 한눈에 확인할 수 있습니다.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" data-scroll="login">무료로 내 가게 진단받기</button>
+          <button class="btn-ghost-light" data-scroll="preview">지도부터 둘러보기</button>
+          <a class="btn-ghost-light" href="/service">서비스 바로가기 →</a>
+        </div>
+      </div>
+      <div class="glass-card">
+        <div class="signal-lamp">
+          <div class="lamp-row"><div class="lamp red"></div><div class="lamp-info"><span class="l">위험</span><span class="v mono">3개 자치구 · 12%</span></div></div>
+          <div class="lamp-row"><div class="lamp yellow"></div><div class="lamp-info"><span class="l">주의</span><span class="v mono">7개 자치구 · 28%</span></div></div>
+          <div class="lamp-row"><div class="lamp green"></div><div class="lamp-info"><span class="l">안정</span><span class="v mono">15개 자치구 · 60%</span></div></div>
+          <div class="signal-divider"></div>
+          <div class="signal-foot">2025 Q4 기준 · 실질폐업률(가중) 평균으로 산출</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quickband">
+    <div class="wrap" style="padding-block:24px;">
+      <div class="quick-grid" id="quick-grid"></div>
+    </div>
+  </div>
+
+  <section id="notice">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px;">
+        <span class="eyebrow">NOTICE · UPDATE</span>
+        <h2>소식 · 정보</h2>
+      </div>
+      <div class="notice-shell">
+        <div class="notice-tabs" id="notice-tabs"></div>
+        <div class="notice-body" id="notice-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seek">
+    <div class="wrap">
+      <svg class="mascot" viewBox="0 0 96 96" fill="none">
+        <rect x="18" y="10" width="60" height="76" rx="20" fill="var(--ink)"/>
+        <circle cx="38" cy="42" r="5" fill="var(--paper)"/>
+        <circle cx="58" cy="42" r="5" fill="var(--paper)"/>
+        <path d="M36 60c4 5 20 5 24 0" stroke="var(--paper)" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="48" cy="6" r="5.5" fill="var(--red)"/>
+      </svg>
+      <h2>우리 가게, 지금 어떤 상태일까요?</h2>
+      <p class="seek-hint">행정동과 업종만 알려주시면 상권 신호등 지도에서 바로 확인할 수 있어요</p>
+      <div class="seek-row">
+        <div class="seekbar">
+          <input type="text" id="seek-input" placeholder="예) 종로구 · 한식음식점">
+          <button type="button" aria-label="검색" id="seek-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="databand">
+    <div class="wrap data-grid">
+      <div class="data-item"><div class="num">387,266</div><div class="cap">행정동 × 업종 × 분기 상권 패널 데이터</div></div>
+      <div class="data-item"><div class="num">11개 분기</div><div class="cap">2023 Q1 ~ 2025 Q3 연속 추적</div></div>
+      <div class="data-item"><div class="num">5.99% ~ 0.75%</div><div class="cap">업종별 3개년 평균 폐업률 편차 (PC방 · 동물병원)</div></div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FEATURES</span>
+        <h2>동네 신호와 내 가게 신호는 따로 봅니다</h2>
+        <p>상권 신호등 지도는 누구나 무료로 볼 수 있고, 내 가게 단위의 사업장 진단은 로그인 후 개인화된 마이페이지에서 확인합니다.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 12 2a7 7 0 0 1 7 7.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+          <h3>상권 신호등 지도 <span style="font-size:10.5px;color:var(--ink-3);font-weight:500;">· 무료</span></h3>
+          <p>자치구·행정동 단위 실질폐업률을 기준으로 GREEN·YELLOW·RED 3색 지도를 제공합니다. 소표본 지역은 왜곡 없이 별도 표기합니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9-6-18-3 9H2"/></svg></div>
+          <h3>사업장 진단 <span style="font-size:10.5px;color:var(--ink-3);font-weight:500;">· 로그인</span></h3>
+          <p>최근 3개월 매출 흐름만 입력하면 내 가게의 위험등급과 추정 원인을 계산합니다. 절대 금액은 서버에 저장하지 않습니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h3"/></svg></div>
+          <h3>AI 리포트 · 정책자금 추천 <span style="font-size:10.5px;color:var(--ink-3);font-weight:500;">· 로그인</span></h3>
+          <p>내 진단 결과에 맞는 정책자금을 검색해 근거 문서 기반으로 리포트를 생성합니다. 문서 밖 수치는 생성하지 않도록 검증을 거칩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px;text-align:center;margin-inline:auto;">
+        <span class="eyebrow">HOW TO APPLY</span>
+        <h2>진단 신청 안내</h2>
+        <p>사업자 형태에 따라 필요한 정보와 절차가 조금 다릅니다. 아래에서 해당하는 유형을 선택해 확인하세요.</p>
+      </div>
+      <div class="guide-toggle">
+        <button class="gtbtn active" data-guide="personal">개인사업자</button>
+        <button class="gtbtn" data-guide="corp">법인사업자</button>
+      </div>
+      <div class="guide-panel active" id="guide-personal">
+        <div class="guide-steps">
+          <div class="gstep"><div class="gn"></div><div><h4>행정동 · 업종 선택</h4><p>사업장 소재지 행정동과 서비스 업종을 선택합니다.</p></div></div>
+          <div class="gstep"><div class="gn"></div><div><h4>최근 3개월 매출지수 입력</h4><p>실금액 대신 전월 대비 증감 추세만 입력해도 진단이 가능합니다.</p></div></div>
+          <div class="gstep"><div class="gn"></div><div><h4>진단 결과 · 정책자금 확인</h4><p>위험등급, 추정 원인, 맞춤 지원사업을 마이페이지에서 바로 확인합니다.</p></div></div>
+        </div>
+        <div class="guide-need">
+          <h4>준비할 정보</h4>
+          <ul style="margin:0;padding-left:18px;">
+            <li>사업장 소재 행정동</li>
+            <li>서비스 업종(예: 한식음식점, 카페 등)</li>
+            <li>최근 3개월 매출 추세(선택 입력)</li>
+            <li>개업 연차 · 프랜차이즈 여부</li>
+          </ul>
+          <span class="guide-time">⏱ 입력 소요시간 약 2분</span>
+        </div>
+      </div>
+      <div class="guide-panel" id="guide-corp">
+        <div class="guide-steps">
+          <div class="gstep"><div class="gn"></div><div><h4>사업장 단위 등록</h4><p>본점·지점을 구분해 각 사업장별로 진단을 등록할 수 있습니다.</p></div></div>
+          <div class="gstep"><div class="gn"></div><div><h4>지점별 매출지수 입력</h4><p>지점마다 최근 3개월 매출 추세를 개별 입력합니다.</p></div></div>
+          <div class="gstep"><div class="gn"></div><div><h4>통합 리포트 확인</h4><p>지점별 위험등급을 한 화면에서 비교하고, 지점별 지원사업을 확인합니다.</p></div></div>
+        </div>
+        <div class="guide-need">
+          <h4>준비할 정보</h4>
+          <ul style="margin:0;padding-left:18px;">
+            <li>사업자등록번호(법인)</li>
+            <li>지점별 소재 행정동 · 업종</li>
+            <li>지점별 최근 3개월 매출 추세</li>
+            <li>담당자 연락처(리포트 수신용)</li>
+          </ul>
+          <span class="guide-time">⏱ 지점당 입력 소요시간 약 2분</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="login">
+    <div class="wrap login-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div class="login-copy">
+        <span class="eyebrow">GET STARTED · B2C</span>
+        <h2 style="margin-top:10px;">로그인하면 내 가게가 보입니다</h2>
+        <p style="font-size:14.5px;color:var(--ink-2);line-height:1.7;margin-top:14px;max-width:44ch;">회원가입 없이도 동네 지도는 볼 수 있지만, 내 사업장의 신호등 상태와 맞춤 정책자금은 로그인 후 마이페이지에서만 제공됩니다.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 18px;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>내 사업장의 위험 신호(빨강·노랑·초록)를 바로 확인</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 18px;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>지금 받을 수 있는 정책자금을 자동으로 매칭</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 18px;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>매출 실금액은 저장하지 않고, 진단 이력만 안전하게 보관</div>
+        </div>
+      </div>
+
+      <div class="login-card" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow);">
+        <div id="login-form-state">
+          <h3 style="font-size:17px;">로그인</h3>
+          <div style="margin-top:16px;"><label for="login-email" style="font-size:12px;font-weight:600;color:var(--ink-2);display:block;margin-bottom:6px;">이메일</label><input id="login-email" type="email" placeholder="you@example.com" style="width:100%;font-size:14px;padding:11px 13px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--ink);"></div>
+          <div style="margin-top:16px;"><label for="login-pw" style="font-size:12px;font-weight:600;color:var(--ink-2);display:block;margin-bottom:6px;">비밀번호</label><input id="login-pw" type="password" placeholder="••••••••" style="width:100%;font-size:14px;padding:11px 13px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--ink);"></div>
+          <button class="btn-primary" id="btn-login-submit" style="width:100%;margin-top:20px;padding:12px;">로그인</button>
+          <div style="display:flex;align-items:center;gap:12px;margin:18px 0;"><div style="flex-grow:1;height:1px;background:var(--border);"></div><span style="font-size:11.5px;color:var(--ink-3);">또는</span><div style="flex-grow:1;height:1px;background:var(--border);"></div></div>
+          <button class="btn-ghost" id="btn-login-demo" style="width:100%;padding:11px;">데모 계정으로 바로 체험하기</button>
+          <div style="font-size:11.5px;color:var(--ink-3);text-align:center;margin-top:14px;">계정이 없으신가요? <a href="#login" style="color:var(--accent-ink);font-weight:600;">무료 회원가입</a></div>
+        </div>
+        <div id="login-done-state" hidden style="text-align:center;padding:16px 4px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--green-bg);color:var(--green-fg);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h4 style="font-size:15px;">로그인되었습니다</h4>
+          <p style="font-size:12.5px;color:var(--ink-2);margin-top:6px;">이제 마이페이지에서 내 가게의 진단 결과를 확인할 수 있습니다.</p>
+          <button class="btn-primary" id="btn-goto-mypage" style="margin-top:16px;">마이페이지에서 내 가게 확인하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preview">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">PREVIEW</span>
+        <h2>직접 체험해보기</h2>
+        <p>상권 신호등 지도는 무료로 열려 있고, 사업장 진단은 로그인 후 마이페이지로 제공됩니다.</p>
+      </div>
+      <div class="preview-frame">
+        <div class="preview-tabs">
+          <button class="ptab active" data-pview="map">상권 신호등 지도</button>
+          <button class="ptab" data-pview="diag">마이페이지 · 사업장 진단</button>
+        </div>
+        <div class="preview-body">
+
+          <div id="pview-map" class="pview active">
+            <div class="filterbar">
+              <span class="chip">2025 Q4</span>
+              <span class="chip">전체 자치구</span>
+              <span class="chip">전체 산업대분류</span>
+              <span class="chip">업종 전체</span>
+              <div class="fbar-divider"></div>
+              <span class="note">최소 점포수 <b class="mono">5개</b> 이상</span>
+              <button class="btn-mini">필터 적용</button>
+            </div>
+            <div class="map-layout">
+              <div>
+                <div class="section-label">자치구 위험도 지도 · 8개 산업대분류 평균</div>
+                <div class="grid25" id="grid25"></div>
+                <div class="legend">
+                  <span class="legend-item"><span class="dot" style="background:var(--green)"></span>안정 (GREEN)</span>
+                  <span class="legend-item"><span class="dot" style="background:var(--yellow)"></span>주의 (YELLOW)</span>
+                  <span class="legend-item"><span class="dot" style="background:var(--red)"></span>위험 (RED)</span>
+                  <span class="legend-note">소표본 자치구는 별도 표기</span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div class="panel-title" id="d-name">중랑구</div>
+                  <div class="badge" id="d-badge">위험</div>
+                </div>
+                <div class="stat-row">
+                  <div class="stat"><div class="k">실질폐업률(가중)</div><div class="v mono" id="d-rate">2.9%</div></div>
+                  <div class="stat"><div class="k">점포수</div><div class="v mono" id="d-stores">4,410</div></div>
+                </div>
+                <div class="section-label" style="margin-bottom:0;">업종별 폐업률 상위</div>
+                <div id="d-industries"></div>
+                <div class="fineprint">관측 8건 이상 · 연점포수 100 이상 조합만 표시되며, 미달 시 '표본부족'으로 별도 표기됩니다.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="pview-diag" class="pview">
+
+            <div id="diag-locked" class="diag-locked">
+              <div class="lockicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+              <h3>로그인하고 내 가게 진단을 확인하세요</h3>
+              <p>최근 3개월 매출만 입력하면 신호등 등급과 받을 수 있는 정책자금을 바로 알려드립니다.</p>
+              <button class="btn-primary" data-scroll="login">로그인하고 확인하기</button>
+            </div>
+
+            <div id="diag-content" hidden>
+              <div class="hero-diag">
+                <div style="display:flex;align-items:center;justify-content:center;">
+                  <div class="grade-circle" style="background:var(--yellow);">
+                    <span class="gl">진단 등급</span>
+                    <span class="gv">주의</span>
+                  </div>
+                </div>
+                <div class="diag-right">
+                  <div class="diag-meta"><b>종로구</b> · 한식음식점 · 최근 3개월 매출지수 92 → 81<span class="low-conf">신뢰도 낮음 · 참고용</span></div>
+                  <div>
+                    <div class="section-label" style="margin-bottom:7px;">위험 점수</div>
+                    <div class="gauge-wrap">
+                      <div class="gauge"><div class="marker" style="left:42%;"></div></div>
+                      <div class="gauge-val mono">42<span style="font-size:11px;color:var(--ink-3);font-weight:400;">/100</span></div>
+                    </div>
+                  </div>
+                  <div class="diag-meta">상권 대비 위치 — 우리 동네 한식음식점 중 폐업 위험 <b>상위 32%</b></div>
+                </div>
+              </div>
+
+              <div class="dcard">
+                <h4>추정 원인 (참고용)</h4>
+                <div id="cause-list"></div>
+              </div>
+
+              <div class="dcard">
+                <h4>AI 진단 리포트</h4>
+                <div class="report-block">
+                  <div class="label">현황 요약</div>
+                  <p>최근 3개월 매출이 이전 3개월 대비 완만하게 감소하는 추세이며, 종로구 한식음식점 업종 내에서 폐업 위험 상위 32%에 해당합니다.</p>
+                </div>
+                <div class="report-block">
+                  <div class="label">추정 원인</div>
+                  <p>매출 변동 패턴은 단기_매출_정체형에 가장 가깝게 나타납니다(확률 58%). 다만 이는 확정 진단이 아닌 추정치입니다.</p>
+                </div>
+                <div class="report-block">
+                  <div class="label">권장 조치</div>
+                  <p>매출 흐름을 1~2개월간 추가로 관찰하고, 아래 지원사업 중 조건에 맞는 프로그램을 우선 검토해보시기 바랍니다.</p>
+                </div>
+              </div>
+
+              <div class="dcard">
+                <h4>추천 지원사업</h4>
+                <div class="fund-grid" id="fund-grid"></div>
+              </div>
+
+              <div class="dcard">
+                <div class="info-toggle" id="info-toggle">
+                  <h4 style="margin:0;">이 결과는 어떻게 계산되나요</h4>
+                  <span id="info-chevron" style="color:var(--ink-3);">▸</span>
+                </div>
+                <div class="info-body" id="info-body" hidden>
+                  이 진단은 LSTM 기반 모델이 산출한 결과입니다. 현재 6개 추정 원인 유형 중 2개(원가_상승_부담형, 상권_침체_붕괴형)는 재현율 0%, 1개(매출_폭락형)는 1.2%로 신뢰도가 낮아 참고용으로만 표기됩니다. 또한 학습 데이터의 RED 비중(30%)을 실제 서울 평균(약 14%)에 맞춰 보정한 확률입니다.
+                </div>
+              </div>
+
+              <div class="pfooter-note">
+                <span>매출 시계열은 시뮬레이션 기반이며 정확도는 시뮬레이션 규칙 복원율입니다. 지원사업 관련 내용은 신청 전 반드시 소관기관을 통해 최종 확인하시기 바랍니다.<br>공유 링크 소지자는 위험등급·원인유형 열람 가능, 매출 관련 수치는 비공개됩니다.</span>
+                <button class="share-btn">공유 링크 복사</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">STATISTICS</span>
+        <h2>현황 통계</h2>
+        <p>2025년 4분기 기준, 실질폐업률(가중)이 높은 지역·업종 순위입니다.</p>
+      </div>
+      <div class="stats-shell">
+        <div class="stats-tabs" id="stats-tabs"></div>
+        <div class="stats-body" id="stats-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px;">
+        <span class="eyebrow">USE CASES</span>
+        <h2>이런 사장님들이 신호를 먼저 확인했어요</h2>
+      </div>
+      <div class="snap-row" id="story-row"></div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px;">
+        <span class="eyebrow">RESOURCES</span>
+        <h2>자료실 · 카드뉴스</h2>
+      </div>
+      <div class="snap-row" id="res-row"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="promo-grid" id="promo-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="foot-col">
+        <div class="brandmark"><div class="signal-mark"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></div><span class="brand-word">비즈닥터</span></div>
+        <p class="footer-desc">서울시 상권·소상공인 데이터를 기반으로 폐업 위험을 조기에 알리고, 알맞은 정책자금을 연결하는 개인 포트폴리오 프로젝트입니다.</p>
+        <div class="foot-sns" aria-hidden="true">
+          <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 9.4-8.4 16.3-16.9 11.6 2.6.1 5.2-.7 7-2.4-2.9-.1-5-2-5.8-4.5 1 .2 1.9.1 2.7-.2C4 11.1 2.4 8.8 2.4 6c.8.5 1.7.8 2.7.8C3.3 5.1 2.6 2 4 0c2.5 3 6.2 5 10.3 5.2-.9-4 4.4-6.3 6.8-3.1 1.2-.2 2.3-.7 3.3-1.3-.4 1.3-1.2 2.3-2.3 3 1.1-.1 2.1-.4 3-.9-.7 1-1.6 1.9-2.6 2.6z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>바로가기 · 데이터 출처</h5>
+        <div class="foot-links">
+          <a href="#">서울시 상권분석서비스</a>
+          <a href="#">KOSIS 국가통계포털</a>
+          <a href="#">신용보증기금 채권관리 통계</a>
+          <a href="#">소상공인시장진흥공단</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>이용 안내</h5>
+        <div class="foot-links">
+          <a href="#notice">공지사항</a>
+          <a href="#resources">자료실</a>
+          <a href="#apply">진단 신청 안내</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>문의</h5>
+        <p style="margin:0;">이메일 문의<br><span class="mono" style="color:var(--ink);">contact@bizdoctor.example</span></p>
+        <p style="margin-top:10px;">운영시간(모의)<br>평일 09:00–18:00</p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      본 서비스의 매출 시계열은 시뮬레이션 기반이며, 정확도는 시뮬레이션 규칙 복원율을 의미합니다. 정책자금 관련 안내는 신청 전 반드시 소관기관을 통해 최종 확인하시기 바랍니다.<br>
+      본 페이지에서 소개하는 기관·데이터 출처 명칭은 프로젝트의 데이터 근거를 밝히기 위한 것으로, 해당 기관의 공식 서비스가 아닙니다. © 2026 비즈닥터 · 개인 포트폴리오 프로젝트
+    </div>
+  </div>
+</footer>
+
+<button class="top-btn" id="btn-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
+
+<script>
+(function(){
+  var districts = [
+    {name:'종로구', risk:'YELLOW', rate:'1.8%', stores:'3,214'},
+    {name:'중구', risk:'YELLOW', rate:'2.1%', stores:'2,876'},
+    {name:'용산구', risk:'GREEN', rate:'1.1%', stores:'4,532'},
+    {name:'성동구', risk:'GREEN', rate:'0.9%', stores:'5,120'},
+    {name:'광진구', risk:'GREEN', rate:'1.0%', stores:'4,890'},
+    {name:'동대문구', risk:'YELLOW', rate:'1.7%', stores:'6,210'},
+    {name:'중랑구', risk:'RED', rate:'2.9%', stores:'4,410'},
+    {name:'성북구', risk:'GREEN', rate:'1.2%', stores:'5,760'},
+    {name:'강북구', risk:'RED', rate:'3.1%', stores:'3,320'},
+    {name:'도봉구', risk:'YELLOW', rate:'1.6%', stores:'3,050'},
+    {name:'노원구', risk:'GREEN', rate:'1.0%', stores:'6,880'},
+    {name:'은평구', risk:'YELLOW', rate:'1.5%', stores:'5,240'},
+    {name:'서대문구', risk:'GREEN', rate:'1.1%', stores:'4,120'},
+    {name:'마포구', risk:'GREEN', rate:'0.8%', stores:'7,650'},
+    {name:'양천구', risk:'GREEN', rate:'0.9%', stores:'5,330'},
+    {name:'강서구', risk:'GREEN', rate:'1.0%', stores:'8,210'},
+    {name:'구로구', risk:'YELLOW', rate:'1.6%', stores:'6,120'},
+    {name:'금천구', risk:'RED', rate:'2.8%', stores:'3,890'},
+    {name:'영등포구', risk:'GREEN', rate:'1.1%', stores:'7,340'},
+    {name:'동작구', risk:'GREEN', rate:'1.0%', stores:'4,760'},
+    {name:'관악구', risk:'YELLOW', rate:'1.7%', stores:'6,540'},
+    {name:'서초구', risk:'GREEN', rate:'0.7%', stores:'6,120'},
+    {name:'강남구', risk:'GREEN', rate:'0.8%', stores:'9,870'},
+    {name:'송파구', risk:'GREEN', rate:'0.9%', stores:'8,430'},
+    {name:'강동구', risk:'GREEN', rate:'1.0%', stores:'5,980'}
+  ];
+  var industryMap = {
+    '중랑구': [['PC방','5.8%'],['호프/요식주점','4.9%'],['노래연습장','4.2%']],
+    '강북구': [['PC방','6.1%'],['스크린골프','4.4%'],['호프/요식주점','4.0%']],
+    '금천구': [['의류소매','5.2%'],['PC방','4.8%'],['분식전문점','3.9%']]
+  };
+  var defaultIndustries = [['한식음식점','2.1%'],['카페','1.8%'],['편의점','0.9%']];
+  var riskColors = {
+    RED:{bg:'var(--red-bg)', fg:'var(--red-fg)', dot:'var(--red)', label:'위험'},
+    YELLOW:{bg:'var(--yellow-bg)', fg:'var(--yellow-fg)', dot:'var(--yellow)', label:'주의'},
+    GREEN:{bg:'var(--green-bg)', fg:'var(--green-fg)', dot:'var(--green)', label:'안정'}
+  };
+  var causeTypes = [
+    {name:'단기_매출_정체형', prob:58, top:true},
+    {name:'정상_유지형', prob:19},
+    {name:'고금리_과다채무형', prob:12},
+    {name:'매출_폭락형', prob:6, flag:'재현율 1.2% · 참고용'},
+    {name:'원가_상승_부담형', prob:3, flag:'재현율 0% · 참고용'},
+    {name:'상권_침체_붕괴형', prob:2, flag:'재현율 0% · 참고용'}
+  ];
+  var funds = [
+    {agency:'한국자산관리공사(캠코)', title:'새출발기금(부분면책형)', desc:'코로나19 피해 소상공인·자영업자 대상 채무조정 지원', meta:'한도 3,000만원 · 상시 접수 (사례 기준)'},
+    {agency:'소상공인시장진흥공단', title:'일반경영안정자금', desc:'매출 감소를 겪는 소상공인 대상 저금리 운영자금 대출', meta:'한도 7,000만원 · 연 2%대 (사례 기준)'},
+    {agency:'서울신용보증재단', title:'경영애로 특례보증', desc:'일시적 경영위기를 겪는 서울 소재 사업자 대상 보증 지원', meta:'한도 5,000만원 · 보증비율 95% (사례 기준)'}
+  ];
+
+  var quickMenu = [
+    {label:'상권 신호등 지도', pview:'map', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
+    {label:'내 가게 진단 시작', scroll:'login', icon:'<path d="M22 12h-4l-3 9-6-18-3 9H2"/>'},
+    {label:'위험도 계산기', scroll:'apply', icon:'<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="12" y1="11" x2="12" y2="11"/><line x1="16" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="12" y1="15" x2="12" y2="15"/><line x1="16" y1="15" x2="16" y2="15"/>'},
+    {label:'정책자금 찾기', pview:'diag', icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8v4h8V3Z"/>'},
+    {label:'이용 가이드', scroll:'notice', icon:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>'},
+    {label:'통계로 보기', scroll:'stats', icon:'<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'},
+    {label:'자료실 바로가기', scroll:'resources', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h3"/>'},
+    {label:'진단 이력 보기', scroll:'login', icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>'}
+  ];
+
+  var noticeData = {
+    notice:[
+      {tag:'NEW', title:'2025년 4분기 상권 데이터 반영이 완료되었습니다', date:'2026.01.12'},
+      {tag:'NEW', title:'개인정보처리방침 개정 안내 (시뮬레이션 데이터 보관 정책)', date:'2026.01.05'},
+      {title:'설 연휴 기간 챗봇 상담 운영 시간 안내', date:'2025.12.29'},
+      {title:'상권 신호등 지도 소표본 지역 표기 방식 변경', date:'2025.12.18'},
+      {title:'서비스 정기 점검 안내 (매주 화요일 02:00–04:00)', date:'2025.12.02'}
+    ],
+    guide:[
+      {tag:'NEW', title:'사업장 진단, 3분 만에 끝내는 방법', date:'2026.01.10'},
+      {title:'매출지수는 어떻게 입력하나요', date:'2025.12.22'},
+      {title:'추정 원인 유형(risk_type) 6가지 완전 정리', date:'2025.12.15'},
+      {title:'정책자금 추천 결과를 신청까지 이어가는 법', date:'2025.12.08'},
+      {title:'공유 링크로 진단 결과 공유하기', date:'2025.11.30'}
+    ],
+    update:[
+      {tag:'NEW', title:'서울시 상권분석서비스 2025 Q4 원본 반영', date:'2026.01.12'},
+      {title:'KOSIS 사업체운영 애로사항 최신 조사 반영', date:'2025.12.20'},
+      {title:'신용보증기금 채권관리 통계 갱신', date:'2025.12.10'},
+      {title:'RAG 정책자금 문서 코퍼스 업데이트', date:'2025.11.28'},
+      {title:'위험도 모델 재학습(class_weight 조정)', date:'2025.11.15'}
+    ]
+  };
+  var noticeTabLabels = {notice:'공지사항', guide:'이용가이드', update:'데이터 업데이트'};
+
+  var statsData = {
+    region:{label:'지역별 실질폐업률 TOP 5', unit:'%', rows:[
+      {l:'강북구', v:3.1},{l:'중랑구', v:2.9},{l:'금천구', v:2.8},{l:'도봉구', v:1.6},{l:'관악구', v:1.7}
+    ], summary:[{k:'전체 평균',v:'1.42%'},{k:'RED 자치구',v:'3개'},{k:'표본부족 지역',v:'0개'}]},
+    industry:{label:'업종별 폐업률 편차 TOP 5', unit:'%', rows:[
+      {l:'PC방', v:5.99},{l:'호프/요식주점', v:4.6},{l:'노래연습장', v:4.2},{l:'스크린골프', v:3.8},{l:'의류소매', v:3.2}
+    ], summary:[{k:'최고 업종',v:'PC방 5.99%'},{k:'최저 업종',v:'동물병원 0.75%'},{k:'관측 업종수',v:'약 100종'}]},
+    overview:{label:'상권 신호등 전체 현황', unit:'%', rows:[
+      {l:'RED', v:12},{l:'YELLOW', v:28},{l:'GREEN', v:60}
+    ], summary:[{k:'분석 대상',v:'25개 자치구'},{k:'데이터 시점',v:'2025 Q4'},{k:'패널 규모',v:'387,266건'}]}
+  };
+  var statsTabLabels = {region:'지역별', industry:'업종별', overview:'전체 현황'};
+
+  var storyCards = [
+    {tag:'단기_매출_정체형', color:'yellow', who:'종로구 · 한식음식점 15년차', quote:'"매출이 눈에 띄게 나쁜 건 아닌데 계속 제자리였어요. 신호등에서 노란불을 보고서야 원가 구조를 다시 살펴봤습니다."', cta:'비슷한 상황 진단해보기'},
+    {tag:'원가_상승_부담형', color:'yellow', who:'구로구 · 카페 3년차', quote:'"원두값이랑 최저임금이 같이 오르니 체감이 확 달랐어요. 진단 결과가 딱 그 원인을 짚어줘서 지원사업부터 알아봤습니다."', cta:'원가 부담 유형 알아보기'},
+    {tag:'정상_유지형', color:'green', who:'마포구 · 신규 창업 준비 중', quote:'"창업 전에 동네 상권 신호등부터 확인했어요. GREEN 지역 위주로 후보지를 좁힐 수 있었습니다."', cta:'창업 전 상권 확인하기'}
+  ];
+
+  var resCards = [
+    {eyebrow:'REPORT', title:'2025 Q4 상권 리포트 요약', desc:'분기별 실질폐업률 변화와 자치구별 신호등 등급 변동을 정리했습니다.', bg:'linear-gradient(135deg,var(--hero-1),var(--hero-3))'},
+    {eyebrow:'CHECKLIST', title:'정책자금 신청 체크리스트', desc:'진단 결과를 실제 신청으로 연결할 때 미리 준비할 서류 목록입니다.', bg:'linear-gradient(135deg,#1D63D6,#0D3E75)'},
+    {eyebrow:'GUIDE', title:'상권 신호등 활용 가이드', desc:'지도·필터·소표본 표기 방식까지, 지도 기능을 200% 활용하는 법.', bg:'linear-gradient(135deg,#2F7D4F,#173226)'}
+  ];
+
+  var promoData = [
+    {icon:'red', title:'유사 사이트 주의', desc:'실제 정책자금 신청은 반드시 각 소관기관 공식 채널에서만 진행하세요.', svg:'<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'},
+    {icon:'accent', title:'2026년 데이터 업데이트 예정', desc:'2026년 1분기 상권 데이터는 4월 중 반영될 예정입니다.', svg:'<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/>'},
+    {icon:'green', title:'개인정보처리방침 안내', desc:'모든 매출 수치는 시뮬레이션 데이터이며 실금액을 저장하지 않습니다.', svg:'<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'},
+    {icon:'yellow', title:'포트폴리오 프로젝트 소개', desc:'서울 상권 데이터를 활용한 개인 데이터 분석 프로젝트입니다.', svg:'<path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 12 2a7 7 0 0 1 7 7.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/>'}
+  ];
+
+  var tickerMsgs = [
+    '⚠ 유사 사이트 주의: 정책자금 신청은 반드시 정부24·기업마당 등 공식 채널에서만 진행하세요',
+    '📊 데이터 최신화: 2025년 4분기 상권 데이터 반영이 완료되었습니다',
+    '🔒 본 서비스는 개인 포트폴리오 프로젝트이며, 매출 시계열은 시뮬레이션 데이터입니다'
+  ];
+
+  var selected = '중랑구';
+  var loggedIn = false;
+  var grid = document.getElementById('grid25');
+
+  function renderGrid(){
+    grid.innerHTML = '';
+    districts.forEach(function(d){
+      var c = riskColors[d.risk];
+      var tile = document.createElement('div');
+      tile.className = 'tile' + (d.name === selected ? ' selected' : '');
+      tile.style.background = d.name === selected ? c.dot : c.bg;
+      tile.style.color = d.name === selected ? '#fff' : c.fg;
+      tile.innerHTML = '<div class="name">'+d.name+'</div><div class="rate mono">'+d.rate+'</div>';
+      tile.addEventListener('click', function(){ selected = d.name; renderGrid(); renderPanel(); });
+      grid.appendChild(tile);
+    });
+  }
+
+  function renderPanel(){
+    var d = districts.find(function(x){ return x.name === selected; });
+    var c = riskColors[d.risk];
+    document.getElementById('d-name').textContent = d.name;
+    var badge = document.getElementById('d-badge');
+    badge.textContent = c.label;
+    badge.style.background = c.bg;
+    badge.style.color = c.fg;
+    document.getElementById('d-rate').textContent = d.rate;
+    document.getElementById('d-stores').textContent = d.stores;
+    var list = industryMap[d.name] || defaultIndustries;
+    document.getElementById('d-industries').innerHTML = list.map(function(it){
+      return '<div class="rank-row"><span>'+it[0]+'</span><span class="r mono">'+it[1]+'</span></div>';
+    }).join('');
+  }
+
+  function renderCauses(){
+    document.getElementById('cause-list').innerHTML = causeTypes.map(function(c){
+      var flagHtml = c.flag ? '<div class="cause-flag">'+c.flag+'</div>' : '';
+      var color = c.top ? 'var(--accent)' : 'var(--ink-3)';
+      return '<div class="cause-row"><span>'+c.name+'</span>' +
+        '<span class="cause-bar-track"><span class="cause-bar-fill" style="width:'+c.prob+'%;background:'+color+';"></span></span>' +
+        '<span class="mono" style="text-align:right;">'+c.prob+'%</span></div>' + flagHtml;
+    }).join('');
+  }
+
+  function renderFunds(){
+    document.getElementById('fund-grid').innerHTML = funds.map(function(f){
+      return '<div class="fund-card"><div class="fund-agency">'+f.agency+'</div><div class="fund-title">'+f.title+'</div>' +
+        '<div class="fund-desc">'+f.desc+'</div><div class="fund-meta">'+f.meta+'</div></div>';
+    }).join('');
+  }
+
+  function renderQuickMenu(){
+    document.getElementById('quick-grid').innerHTML = quickMenu.map(function(q,i){
+      return '<button class="quick-item" data-qi="'+i+'"><span class="qi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+q.icon+'</svg></span><span>'+q.label+'</span></button>';
+    }).join('');
+    document.querySelectorAll('[data-qi]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var q = quickMenu[+btn.dataset.qi];
+        if(q.pview){ setActivePTab(q.pview); scrollToId('preview'); }
+        else if(q.scroll){ scrollToId(q.scroll); }
+      });
+    });
+  }
+
+  var activeNoticeTab = 'notice';
+  function renderNotice(){
+    document.getElementById('notice-tabs').innerHTML = Object.keys(noticeData).map(function(k){
+      return '<button class="ntab'+(k===activeNoticeTab?' active':'')+'" data-ntab="'+k+'">'+noticeTabLabels[k]+'</button>';
+    }).join('');
+    document.getElementById('notice-body').innerHTML = Object.keys(noticeData).map(function(k){
+      var rows = noticeData[k].map(function(n){
+        return '<div class="nrow">'+(n.tag ? '<span class="ntag new">'+n.tag+'</span>' : '<span class="ntag">안내</span>')+'<span class="ntitle">'+n.title+'</span><span class="ndate mono">'+n.date+'</span></div>';
+      }).join('');
+      return '<div class="npanel'+(k===activeNoticeTab?' active':'')+'" id="npanel-'+k+'">'+rows+'</div>';
+    }).join('');
+    document.querySelectorAll('[data-ntab]').forEach(function(btn){
+      btn.addEventListener('click', function(){ activeNoticeTab = btn.dataset.ntab; renderNotice(); });
+    });
+  }
+
+  var activeStats = 'region';
+  function renderStats(){
+    document.getElementById('stats-tabs').innerHTML = Object.keys(statsData).map(function(k){
+      return '<button class="stab'+(k===activeStats?' active':'')+'" data-stab="'+k+'">'+statsTabLabels[k]+'</button>';
+    }).join('');
+    document.querySelectorAll('[data-stab]').forEach(function(btn){
+      btn.addEventListener('click', function(){ activeStats = btn.dataset.stab; renderStats(); });
+    });
+    var d = statsData[activeStats];
+    var max = Math.max.apply(null, d.rows.map(function(r){return r.v;}));
+    function colorFor(v){
+      if(activeStats === 'overview'){
+        return {RED:'var(--red)',YELLOW:'var(--yellow)',GREEN:'var(--green)'};
+      }
+      return null;
+    }
+    var overviewColors = {'RED':'var(--red)','YELLOW':'var(--yellow)','GREEN':'var(--green)'};
+    var bars = d.rows.map(function(r){
+      var pct = Math.round((r.v/max)*100);
+      var color = activeStats === 'overview' ? overviewColors[r.l] : (r.v/max > 0.75 ? 'var(--red)' : (r.v/max > 0.45 ? 'var(--yellow)' : 'var(--green)'));
+      return '<div class="bar-row"><span class="bl">'+r.l+'</span><span class="bar-track"><span class="bar-fill" style="width:'+pct+'%;background:'+color+';"></span></span><span class="bv mono">'+r.v+d.unit+'</span></div>';
+    }).join('');
+    var summary = d.summary.map(function(s){
+      return '<div class="ssum"><div class="k">'+s.k+'</div><div class="v mono">'+s.v+'</div></div>';
+    }).join('');
+    document.getElementById('stats-body').innerHTML =
+      '<div class="section-label">'+d.label+'</div>' + bars +
+      '<div class="stats-summary" style="margin-top:22px;">'+summary+'</div>' +
+      '<div class="stats-note">실질폐업률(가중) 기준 · 관측 8건 이상, 연점포수 100 이상 조합만 집계됩니다.</div>';
+  }
+
+  function renderStories(){
+    var cmap = {red:['var(--red-bg)','var(--red-fg)'], yellow:['var(--yellow-bg)','var(--yellow-fg)'], green:['var(--green-bg)','var(--green-fg)']};
+    document.getElementById('story-row').innerHTML = storyCards.map(function(s){
+      var c = cmap[s.color];
+      return '<div class="story-card"><span class="story-tag" style="background:'+c[0]+';color:'+c[1]+';">'+s.tag+'</span>' +
+        '<p class="story-quote">'+s.quote+'</p><div class="story-who">'+s.who+'</div><span class="story-cta">'+s.cta+' →</span></div>';
+    }).join('');
+  }
+
+  function renderResources(){
+    document.getElementById('res-row').innerHTML = resCards.map(function(r){
+      return '<div class="res-card"><div class="res-thumb" style="background:'+r.bg+';"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></div>' +
+        '<div class="res-body"><div class="res-eyebrow">'+r.eyebrow+'</div><div class="res-title">'+r.title+'</div><div class="res-desc">'+r.desc+'</div></div></div>';
+    }).join('');
+  }
+
+  function renderPromo(){
+    var cmap = {red:['var(--red-bg)','var(--red-fg)'], yellow:['var(--yellow-bg)','var(--yellow-fg)'], green:['var(--green-bg)','var(--green-fg)'], accent:['var(--accent-soft)','var(--accent-ink)']};
+    document.getElementById('promo-grid').innerHTML = promoData.map(function(p){
+      var c = cmap[p.icon];
+      return '<div class="promo-card"><div class="promo-icon" style="background:'+c[0]+';color:'+c[1]+';"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p.svg+'</svg></div>' +
+        '<h4>'+p.title+'</h4><p>'+p.desc+'</p></div>';
+    }).join('');
+  }
+
+  var tickerIdx = 0, tickerTimer = null;
+  function renderTicker(){
+    var vp = document.getElementById('ticker-viewport');
+    vp.innerHTML = tickerMsgs.map(function(m,i){ return '<div class="ticker-msg'+(i===0?' active':'')+'">'+m+'</div>'; }).join('');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){
+      tickerTimer = setInterval(function(){
+        var msgs = vp.querySelectorAll('.ticker-msg');
+        msgs[tickerIdx].classList.remove('active');
+        tickerIdx = (tickerIdx + 1) % msgs.length;
+        msgs[tickerIdx].classList.add('active');
+      }, 4200);
+    }
+  }
+  document.getElementById('ticker-close').addEventListener('click', function(){
+    if(tickerTimer) clearInterval(tickerTimer);
+    document.getElementById('ticker-strip').remove();
+  });
+
+  function setActivePTab(name){
+    document.querySelectorAll('.pview').forEach(function(v){ v.classList.remove('active'); });
+    document.querySelectorAll('.ptab').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('pview-' + name).classList.add('active');
+    document.querySelector('.ptab[data-pview="'+name+'"]').classList.add('active');
+  }
+  function scrollToId(id){
+    var el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.querySelectorAll('[data-pview]').forEach(function(btn){
+    btn.addEventListener('click', function(){ setActivePTab(btn.dataset.pview); });
+  });
+  document.querySelectorAll('[data-pview-goto]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      setActivePTab(btn.dataset.pviewGoto);
+      scrollToId('preview');
+    });
+  });
+  document.querySelectorAll('[data-scroll]').forEach(function(btn){
+    btn.addEventListener('click', function(){ scrollToId(btn.dataset.scroll); });
+  });
+
+  document.querySelectorAll('[data-guide]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('[data-guide]').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.guide-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('guide-' + btn.dataset.guide).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('[data-fs]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('[data-fs]').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      document.documentElement.classList.remove('fs-sm','fs-lg');
+      if(btn.dataset.fs) document.documentElement.classList.add(btn.dataset.fs);
+    });
+  });
+
+  function updateAuthUI(){
+    document.getElementById('auth-logged-out').hidden = loggedIn;
+    document.getElementById('auth-logged-in').hidden = !loggedIn;
+    document.getElementById('login-form-state').hidden = loggedIn;
+    document.getElementById('login-done-state').hidden = !loggedIn;
+    document.getElementById('diag-locked').hidden = loggedIn;
+    document.getElementById('diag-content').hidden = !loggedIn;
+  }
+
+  function doLogin(){ loggedIn = true; updateAuthUI(); }
+  function doLogout(){
+    loggedIn = false;
+    updateAuthUI();
+    setActivePTab('map');
+    document.getElementById('login').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  document.getElementById('btn-login-submit').addEventListener('click', doLogin);
+  document.getElementById('btn-login-demo').addEventListener('click', doLogin);
+  document.getElementById('btn-logout').addEventListener('click', doLogout);
+  document.getElementById('btn-goto-mypage').addEventListener('click', function(){
+    setActivePTab('diag');
+    scrollToId('preview');
+  });
+  document.getElementById('seek-btn').addEventListener('click', function(){
+    setActivePTab('map');
+    scrollToId('preview');
+  });
+
+  var infoToggle = document.getElementById('info-toggle');
+  var infoBody = document.getElementById('info-body');
+  var infoChevron = document.getElementById('info-chevron');
+  infoToggle.addEventListener('click', function(){
+    var open = !infoBody.hidden;
+    infoBody.hidden = open;
+    infoChevron.textContent = open ? '▸' : '▾';
+  });
+
+  var topBtn = document.getElementById('btn-top');
+  window.addEventListener('scroll', function(){
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  });
+  topBtn.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  renderGrid();
+  renderPanel();
+  renderCauses();
+  renderFunds();
+  renderQuickMenu();
+  renderNotice();
+  renderStats();
+  renderStories();
+  renderResources();
+  renderPromo();
+  renderTicker();
+  updateAuthUI();
+})();
+</script>
+
+
+</body></html>
