@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GradeBadge, ScopeChip, Spec } from './badges';
 import { PositionHistogram, Sparkline } from './charts';
@@ -54,34 +54,12 @@ function ReportBox({ id }: { id: string }) {
   );
 }
 
-function ChatBox({ id }: { id: string }) {
-  const [msgs, setMsgs] = useState<{ role: 'user' | 'assistant'; text: string }[]>([]);
-  const [q, setQ] = useState('');
-  const [left, setLeft] = useState(5);
-  const [err, setErr] = useState('');
-  const box = useRef<HTMLDivElement>(null);
-  useEffect(() => { box.current?.scrollTo({ top: 1e6, behavior: 'smooth' }); }, [msgs]);
-  async function ask(question: string) {
-    if (!question.trim()) return;
-    setErr(''); setMsgs((m) => [...m, { role: 'user', text: question }]); setQ('');
-    try {
-      const r = await getJSON<{ answer: string; remaining: number }>('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ diagnosisId: id, question }) });
-      setMsgs((m) => [...m, { role: 'assistant', text: r.answer }]); setLeft(r.remaining);
-    } catch (e) { setErr((e as Error).message); setLeft(0); }
-  }
+function ChatLink({ id }: { id: string }) {
   return (
     <section className="card stack">
-      <div className="card-head" style={{ marginBottom: 0 }}><div><h2>궁금한 점 물어보기</h2><p>남은 질문 {left}개 · <Spec ids="F-LLM-03 · P1" /></p></div></div>
-      {msgs.length > 0 && <div className="chat" ref={box} aria-live="polite">{msgs.map((m, i) => <div key={i} className={`msg msg-${m.role}`}>{m.text}</div>)}</div>}
-      {msgs.length === 0 && (
-        <div className="row">{['왜 이 등급이 나왔나요?', '위험 점수는 어떻게 계산했나요?', '지원사업은 어디서 신청하나요?'].map((s) => <button key={s} className="btn btn-sm" onClick={() => ask(s)}>{s}</button>)}</div>
-      )}
-      <form className="row" style={{ flexWrap: 'nowrap' }} onSubmit={(e) => { e.preventDefault(); ask(q); }}>
-        <label htmlFor="q" className="sr-only">질문</label>
-        <input id="q" className="input" placeholder="진단 결과에 대해 질문하세요" value={q} onChange={(e) => setQ(e.target.value)} disabled={left <= 0} />
-        <button className="btn btn-primary" disabled={left <= 0 || !q.trim()}>보내기</button>
-      </form>
-      {err && <p className="error">{err}</p>}
+      <div className="card-head" style={{ marginBottom: 0 }}><div><h2>궁금한 점 물어보기</h2><p>이 진단 결과를 바탕으로 챗봇이 답변합니다 · <Spec ids="POST /api/chatbot" /></p></div></div>
+      <p className="muted small">등급이 나온 이유, 위험 점수 계산 방법, 지원사업 신청 방법 등을 물어볼 수 있어요.</p>
+      <Link href={`/chatbot?diagnosis=${id}`} className="btn btn-primary" style={{ justifySelf: 'start' }}>챗봇에게 물어보기 →</Link>
     </section>
   );
 }
@@ -198,7 +176,7 @@ export default function DiagnosisResult({ id }: { id: string }) {
 
       <ReportBox id={d.diagnosisId} />
       <div className="grid-2" style={{ gridTemplateColumns: undefined }}>
-        <ChatBox id={d.diagnosisId} />
+        <ChatLink id={d.diagnosisId} />
         <ShareBox d={d} />
       </div>
       <MethodPanel />
