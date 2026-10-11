@@ -2,16 +2,12 @@
 name = "bizdoctor-ai-service"
 version = "0.1.0"
 description = "BizDoctor ai-service — 상권 조회(F-MAP)·사업장 진단(F-DIA) FastAPI 서버"
-# 코드가 datetime.UTC · enum.StrEnum 을 쓴다 → 3.11 이상. 파이프라인 venv 도 3.11 이다(AGENTS.md).
 requires-python = ">=3.11"
-# FastAPI 서버를 띄우는 데 필요한 것만 둔다.
-# 파이프라인 전용(TensorFlow · pandas · scikit-learn 등)은 넣지 않는다.
 dependencies = [
     "fastapi>=0.115",
     "uvicorn[standard]>=0.30",
     "pydantic>=2.7",
     "sqlalchemy>=2.0",
-    # config.py 가 DATABASE_URL 을 postgresql+psycopg2:// 로 바꿔 쓴다.
     "psycopg2-binary>=2.9",
     "python-dotenv>=1.0",
 ]
@@ -19,7 +15,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8",
-    # fastapi.testclient(TestClient) 가 httpx 를 쓴다.
     "httpx>=0.27",
 ]
 
