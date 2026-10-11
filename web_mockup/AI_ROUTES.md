@@ -7,10 +7,10 @@
 | # | 기능 | 사용자 진입 경로 | 페이지 | API | 로그인 |
 |---|---|---|---|---|---|
 | 1 | AI 진단 리포트 | 사업장 진단 → 결과 → "리포트 생성하기" | `/diagnosis/[id]` | `POST /api/report` (스트리밍) | - |
-| 2 | 리포트 Q&A | 진단 결과 하단 질문창 | `/diagnosis/[id]` | `POST /api/chat` | - |
-| 3 | AI 상권 해설 | 상권 신호등 → 자치구 선택 → "AI 해설 보기" | `/market` | `POST /api/explain` | - |
-| 4 | 챗봇 상담 | 랜딩 상단 "챗봇 상담", 서비스 메뉴 "챗봇 상담" | `/chatbot` | `POST /api/chatbot` | - |
-| 5 | 고객 분석 AI | `/admin` 로그인 → "고객 분석 AI" | `/admin/insights` | `POST /api/admin/insights` | 관리자 |
+| 2 | 서비스 챗봇 | 상단 메뉴 "챗봇 상담" / 진단 결과 → "챗봇에게 물어보기" | `/chatbot`, `/chatbot?diagnosis=ID` | `POST /api/chatbot` | - |
+| 3 | 고객 분석 AI | `/admin` 로그인 → "고객 분석 AI" | `/admin/insights` | `POST /api/admin/insights` | 관리자 |
+
+상권 지도의 지표 해설은 이미 있는 통계를 문장으로 바꾸는 것뿐이라 AI 없이 화면에서 계산함 (`/market` 지표 요약).
 
 ## 1. AI 진단 리포트 `POST /api/report`
 
@@ -18,25 +18,15 @@
 - 응답: 마크다운 텍스트 스트리밍
 - 근거: 진단 결과 + 추천 정책 문서만 사용 (F-LLM-01·02)
 
-## 2. 리포트 Q&A `POST /api/chat`
+## 2. 서비스 챗봇 `POST /api/chatbot`
 
-- 요청: `{ diagnosisId: string, question: string }`
-- 응답: `{ answer: string, remaining: number }`
-- 진단 1건당 질문 5개 제한, 초과 시 429
+- 요청 `ChatbotRequest`: `{ message: string, diagnosisId?: string, history?: { role, text }[] }` (history 최대 10개, message 500자 이내)
+- 응답 `ChatbotResponse`: `{ answer: string, sources: { docId, title }[], links: { label, href }[], remaining?: number }`
+- `diagnosisId` 없음: 일반 상담 (정책자금, 진단·상권 화면 안내)
+- `diagnosisId` 있음: 그 진단 결과 기준 답변. 진단 1건당 질문 5개 제한, 초과 시 429, `remaining`에 남은 수
+- `sources`: 답변 근거 정책 문서, `links`: 이어서 갈 화면
 
-## 3. AI 상권 해설 `POST /api/explain`
-
-- 요청: `{ gu: string, industry?: string }`
-- 응답: `{ text: string, cached: boolean }`
-
-## 4. 챗봇 상담 `POST /api/chatbot`
-
-- 요청 `ChatbotRequest`: `{ message: string, history?: { role, text }[] }` (history 최대 10개, message 500자 이내)
-- 응답 `ChatbotResponse`: `{ answer: string, sources: { docId, title }[], links: { label, href }[] }`
-- `sources`: 답변 근거 정책 문서
-- `links`: 이어서 갈 화면 (예: `/diagnosis`)
-
-## 5. 고객 분석 AI `POST /api/admin/insights`
+## 3. 고객 분석 AI `POST /api/admin/insights`
 
 - 요청 `InsightRequest`: `{ question: string }`
 - 응답 `InsightResponse`: `{ answer: string, stats: { total, byLevel, byRiskType, topGu, topService }, generatedAt: string }`
