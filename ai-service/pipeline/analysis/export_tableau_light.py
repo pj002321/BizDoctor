@@ -11,10 +11,15 @@ Tableau 경량 추출 — 59MB 팩트 테이블 없이도 대시보드를 만들
 """
 import pandas as pd
 import os
+import sys
 from pathlib import Path
 
-# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
-os.chdir(Path(__file__).resolve().parents[2] / "data")
+# ai-service/ 를 import 경로에 넣어 app/core/config.py 를 쓴다(이 줄은 config 를 찾기 위한 것).
+# 입출력 경로는 config.DATA_DIR(ai-service/data) 한 곳에서 정한다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from app.core import config  # noqa: E402
+
+os.chdir(config.DATA_DIR)
 
 SRC = "tableau/tableau_panel.csv"
 panel = pd.read_csv(SRC)
@@ -48,7 +53,7 @@ ind = (panel.groupby(["업종", "산업대분류"], as_index=False)
                  폐업점포수=("폐업점포수", "sum"),
                  평균폐업률=("폐업률", "mean"),
                  관측수=("폐업률", "size")))
-ind = ind[ind["관측수"] >= 200].copy()
+ind = ind[ind["관측수"] >= config.INDUSTRY_RANK_MIN_OBS].copy()
 ind["실질폐업률"] = (ind["폐업점포수"] / ind["점포수"] * 100).round(3)
 ind["평균폐업률"] = ind["평균폐업률"].round(3)
 ind = ind.sort_values("평균폐업률", ascending=False)

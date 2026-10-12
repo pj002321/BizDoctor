@@ -90,6 +90,10 @@ npm test           # vitest (features/*/domain 만)
 1. **서울시 상권분석서비스 점포-행정동** (zip 3개, 2023~2025, 12개 분기) — 실제 패널.
    관측 단위는 분기별 `행정동 × 서비스_업종`. 지역·업종 위험 기준선과 회귀 타깃
    `다음분기_폐업률` (`groupby(...).shift(-1)`) 을 준다.
+   ⚠ `점포_수` 는 프랜차이즈를 **뺀** 일반 점포다. 전체 점포는 `유사_업종_점포_수`
+   (= 점포_수 + 프랜차이즈_점포_수)이고, `폐업_률` 의 분모도 이것이다. 비율·합계·표본
+   기준은 전부 `유사_업종_점포_수` 로 계산한다. 점포_수로 나누면 프랜차이즈_비중이 1을
+   넘고(최대 23) 편의점 실질폐업률이 3.3% → 12.3% 로 부풀려진다.
 2. **KOSIS 사업체운영 애로사항 xlsx** — YELLOW 기업이 *왜* 힘든지 정한다.
    `원가상승_확률 = (원재료비 + 최저임금영향) / (그 합 + 동일업종경쟁심화 + 보증금월세)`,
    업종별로 `yellow_subtype_prob.csv` 에 쓴다.
@@ -122,8 +126,8 @@ npm test           # vitest (features/*/domain 만)
 
 - `pipeline/train/generate_synthetic_timeseries.py` — `CAUSE_TO_RISKTYPE` (라벨 부여)
 - `pipeline/train/train_risk_model.py` — `RISKTYPE_TO_LEVEL`
-- `pipeline/doc/rag_pipeline.py` — `RISK_TYPE_QUERY`, `RISK_TYPE_TO_LEVEL`
-  (키가 하나라도 빠지면 `build_signal_json` 이 `KeyError`)
+- `app/domain/signal.py` — `RISK_TYPE_QUERY`, `RISK_TYPE_TO_LEVEL`
+  (키가 하나라도 빠지면 `build_signal` 이 `KeyError`)
 - `pipeline/doc/rag_documents.py` — 모든 문서의 `risk_type_tags`
 
 ### 학습 데이터의 순환 — 성능 수치를 읽는 법
@@ -142,11 +146,12 @@ RED 재현율이 우선이라 `class_weight="balanced"`.
 
 ### RAG
 
-지금은 `rag_documents.py` 의 하드코딩 문서 8건에 TF-IDF + 코사인이다. 임베딩으로
-바꾸되 인터페이스 `SimpleRAGIndex.retrieve(query, risk_type, top_k)` 는 유지한다.
-검색은 `risk_type` 태그로 먼저 거르고 유사도로 순위를 매긴다. `build_signal_json`
-이 프론트 계약(`risk_level`, `score`, `visual_theme`, `solutions[]`)을 만든다.
-`_similarity_score` 는 디버그 전용이다 — 운영 응답에서 뺀다.
+문서 원본은 `rag_documents.py` 이고, `doc/build_index.py` 가 임베딩해 `policy_doc` 에 넣는다.
+검색은 `app/knowledge/retrieve.py` 가 한다 — `risk_type` 태그가 붙은 문서를 먼저 세우고,
+같은 그룹 안에서는 임베딩·키워드 순위를 RRF 로 합쳐 정렬한다. 인터페이스
+`SimpleRAGIndex.retrieve(query, risk_type, top_k)` 는 유지한다.
+프론트 계약(`risk_level`, `risk_type`, `risk_type_confidence`, `score`, `visual_theme`,
+`solutions[]`)은 `app/domain/signal.py` 의 `build_signal` 이 만든다. 검색 점수는 계약에 넣지 않는다.
 
 ## 파이프라인
 
@@ -171,8 +176,9 @@ pyarrow). 의존성이 없으면 전역이 아니라 `.venv` 에 설치한다.
 .\.venv\Scripts\python.exe ai-service\pipeline\prep\0_merge_seoul_zips.py   # 어디서 실행해도 된다
 ```
 
-모든 스크립트는 시작할 때 `os.chdir(ai-service/data)` 한다. 원본은 `data/raw/`, 산출물은
-`data/` 바로 아래에 쌓이고 gitignore 된다(`raw/` 만 추적).
+모든 스크립트는 시작할 때 `os.chdir(config.DATA_DIR)` 한다(`app/core/config.py`). 원본은 `data/raw/`, 산출물은
+`data/` 바로 아래에 쌓이고 gitignore 된다(`raw/` 만 추적). 신호등 기준·표본 기준·자치구 코드표 같은
+여러 스크립트가 같이 쓰는 값도 `config.py` 의 `데이터 파이프라인` 구역에 둔다. 스크립트에 숫자로 다시 적지 않는다.
 
 `analysis/` 는 로컬 SQLite 웨어하우스(`shinhan_warehouse.db`) 위에서 돈다. 여기서 나오는
 `risk_weights_by_region_industry.csv` · `tableau/tableau_*.csv` 가 DB 의 `region_risk` ·
@@ -196,10 +202,11 @@ pyarrow). 의존성이 없으면 전역이 아니라 `.venv` 에 설치한다.
 
 - zip 안의 서울시 CSV 는 **cp949**. 생성하는 CSV 는 전부 **utf-8-sig**. DB 에 적재할
   때도 인코딩을 명시한다.
-- `sgf176_utf8.csv` 는 헤더가 깨져 있다(`부?�사?�코??`). 그래서 스크립트는
-  `sgf176_utf8_bom.csv` 를 **먼저** 읽고, 실패하면 깨진 원본으로 폴백하며, 부실사유코드
-  컬럼은 **위치로** 고른다(`sgf.columns[6]`). 원본을 다시 인코딩하기 전에는 이름 기반
-  조회로 "고치지" 않는다.
+- `sgf176_utf8.csv` 는 깨진 파일이다(`부?�사?�코??`). 깨진 바이트가 구분자(,)까지 먹어서
+  1,000행이 684행으로 줄고 컬럼이 밀린다. 스크립트는 정상본 `sgf176_utf8_bom.csv` 만
+  읽고, 부실사유코드는 **이름으로** 고른다. 깨진 파일로 폴백하지 않는다 — 오류 없이
+  틀린 RED 유형 분포가 나온다.
+- 출력 인코딩은 `config.py` 에서 utf-8 로 고정한다. 파이프라인 스크립트는 config 를 import 해야 한다.
 - KOSIS xlsx 의 `시도별(1)` 은 **병합 셀**이라 openpyxl 은 지역별 첫 행 외엔 빈칸을 준다.
   `join_kosis_hardship.py` 가 `last_region` 을 앞으로 채워 메운다. 지우면 서울특별시가
   `전산업` 한 행으로 조용히 줄어든다(실제로 났던 버그).

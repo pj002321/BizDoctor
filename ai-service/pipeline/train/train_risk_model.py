@@ -21,10 +21,15 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.utils.class_weight import compute_class_weight
 import os
+import sys
 from pathlib import Path
 
-# 입출력 경로는 전부 ai-service/data/ 기준이다. 어디서 실행해도 같은 파일을 읽고 쓴다.
-os.chdir(Path(__file__).resolve().parents[2] / "data")
+# ai-service/ 를 import 경로에 넣어 app/core/config.py 를 쓴다(이 줄은 config 를 찾기 위한 것).
+# 입출력 경로는 config.DATA_DIR(ai-service/data) 한 곳에서 정한다. 어디서 실행해도 같은 파일을 읽고 쓴다.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from app.core import config  # noqa: E402
+
+os.chdir(config.DATA_DIR)
 
 RNG_SEED = 42
 np.random.seed(RNG_SEED)
@@ -166,7 +171,8 @@ RISKTYPE_TO_LEVEL = {
     "상권_침체_붕괴형": "RED",
 }
 
-pred_df = df.iloc[idx_test][["company_id","행정동_코드_명","서비스_업종_코드_명","risk_type","risk_level","score"]].copy()
+# 행정동_코드도 함께 저장한다 — 이름만으로는 신사동(강남구·관악구)을 구분할 수 없다.
+pred_df = df.iloc[idx_test][["company_id","행정동_코드","행정동_코드_명","서비스_업종_코드_명","risk_type","risk_level","score"]].copy()
 pred_df["예측_risk_type"] = label_enc.inverse_transform(y_pred)
 pred_df["예측_risk_level"] = pred_df["예측_risk_type"].map(RISKTYPE_TO_LEVEL)
 pred_df["정답여부"] = pred_df["risk_type"] == pred_df["예측_risk_type"]
@@ -176,6 +182,6 @@ model.save("risk_model.keras")
 
 print("\n저장 완료: risk_model.keras, model_predictions_sample.csv")
 print("\n전체 정확도:", round((pred_df["정답여부"]).mean(), 4))
-print("RED 재현율(recall) 확인용 — 실제 RED 중 RED로 예측된 비율:")
+print("RED 재현율(recall) 확인용 - 실제 RED 중 RED로 예측된 비율:")
 red_actual = pred_df[pred_df["risk_level"] == "RED"]
 print(round((red_actual["예측_risk_level"] == "RED").mean(), 4))
