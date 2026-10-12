@@ -28,8 +28,6 @@ export default function MarketExplorer({ geo }: { geo: { width: number; height: 
   const [svcList, setSvcList] = useState<{ code: string; name: string }[]>([]);
   const [cellSvc, setCellSvc] = useState('');
   const [cell, setCell] = useState<CellResponse | null>(null);
-  const [explain, setExplain] = useState<{ text: string; cached: boolean } | null>(null);
-  const [loadingExplain, setLoadingExplain] = useState(false);
 
   const qs = useMemo(() => {
     const p = new URLSearchParams();
@@ -46,7 +44,6 @@ export default function MarketExplorer({ geo }: { geo: { width: number; height: 
     if (!gu) { setDongs(null); return; }
     getJSON<DongsResponse>(`/api/market/regions/${encodeURIComponent(gu)}/dongs?${qs}`).then((r) => setDongs(r.dongs));
   }, [gu, qs]);
-  useEffect(() => { setExplain(null); }, [gu, f.industry]);
   useEffect(() => {
     if (!dongCode) return;
     getJSON<{ services: { code: string; name: string }[] }>(`/api/market/cells?dongCode=${dongCode}`).then((r) => {
@@ -76,12 +73,17 @@ export default function MarketExplorer({ geo }: { geo: { width: number; height: 
   const sortedDongs = useMemo(() => [...(dongs ?? [])].sort((a, b) => (b.riskWeight ?? -1) - (a.riskWeight ?? -1)), [dongs]);
   const counts = Object.values(regionSig).reduce((a, s) => ({ ...a, [s]: (a[s] ?? 0) + 1 }), {} as Record<string, number>);
 
-  async function runExplain() {
-    if (!gu) return;
-    setLoadingExplain(true);
-    try { setExplain(await getJSON('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ gu, industry: f.industry || undefined }) })); }
-    finally { setLoadingExplain(false); }
-  }
+  // 선택한 자치구 지표를 문장으로 요약 (AI 호출 없이 계산)
+  const summary = useMemo(() => {
+    if (!regions || !gu) return '';
+    const r = regions.find((x) => x.gu === gu);
+    if (!r) return '';
+    const rank = [...regions].sort((a, b) => b.realCloseRate - a.realCloseRate).findIndex((x) => x.gu === gu) + 1;
+    const diff = r.realCloseRate - r.avgCloseRate;
+    return `${gu}${f.industry ? ` ${f.industry}` : ''}의 실질폐업률은 ${r.realCloseRate.toFixed(2)}%로 서울 ${regions.length}개 자치구 중 ${rank}번째로 높고, ` +
+      `상권 신호는 '${MARKET_SIGNAL[regionSig[gu] ?? r.signal].label}'입니다. 평균폐업률(${r.avgCloseRate.toFixed(2)}%)과는 ${Math.abs(diff).toFixed(2)}%p 차이가 나는데, ` +
+      `${diff < 0 ? '점포 수가 적은 곳의 높은 폐업률이 평균을 끌어올렸기 때문' : '점포 수가 많은 곳에서 폐업이 더 많이 발생했기 때문'}입니다.`;
+  }, [regions, gu, f.industry, regionSig]);
 
   return (
     <div className="page">
@@ -160,9 +162,8 @@ export default function MarketExplorer({ geo }: { geo: { width: number; height: 
                 <div className="stat"><div className="k">점포수(분기 합)</div><div className="v" style={{ fontSize: 16 }}>{fmtNum(sel.stores)}</div></div>
               </div>
               <div className="stack" style={{ gap: 8 }}>
-                <div className="row between"><h3>지표 해설</h3><Spec ids="F-LLM-04 · P2" /></div>
-                {explain ? <p className="small">{explain.text} {explain.cached && <span className="badge badge-outline">캐시</span>}</p>
-                  : <button className="btn btn-sm" onClick={runExplain} disabled={loadingExplain} style={{ justifySelf: 'start' }}>{loadingExplain ? '생성 중…' : 'AI 해설 보기'}</button>}
+                <div className="row between"><h3>지표 요약</h3><Spec ids="F-LLM-04 · P2" /></div>
+                <p className="small">{summary}</p>
               </div>
             </>
           ) : (
