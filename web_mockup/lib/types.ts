@@ -139,12 +139,14 @@ export type SharedDiagnosis = Pick<SignalResponse, 'diagnosisId' | 'createdAt' |
 /** POST /api/chatbot — 챗봇 상담 (진단 없이 누구나) */
 export interface ChatbotRequest {
   message: string;
+  diagnosisId?: string; // 진단 결과 화면에서 들어오면 그 진단 기준으로 답변
   history?: { role: 'user' | 'assistant'; text: string }[]; // 직전 대화 (최대 10개)
 }
 export interface ChatbotResponse {
   answer: string;
   sources: { docId: string; title: string }[]; // 답변 근거 문서
   links: { label: string; href: string }[];     // 이어서 갈 수 있는 화면
+  remaining?: number;                           // 진단 연결 시 남은 질문 수
 }
 
 /** POST /api/admin/insights — 관리자 고객 분석 AI */
