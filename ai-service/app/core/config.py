@@ -34,7 +34,7 @@ def _normalize_db_url(url: str | None) -> str | None:
     """어느 쪽을 붙여넣어도 돌게 맞춘다. SQLAlchemy 2.x 는 `postgres://` 를 거부한다."""
     if not url:
         return None
-    url = url.strip().strip('"').strip("'")  # 따옴표째 붙여넣는 실수가 잦다
+    url = url.strip().strip('"').strip("'")
     for prefix in ("postgres://", "postgresql://"):
         if url.startswith(prefix):
             return "postgresql+psycopg2://" + url[len(prefix) :]
@@ -51,6 +51,21 @@ EMBED_TOKENIZER = "cl100k_base"
 EMBED_MAX_TOKENS = 8191
 EMBED_BATCH_SIZE = _env_int("EMBED_BATCH_SIZE", 100)
 DATA_DIR = BASE_DIR / "data"
+
+DB_POOL_SIZE = _env_int("DB_POOL_SIZE", 5)
+DB_MAX_OVERFLOW = _env_int("DB_MAX_OVERFLOW", 5)
+
+SERVICE_TOKEN = _env_str("SERVICE_TOKEN")
+
+MIN_STORE_COUNT_DEFAULT = 5
+SMALL_SAMPLE_MAX_STORES = 5
+INDUSTRY_RANK_TOP_N_MAX = 100
+
+FEATURE_BASE_QUARTER = _env_str("FEATURE_BASE_QUARTER")
+KOSIS_FALLBACK_INDUSTRY = "전산업"
+SALES_MONTHS = 3
+SALES_AMOUNT_MAX = 100_000_000_000
+DIAGNOSIS_TTL_HOURS = _env_int("DIAGNOSIS_TTL_HOURS", 24)
 
 # --- 데이터 파이프라인 (pipeline/) ---------------------------------------
 # 모든 파이프라인 스크립트는 시작할 때 os.chdir(DATA_DIR) 한다. 원본은 DATA_DIR/raw.
