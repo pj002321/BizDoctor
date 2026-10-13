@@ -15,7 +15,7 @@ from pathlib import Path
 from pydantic import TypeAdapter
 from sqlalchemy import text
 
-sys.path.insert(0, str(Path(__file__).resolve().parent[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from app.core import config 
 from app.core.db import get_engine
 from app.domain.signal import RISK_TYPE_QUERY
@@ -26,7 +26,7 @@ os.chdir(config.DATA_DIR)
 SRC = "raw/policy_docs.json"
 
 UPSERT = text("""
-    INSERT INTO policy_doc (doc_id, title, agency, source_uurl, apply_start, apply_end, limit_text, rate_text, risk_type_tags, content_hash)
+    INSERT INTO policy_doc (doc_id, title, agency, source_url, apply_start, apply_end, limit_text, rate_text, risk_type_tags, content_hash)
     VALUES (:doc_id, :title, :agency, :source_url, :apply_start, :apply_end, :limit_text, :rate_text, :risk_type_tags, :content_hash)
     ON CONFLICT (doc_id) DO UPDATE SET
         title = EXCLUDED.title,

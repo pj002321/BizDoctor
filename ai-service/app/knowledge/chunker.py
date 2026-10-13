@@ -53,7 +53,7 @@ def chunk_doc(doc: PolicyDoc) -> list[dict]:
 
     rows = []
     for section in doc.sections:
-        for body in split_section(f"[{doc.title} {section.name}]", section.body):
+        for body in split_section(f"[{doc.title} · {section.name}]", section.body):
             rows.append({
                 "doc_id": doc.doc_id,
                 "chunk_index": len(rows),
