@@ -37,10 +37,10 @@ def build_signal(risk_type: str, confidence: float, score: float, docs: list[dic
             {
                 "title": d["title"],
                 "agency": d.get("agency"),
-                "summary": shorten(d["content"], 80, placeholder="…"),
-                "limit": d.get("limit_amount"),
-                "rate": d.get("rate"),
-                "url": d.get("url"),
+                "summary": shorten(d["evidence"], 80, placeholder="…"),
+                "limit": d.get("limit_text"),
+                "rate": d.get("rate_text"),
+                "url": d.get("source_url"),
                 "source_doc_id": d["doc_id"],
             }
             for d in docs
@@ -51,7 +51,7 @@ def build_signal(risk_type: str, confidence: float, score: float, docs: list[dic
 if __name__ == "__main__":
     assert RISK_TYPE_TO_LEVEL.keys() == RISK_TYPE_QUERY.keys()
 
-    doc = {"doc_id": "POL_001", "title": "새출발기금", "content": "가" * 200, "agency": "캠코"}
+    doc = {"doc_id": "POL_001", "title": "새출발기금", "evidence": "가" * 200, "agency": "캠코"}
     s = build_signal("고금리_과다채무형", 0.613, 32.4, [doc])
     assert s["risk_level"] == "RED" and s["visual_theme"] == "red"
     assert s["risk_type_confidence"] == 0.61 and s["score"] == 32

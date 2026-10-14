@@ -18,7 +18,7 @@ from app.knowledge.embed import embed
 os.chdir(config.DATA_DIR)
 
 RESET_STALE = text("""
-    UPDATE polict_chunk SET embedding = NULL, embedding_model = NULL
+    UPDATE policy_chunk SET embedding = NULL, embedding_model = NULL
     WHERE embedding_model <> :model
 """)
 
