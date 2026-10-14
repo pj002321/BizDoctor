@@ -12,7 +12,7 @@ from pathlib import Path
 from pydantic import TypeAdapter
 from sqlalchemy import text
 
-sys.path.insert(0,str(Path(__file__).resolve().parent[2]))
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 
 from app.core import config
 from app.core.db import get_engine
@@ -21,7 +21,7 @@ from app.schemas.policy_doc import PolicyDoc
 
 os.chdir(config.DATA_DIR)
 
-SRC = "raw/policy_docs.json "
+SRC = "raw/policy_docs.json"
 
 UNCHUNKED = text("""
     SELECT d.doc_id FROM policy_doc d
@@ -49,5 +49,5 @@ def main() -> None:
         print(f"최대 토큰 {max(r['n_tokens'] for r in rows)} · 이어서 임베딩 단계를 실행하세요.")
 
 
-if main == "__main__":
+if __name__ == "__main__":
     main()

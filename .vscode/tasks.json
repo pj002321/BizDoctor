@@ -53,6 +53,41 @@
       "command": "${workspaceFolder}/.venv/Scripts/python.exe",
       "args": ["ai-service/pipeline/train/train_risk_model.py"],
       "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 1. 적재",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/load_docs.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 2. 청킹",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/chunk.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 3. 임베딩",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/build_index.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 전체 (적재 → 청킹 → 임베딩)",
+      "dependsOrder": "sequence",
+      "dependsOn": ["pipeline: 문서 1. 적재", "pipeline: 문서 2. 청킹", "pipeline: 문서 3. 임베딩"],
+      "problemMatcher": []
+    },
+    {
+      "label": "test: ai-service pytest",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "options": { "cwd": "${workspaceFolder}/ai-service" },
+      "problemMatcher": []
     }
   ]
 }
