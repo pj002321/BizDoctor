@@ -45,7 +45,8 @@ DATABASE_URL = _normalize_db_url(os.getenv("DATABASE_URL"))
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL")
-EMBED_MODEL = "text-embedding-3-small"
+EMBED_MODEL = os.getenv("EMBED_MODEL")
+VERIFY_MODEL = os.getenv("VERIFY_MODEL")  # 9단계 교차 검증. 생성(OpenAI)과 다른 회사 모델이어야 같은 실수를 덜 공유한다
 DIMENSION = 1536
 EMBED_TOKENIZER = "cl100k_base"
 EMBED_MAX_TOKENS = 8191
