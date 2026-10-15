@@ -1,7 +1,9 @@
+# Last updated: 2026-10-15
 import pytest
 
 from app.domain import quarter as qt
 from app.domain.distribution import histogram
+from app.domain.guardrail import check, extract_numbers
 from app.domain.market_signal import (
     MarketSignalLight,
     is_small_sample,
@@ -114,3 +116,28 @@ def test_histogram_clips_outliers():
     assert [b[2] for b in bins] == [2, 3]
     assert histogram([]) == []
     assert histogram([5, 5]) == [(5, 5, 2)]
+
+
+
+class TestGuardrail:
+    @pytest.mark.parametrize(
+        "text, won",
+        [("7천만원", 70_000_000), ("7,000만 원", 70_000_000), ("1억 5천만원", 150_000_000),
+         ("3천500만원", 35_000_000), ("250,000원", 250_000), ("1.5억원", 150_000_000)],
+    )
+    def test_money_notations(self, text, won):
+        assert extract_numbers(text) == {("원", won)}
+
+    def test_same_value_different_notation_passes(self):
+        assert check("최대 7,000만원, 연 4.5%", [], ["업체당 최대 7천만원", "연 4.5% 고정금리"], set()) == []
+
+    @pytest.mark.parametrize("answer", ["최대 1억원", "연 4.0%", "0.2% 인하"])
+    def test_number_not_in_evidence(self, answer):
+        assert check(answer, [], ["최대 5,000만원", "연 4.5%", "0.2%p 인하"], set())
+
+    def test_ignores_years_and_rounds(self):
+        assert check("2026년 2차 공고, 최대 2년", [], [], set()) == []
+
+    def test_unknown_doc_id(self):
+        assert check("", ["semas-a"], [], {"semas-a"}) == []
+        assert check("", ["made-up"], [], {"semas-a"}) == ["검색 결과에 없는 문서: made-up"]
