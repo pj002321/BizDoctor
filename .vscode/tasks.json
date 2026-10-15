@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": {
+      "PYTHONUTF8": "1"
+    }
+  },
+  "tasks": [
+    {
+      "label": "python: venv 생성",
+      "type": "shell",
+      "command": "py -3.12 -m venv .venv",
+      "problemMatcher": []
+    },
+    {
+      "label": "python: 패키지 설치",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe -m pip install -e ./ai-service",
+      "dependsOn": "python: venv 생성",
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 1. zip 병합",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/0_merge_seoul_zips.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 2. 패널 전처리",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/preprocess_seoul_panel.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 3. KOSIS 조인",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/prep/join_kosis_hardship.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 4. 가상 데이터 생성",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/train/generate_synthetic_timeseries.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 5. 모델 학습",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/train/train_risk_model.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 1. 적재",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/load_docs.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 2. 청킹",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/chunk.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 3. 임베딩",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["ai-service/pipeline/doc/build_index.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline: 문서 전체 (적재 → 청킹 → 임베딩)",
+      "dependsOrder": "sequence",
+      "dependsOn": ["pipeline: 문서 1. 적재", "pipeline: 문서 2. 청킹", "pipeline: 문서 3. 임베딩"],
+      "problemMatcher": []
+    },
+    {
+      "label": "test: ai-service pytest",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "options": { "cwd": "${workspaceFolder}/ai-service" },
+      "problemMatcher": []
+    }
+  ]
+}

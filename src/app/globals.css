@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* 디자인 토큰은 이 파일 한 곳뿐이다. 컴포넌트는 아래 @theme 유틸리티만 쓴다
+   (text-fg, bg-surface, text-signal-red …). 색 값을 컴포넌트에 직접 쓰지 않는다.
+
+   신호 색 3종은 흰 배경 대비 4.5:1 이상인 값이다(F-SYS-04). 색만으로 전달하지
+   말고 아이콘·라벨을 항상 같이 붙인다 — 색각 이상 사용자는 초록/빨강을 못 가른다. */
+@theme inline {
+  --color-bg: #ffffff;
+  --color-surface: #f6f7f9;
+  --color-fg: #111827;
+  --color-muted: #4b5563;
+  --color-border: #e5e7eb;
+  --color-accent: #1d4ed8;
+
+  --color-signal-green: #15803d;
+  --color-signal-yellow: #a16207;
+  --color-signal-red: #b91c1c;
+
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
