@@ -1,6 +1,6 @@
 from datetime import date
 
-from app.domain.guardrail import check
+from app.domain.guardrail import check, unsupported_claims
 from app.domain.report_context import build_context, fallback_report
 
 SIGNAL = {"risk_level": "RED", "risk_type": "고금리_과다채무형", "risk_type_confidence": 0.613, "score": 32}
@@ -41,3 +41,13 @@ def test_근거에_없는_값은_모두_걸린다():
 
 def test_템플릿_리포트는_항상_통과():
     assert check(fallback_report(SIGNAL, DOCS), CTX) == []
+
+
+def test_인용이_근거에_없으면_supported_라도_실패():
+    claims = [
+        {"claim": "대환대출 금리는 4.5%", "verdict": "supported", "evidence": "연 4.5%  고정금리"},  # 공백만 다름
+        {"claim": "누구나 승인", "verdict": "supported", "evidence": "신용점수와 무관하게 승인"},  # 지어낸 인용
+        {"claim": "한도 1억원", "verdict": "contradicted", "evidence": "기업당 최대 5,000만원"},
+        {"claim": "온라인 신청", "verdict": "unsupported", "evidence": ""},
+    ]
+    assert unsupported_claims(claims, CTX) == ["누구나 승인", "한도 1억원", "온라인 신청"]

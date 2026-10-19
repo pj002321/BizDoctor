@@ -35,13 +35,16 @@ def _get_client() -> OpenAI:
     return _client
 
 
-def stream_report(context: str) -> Iterator[str]:
-    """리포트 조각을 오는 대로 낸다. DISCLAIMER 는 호출하는 쪽이 붙인다."""
+def stream_report(context: str, feedback: list[str] | None = None) -> Iterator[str]:
+    """리포트 조각을 오는 대로 낸다. feedback 은 재생성 때 넘기는 지난 초안의 위반 목록. DISCLAIMER 는 호출하는 쪽이 붙인다."""
+    ask = "위 근거로 리포트를 써 줘."
+    if feedback:
+        ask += "\n지난 초안에서 근거에 없던 내용이다. 빼고 다시 써라:\n" + "\n".join(f"- {v}" for v in feedback)
     stream = _get_client().chat.completions.create(
         model=OPENAI_MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": f"<근거>\n{context}\n</근거>\n\n위 근거로 리포트를 써 줘."},
+            {"role": "user", "content": f"<근거>\n{context}\n</근거>\n\n{ask}"},
         ],
         temperature=0.2,
         stream=True,
@@ -51,9 +54,9 @@ def stream_report(context: str) -> Iterator[str]:
             yield chunk.choices[0].delta.content
 
 
-def write_report(context: str) -> tuple[str, list[str]]:
+def write_report(context: str, feedback: list[str] | None = None) -> tuple[str, list[str]]:
     """끝까지 받은 뒤 (본문, 가드레일 위반) 을 돌려준다."""
-    text = "".join(stream_report(context))
+    text = "".join(stream_report(context, feedback))
     return text, check(text, context)
 
 

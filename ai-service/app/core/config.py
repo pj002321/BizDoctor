@@ -45,6 +45,8 @@ DATABASE_URL = _normalize_db_url(os.getenv("DATABASE_URL"))
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+VERIFY_MODEL = _env_str("VERIFY_MODEL", "claude-sonnet-5-5")  # 리포트 교차 검증
 EMBED_MODEL = "text-embedding-3-small"
 DIMENSION = 1536
 EMBED_TOKENIZER = "cl100k_base"

@@ -45,3 +45,16 @@ def check(report: str, context: str) -> list[str]:
     bad += [f"수치 {n}{u}" for n, u in sorted(got["수치"] - allowed["수치"])]
     bad += [f"사업명 「{n}」" for n in sorted(got["사업명"] - allowed["사업명"])]
     return bad
+
+
+def _squash(s: str) -> str:
+    return re.sub(r"\s+", "", s)
+
+
+def unsupported_claims(claims: list[dict], context: str) -> list[str]:
+    """교차 검증 판정 중 통과 못 한 주장. supported 라도 인용이 근거 원문에 없으면 판정을 믿지 않는다."""
+    ctx = _squash(context)
+    return [
+        c["claim"] for c in claims
+        if c["verdict"] != "supported" or not _squash(c["evidence"]) or _squash(c["evidence"]) not in ctx
+    ]

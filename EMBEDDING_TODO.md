@@ -34,8 +34,8 @@
 - [x] **5. 청킹** — 항목 단위 + 토큰 보조 분할 (6건 → 27조각, 최대 182토큰, 재실행 0건)
 - [x] **6. 임베딩** — 배치 · NULL 인 조각만 · 배치마다 commit (27개, 재실행 0개)
 - [x] **7. 검색** — 마감 제외 + 태그 우선 + RRF + 문서당 1개 (`python -m app.knowledge.retrieve` ok)
-- [ ] **8. 생성 + 규칙 가드레일** — 프롬프트 · 스트리밍 · `app/domain/guardrail.py` + pytest
-- [ ] **9. Claude 교차 검증** — 주장 분해 · 근거 판정 · 재생성 정책
+- [x] **8. 생성 + 규칙 가드레일** — `app/ai/report.py` · `app/domain/guardrail.py` · `report_context.py`. pytest 통과, 템플릿 5유형 통과 (실제 OpenAI 호출은 미확인)
+- [x] **9. Claude 교차 검증** — `app/ai/verify.py` (tool 강제로 주장별 판정 JSON). supported 라도 인용이 근거 원문에 없으면 실패(`unsupported_claims`). 재생성 정책: 규칙 가드레일 → 교차 검증 순, 둘 중 하나라도 실패하면 위반 목록을 `feedback` 으로 넘겨 1회 재생성 → 또 실패면 템플릿. 실행은 10스텝 그래프 (실제 Claude 호출은 미확인)
 - [ ] **10. Tool Calling + LangGraph** — 리포트 그래프 · 챗봇 그래프
 - [ ] **11. API 연결** — FastAPI 엔드포인트 · 서비스 토큰 · 목업 연동
 - [ ] **12. 평가 · 관측** — 골든셋 · 근거 충실도 집계 · 요청 로그
