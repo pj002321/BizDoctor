@@ -37,7 +37,7 @@ SEARCH = text("""
         SELECT DISTINCT ON (doc_id) * FROM scored ORDER BY doc_id, score DESC
     )
     SELECT a.doc_id, a.title, a.agency, a.source_url, a.limit_text, a.rate_text,
-           a.apply_end, a.risk_type_tags, b.section, b.body AS evidence, b.score
+           a.apply_start, a.apply_end, a.risk_type_tags, b.section, b.body AS evidence, b.score
     FROM best b JOIN active a USING (doc_id)
     ORDER BY coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false) DESC, b.score DESC
     LIMIT :top_k
