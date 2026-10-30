@@ -40,6 +40,8 @@ _client: Anthropic | None = None
 def _get_client() -> Anthropic:
     global _client
     if _client is None:
+        if not ANTHROPIC_API_KEY:
+            raise RuntimeError("ANTHROPIC_API_KEY 가 비어 있습니다. ai-service/.env 를 확인하세요.")
         _client = Anthropic(api_key=ANTHROPIC_API_KEY)
     return _client
 
