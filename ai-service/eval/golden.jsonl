@@ -1,0 +1,6 @@
+{"id": "rt-01", "type": "위기_유형", "question": "대출 이자가 너무 부담돼요. 받을 수 있는 지원이 있나요?", "risk_type": "고금리_과다채무형", "gold_doc_ids": ["semas-2026-refinance"]}
+{"id": "cond-01", "type": "조건", "question": "폐업한 지 좀 됐는데 폐업 지원 받을 수 있나요?", "gold_doc_ids": ["semas-2026-hope-closing"], "gold_facts": [{"doc_id": "semas-2026-hope-closing", "section": "지원대상", "value": "폐업일이 2023년 1월 1일 이후"}]}
+{"id": "num-01", "type": "수치", "question": "경영안정 바우처는 얼마까지 받을 수 있나요?", "gold_doc_ids": ["sbiz24-2026-stability-voucher"], "gold_facts": [{"doc_id": "sbiz24-2026-stability-voucher", "section": "지원한도", "value": "1개사당 25만원 한도"}]}
+{"id": "exp-01", "type": "마감_함정", "question": "온라인판로 지원사업 2차 신청하고 싶어요"}
+{"id": "exp-02", "type": "마감_함정", "question": "스마트상점 기술보급사업 신청하고 싶어요"}
+{"id": "oos-01", "type": "범위_밖", "question": "청년 전세자금 대출 조건 알려주세요"}
