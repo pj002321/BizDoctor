@@ -32,7 +32,7 @@ SEARCH = text("""
     ),
     active AS (
         SELECT * FROM policy_doc
-        WHERE applt_end IS NULL
+        WHERE apply_end IS NULL
            OR apply_end >= coalesce(CAST(:as_of AS date), (now() AT TIME ZONE 'Asia/Seoul')::date)
     ),
     scored AS (
@@ -63,7 +63,7 @@ SEARCH = text("""
          , b.body AS evidence
          , b.score
     FROM best b JOIN active a USING (doc_id)
-    ORDER BY (:tag_first AND coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false)) DESC, b.scroe DESC
+    ORDER BY (:tag_first AND coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false)) DESC, b.score DESC
     LIMIT :top_k
 """)
 
@@ -78,6 +78,10 @@ def retrieve(query: str, risk_type: str | None = None, top_k: int = 3,
     w_vec, w_kw, tag_first = MODES[mode]
     with get_engine().connect() as conn:
         rows = conn.execute(SEARCH, {
+            "w_vec": w_vec,
+            "w_kw":w_kw,
+            "tag_first":tag_first,
+            "as_of":as_of,
             "embedding": str(embed([query])[0]),
             "keywords": " or ".join(query.split()),  # 기본은 AND 라 문장 전체가 다 있어야 걸린다
             "risk_type": risk_type,
