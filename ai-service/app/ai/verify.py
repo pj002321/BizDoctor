@@ -14,6 +14,7 @@ SYSTEM_PROMPT = """너는 소상공인 리포트의 사실 검증자다. 리포�
 _TOOL = {
     "name": "report_verdicts",
     "description": "주장별 판정 결과를 기록한다.",
+    "strict": True,
     "input_schema": {
         "type": "object",
         "properties": {
@@ -27,10 +28,12 @@ _TOOL = {
                         "evidence": {"type": "string"},
                     },
                     "required": ["claim", "verdict", "evidence"],
+                    "additionalProperties": False,
                 },
             }
         },
         "required": ["claims"],
+        "additionalProperties": False,
     },
 }
 

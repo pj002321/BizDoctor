@@ -16,15 +16,9 @@ def _period(doc: dict) -> str:
     return "상시 (공고 확인)"
 
 
-def build_context(signal: dict, docs: list[dict]) -> str:
-    """신호 JSON + retrieve() 공고 → LLM 근거 텍스트. 확률은 여기서 % 로 바꿔 둔다."""
-    lines = [
-        "[진단]",
-        f"진단 등급: {signal['risk_level']}",
-        f"추정 원인: {signal['risk_type']} (추정 확률 {round(signal['risk_type_confidence'] * 100)}%)",
-        f"위험 점수: {signal['score']}점",
-    ]
-    for i, d in enumerate(docs, 1):
+def docs_context(docs: list[dict]) -> str:
+    lines = []
+    for i, d in enumerate(docs,1):
         lines += [
             "",
             f"[근거 {i}] 「{d['title']}」",
@@ -36,6 +30,18 @@ def build_context(signal: dict, docs: list[dict]) -> str:
             f"근거 항목({d['section']}): {d['evidence']}",
         ]
     return "\n".join(lines)
+
+
+
+def build_context(signal: dict, docs: list[dict]) -> str:
+    """신호 JSON + retrieve() 공고 → LLM 근거 텍스트. 확률은 여기서 % 로 바꿔 둔다."""
+    lines = [
+        "[진단]",
+        f"진단 등급: {signal['risk_level']}",
+        f"추정 원인: {signal['risk_type']} (추정 확률 {round(signal['risk_type_confidence'] * 100)}%)",
+        f"위험 점수: {signal['score']}점",
+    ]
+    return "\n".join(lines) + docs_context(docs)
 
 
 def fallback_report(signal: dict, docs: list[dict]) -> str:
