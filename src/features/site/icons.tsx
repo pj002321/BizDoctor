@@ -29,7 +29,7 @@ export function Check() {
       aria-hidden="true"
       className="shrink-0"
     >
-      <rect width="18" height="18" fill="var(--color-accent)" />
+      <rect width="18" height="18" rx="9" fill="var(--color-accent)" />
       <path
         d="M5 9.2l2.6 2.6L13 6.4"
         fill="none"

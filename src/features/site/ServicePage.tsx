@@ -1,14 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import {
-  GradeFragment,
-  RankingFragment,
-  ReportFragment,
-  SolutionsFragment,
-  TrendFragment,
-} from "./fragments";
+import { GradeFragment, RankingFragment, ReportFragment } from "./fragments";
 import { Arrow, MARKET_SIGNAL, SignalShape } from "./icons";
+import Lamps from "./Lamps";
+import TrendChart from "./TrendChart";
 
 const i = (n: number) => ({ ["--i" as string]: n });
 
@@ -42,54 +38,58 @@ const RISK_TYPES = [
 export default function ServicePage() {
   return (
     <main>
-      {/* ── 머리 ─────────────────────────────── */}
-      <section className="frame grid gap-10 pt-16 pb-16 lg:grid-cols-[1.1fr_1fr] lg:items-end lg:pt-24">
-        <h1 className="display">
-          <span className="rise-line">
-            <span style={i(0)}>상권 신호등부터</span>
-          </span>
-          <span className="rise-line">
-            <span style={i(1)}>지원사업 추천까지</span>
-          </span>
-        </h1>
-        <div className="fade-up" style={i(0)}>
-          <p className="lead">
-            상권 신호등은 동네를, 진단 등급은 내 가게를 봅니다. 두 결과는
-            이름·색 범례·주소를 따로 써서 섞이지 않게 했습니다.
-          </p>
-          <nav aria-label="이 페이지 차례" className="mt-8">
-            <ul className="flex flex-wrap gap-2">
-              {[
-                ["#market", "상권 신호등"],
-                ["#trend", "산업 추이"],
-                ["#diagnosis", "사업장 진단"],
-                ["#solutions", "지원사업"],
-                ["#report", "AI 리포트"],
-                ["#limits", "계산 방법과 한계"],
-              ].map(([h, l]) => (
-                <li key={h}>
-                  <a
-                    href={h}
-                    className="inline-block bg-surface px-4 py-2 text-[0.9375rem] font-medium transition-colors hover:bg-[#dfe8f5]"
-                  >
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </section>
-      <figure className="photo-open relative h-[44vh] min-h-[18rem] overflow-hidden">
+      {/* ── 머리: 시장 사진 위 ─────────────────── */}
+      <section className="on-night relative isolate overflow-hidden bg-night text-on-night">
         <Image
           src="/photos/namdaemun-market-in-seoul-i.jpg"
           alt="남대문시장 상점가, 600주년 축제 현수막 아래로 오가는 사람들"
           fill
           priority
           sizes="100vw"
-          className="photo-drift object-cover object-[50%_60%]"
+          className="photo-drift -z-10 object-cover object-[50%_60%]"
         />
-      </figure>
+        <div className="absolute inset-0 -z-10 bg-[rgb(18_21_19/0.74)]" />
+        <div className="frame grid gap-10 pt-28 pb-16 lg:grid-cols-[1.1fr_1fr] lg:items-end lg:pt-40 lg:pb-20">
+          <div>
+            <Lamps className="fade-up" size="1.25rem" />
+            <h1 className="display mt-8">
+              <span className="rise-line">
+                <span style={i(0)}>상권 신호등부터</span>
+              </span>
+              <span className="rise-line">
+                <span style={i(1)}>지원사업 추천까지</span>
+              </span>
+            </h1>
+          </div>
+          <div className="fade-up" style={i(0)}>
+            <p className="lead">
+              상권 신호등은 동네를, 진단 등급은 내 가게를 봅니다. 두 결과는
+              이름·색 범례·주소를 따로 써서 섞이지 않게 했습니다.
+            </p>
+            <nav aria-label="이 페이지 차례" className="mt-8">
+              <ul className="flex flex-wrap gap-2">
+                {[
+                  ["#market", "상권 신호등"],
+                  ["#trend", "산업 추이"],
+                  ["#diagnosis", "사업장 진단"],
+                  ["#solutions", "지원사업"],
+                  ["#report", "AI 리포트"],
+                  ["#limits", "계산 방법과 한계"],
+                ].map(([h, l]) => (
+                  <li key={h}>
+                    <a
+                      href={h}
+                      className="inline-block rounded-full bg-white/14 px-4 py-2 text-[0.9375rem] font-medium transition-colors hover:bg-white/24"
+                    >
+                      {l}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
 
       {/* ── 상권 신호등 ─────────────────────────── */}
       <Chapter
@@ -99,7 +99,7 @@ export default function ServicePage() {
         href="/market"
         cta="상권 신호등 보기"
         aside={
-          <figure className="relative aspect-[4/3] overflow-hidden">
+          <figure className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)]">
             <Image
               src="/photos/gwangjang-market-seoul-01.jpg"
               alt="종로 광장시장 정문"
@@ -138,7 +138,7 @@ export default function ServicePage() {
       <section
         id="trend"
         aria-labelledby="trend-h"
-        className="bg-surface py-28 lg:py-36"
+        className="bg-surface py-32 lg:py-44"
       >
         <div className="frame">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
@@ -150,9 +150,9 @@ export default function ServicePage() {
               오갑니다. 서울 전체 흐름 위에 내 업종이 어디 있는지 봅니다.
             </p>
           </div>
-          <div className="mt-12 grid gap-4 lg:grid-cols-[1.2fr_1fr]">
+          <div className="mt-16 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
             <div data-reveal style={i(1)}>
-              <TrendFragment />
+              <TrendChart />
             </div>
             <div data-reveal style={i(2)}>
               <RankingFragment />
@@ -169,7 +169,7 @@ export default function ServicePage() {
         href="/diagnosis"
         cta="진단 시작"
         aside={
-          <div className="bg-surface p-4 sm:p-8">
+          <div className="rounded-[var(--radius-card)] bg-surface p-5 sm:p-12">
             <GradeFragment />
           </div>
         }
@@ -178,10 +178,10 @@ export default function ServicePage() {
           {GRADES.map(([g, l, c]) => (
             <li
               key={g}
-              className="flex items-center gap-2.5 bg-surface-2 py-2 pr-4 pl-2"
+              className="flex items-center gap-2.5 rounded-full bg-surface-2 py-2 pr-4 pl-2"
             >
               <span
-                className="grid size-8 place-items-center font-bold text-white"
+                className="grid size-8 place-items-center rounded-full font-bold text-white"
                 style={{ background: c }}
               >
                 {g}
@@ -199,14 +199,14 @@ export default function ServicePage() {
       <section
         id="solutions"
         aria-labelledby="sol-h"
-        className="on-navy bg-navy py-28 text-on-navy lg:py-36"
+        className="on-night bg-night py-28 text-on-night lg:py-36"
       >
         <div className="frame">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
             <h2 id="sol-h" className="title" data-reveal>
               추정 원인에 맞는 지원사업
             </h2>
-            <p className="lead text-on-navy-muted" data-reveal style={i(1)}>
+            <p className="lead text-on-night-muted" data-reveal style={i(1)}>
               위기 유형 태그가 붙은 공고를 먼저 세우고, 그 안에서 의미 검색과
               키워드 검색 순위를 합쳐 정렬합니다.
             </p>
@@ -216,7 +216,7 @@ export default function ServicePage() {
               <caption className="sr-only">
                 위기 유형별 진단 등급과 연결되는 지원사업
               </caption>
-              <thead className="text-sm text-on-navy-muted">
+              <thead className="text-sm text-on-night-muted">
                 <tr>
                   <th scope="col" className="pb-4 font-medium">
                     위기 유형
@@ -231,7 +231,10 @@ export default function ServicePage() {
               </thead>
               <tbody>
                 {RISK_TYPES.map(([t, g, s]) => (
-                  <tr key={t} className="odd:bg-white/[0.06]">
+                  <tr
+                    key={t}
+                    className="odd:bg-white/[0.06] [&>*:first-child]:rounded-l-xl [&>*:last-child]:rounded-r-xl"
+                  >
                     <th
                       scope="row"
                       className="py-5 pr-4 pl-4 text-base font-bold sm:text-lg"
@@ -239,7 +242,7 @@ export default function ServicePage() {
                       {t}
                     </th>
                     <td className="py-5 pr-4">{g}</td>
-                    <td className="py-5 pr-4 text-[0.9375rem] text-on-navy-muted sm:text-base">
+                    <td className="py-5 pr-4 text-[0.9375rem] text-on-night-muted sm:text-base">
                       {s}
                     </td>
                   </tr>
@@ -259,9 +262,8 @@ export default function ServicePage() {
         cta="AI 리포트 보기"
         flip
         aside={
-          <div className="grid gap-3 bg-surface p-4 sm:p-8">
+          <div className="rounded-[var(--radius-card)] bg-surface p-5 sm:p-12">
             <ReportFragment />
-            <SolutionsFragment />
           </div>
         }
       />
@@ -270,7 +272,7 @@ export default function ServicePage() {
       <section
         id="limits"
         aria-labelledby="limits-h"
-        className="bg-surface-2 py-28 lg:py-36"
+        className="bg-surface-2 py-32 lg:py-44"
       >
         <div className="frame grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
           <div>
@@ -313,7 +315,7 @@ export default function ServicePage() {
       {/* ── 마무리 ─────────────────────────────── */}
       <section
         aria-labelledby="go"
-        className="frame flex flex-wrap items-end justify-between gap-8 py-28 lg:py-36"
+        className="frame flex flex-wrap items-end justify-between gap-8 py-32 lg:py-44"
       >
         <h2 id="go" className="title max-w-[40rem]" data-reveal>
           우리 동네부터 볼까요, 내 가게부터 볼까요
@@ -354,7 +356,7 @@ function Chapter({
     <section
       id={id}
       aria-labelledby={`${id}-h`}
-      className="frame grid gap-12 py-28 lg:grid-cols-2 lg:items-center lg:gap-20 lg:py-36"
+      className="frame grid gap-12 py-28 lg:grid-cols-2 lg:items-center lg:gap-24 lg:py-44"
     >
       <div className={flip ? "lg:order-2" : undefined}>
         <h2 id={`${id}-h`} className="title" data-reveal>

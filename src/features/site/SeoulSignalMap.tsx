@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import CountUp from "./CountUp";
 import data from "./data/seoul.json";
 import { Arrow, MARKET_SIGNAL, SignalShape } from "./icons";
 
@@ -32,7 +33,7 @@ export default function SeoulSignalMap() {
   const judged = c ? c.g + c.y + c.r : 0;
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:gap-12">
+    <div className="grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
       <div>
         <fieldset>
           <legend className="sr-only">업종 고르기</legend>
@@ -47,7 +48,7 @@ export default function SeoulSignalMap() {
                   onChange={() => setInd(k)}
                   className="peer sr-only"
                 />
-                <span className="inline-block bg-bg px-4 py-2 text-[0.9375rem] font-medium transition-colors duration-150 peer-checked:bg-accent peer-checked:text-white peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:bg-[#dfe8f5] peer-checked:hover:bg-accent-press">
+                <span className="inline-block rounded-full bg-surface px-4 py-2 text-[0.9375rem] font-medium transition-colors duration-150 peer-checked:bg-night peer-checked:text-white peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:bg-[#e2e5e2] peer-checked:hover:bg-night">
                   {label}
                 </span>
               </label>
@@ -55,7 +56,8 @@ export default function SeoulSignalMap() {
           </div>
         </fieldset>
         <p className="mt-4 text-sm text-muted">
-          색이 짙을수록 판정된 행정동 가운데 ‘주의’ 이상 비율이 높습니다.
+          초록에 가까울수록 ‘양호’ 칸이, 노랑에 가까울수록 ‘주의’ 칸 비율이
+          높습니다.
         </p>
 
         {/* biome-ignore lint/a11y/useSemanticElements: SVG 안에는 fieldset 을 쓸 수 없다 */}
@@ -90,8 +92,8 @@ export default function SeoulSignalMap() {
                   d={s.d}
                   fill={
                     on
-                      ? "var(--color-navy)"
-                      : `color-mix(in srgb, var(--color-accent) ${12 + t * 70}%, white)`
+                      ? "var(--color-night)"
+                      : `color-mix(in oklab, color-mix(in oklab, var(--color-lamp-yellow) ${Math.round(t * 100)}%, var(--color-lamp-green)) ${38 + t * 40}%, white)`
                   }
                   stroke="white"
                   strokeWidth="1.5"
@@ -104,7 +106,7 @@ export default function SeoulSignalMap() {
                   dominantBaseline="middle"
                   fontSize="12.5"
                   fontWeight={on ? 700 : 500}
-                  fill={on || t > 0.6 ? "white" : "var(--color-fg)"}
+                  fill={on ? "white" : "var(--color-fg)"}
                   className="pointer-events-none select-none transition-[fill] duration-300"
                 >
                   {s.gu.replace("구", "")}
@@ -115,7 +117,10 @@ export default function SeoulSignalMap() {
         </svg>
       </div>
 
-      <div className="self-start bg-bg p-6 sm:p-8" aria-live="polite">
+      <div
+        className="self-start rounded-[var(--radius-card)] bg-surface p-6 sm:p-10"
+        aria-live="polite"
+      >
         <h3
           key={gu + ind}
           className="fade-up text-3xl font-bold tracking-[-0.03em]"
@@ -128,21 +133,21 @@ export default function SeoulSignalMap() {
           {judged + (c?.low ?? 0)}칸
         </p>
 
-        <ul data-ui className="mt-6 grid grid-cols-2 gap-2">
+        <ul data-ui className="mt-8 grid grid-cols-2 gap-3">
           {(["g", "y", "r"] as const).map((s) => (
-            <li key={s} className="bg-surface-2 p-4">
+            <li key={s} className="rounded-xl bg-bg p-5">
               <span className="flex items-center gap-2 text-sm font-semibold">
                 <SignalShape s={s} /> {MARKET_SIGNAL[s].label}
               </span>
               <span className="mt-1 block text-3xl font-bold">
-                {c?.[s] ?? 0}
+                <CountUp to={c?.[s] ?? 0} duration={700} />
               </span>
             </li>
           ))}
-          <li className="bg-surface-2 p-4">
+          <li className="rounded-xl bg-bg p-5">
             <span className="text-sm font-semibold text-muted">표본 적음</span>
             <span className="mt-1 block text-3xl font-bold text-muted">
-              {c?.low ?? 0}
+              <CountUp to={c?.low ?? 0} duration={700} />
             </span>
           </li>
         </ul>

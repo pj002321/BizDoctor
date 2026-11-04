@@ -1,27 +1,28 @@
 {
  "url": "http://localhost:3100/",
- "at": "2026-11-04T15:47:10.676Z",
+ "at": "2026-11-04T16:10:29.571Z",
  "allow": [],
  "viewports": [
   {
    "width": 1440,
    "height": 900,
    "load": "load",
-   "screens": 8,
+   "screens": 9,
    "filled": [
-    0.51,
-    0.48,
-    0.63,
-    0.82,
+    0.91,
+    0.7,
+    0.68,
+    0.6,
+    0.69,
     0.44,
-    0.74,
-    0.56,
-    0.94
+    0.96,
+    0.96,
+    0.96
    ],
    "motion": {
-    "elements": 39,
-    "css": 13,
-    "transitions": 26,
+    "elements": 47,
+    "css": 18,
+    "transitions": 29,
     "scripted": 0,
     "videos": 0,
     "playingVideos": 0
@@ -32,26 +33,26 @@
      "h": 900
     },
     "page": {
-     "height": 6860,
-     "screens": 7.6,
-     "words": 767,
+     "height": 7422,
+     "screens": 8.2,
+     "words": 570,
      "img": 4,
      "video": 0,
      "canvas": 0,
-     "svg": 24,
-     "sections": 7,
+     "svg": 25,
+     "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
-     "uiFragments": 10,
+     "uiFragments": 3,
      "uiAbuse": false,
      "realPictures": 4,
      "videoCount": 0,
-     "uiPictures": 6,
+     "uiPictures": 2,
      "pictureSamples": [
       "image?url=%2Fphotos%2Fgwangjang-market-seoul-02.",
       "image?url=%2Fphotos%2Fnamdaemun-market-in-seoul-",
-      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01.",
-      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul."
+      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul.",
+      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01."
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -75,8 +76,8 @@
      "mono": false,
      "align": "left",
      "position": "left",
-     "widthRatio": 0.4,
-     "top": 307,
+     "widthRatio": 0.67,
+     "top": 357,
      "tag": "h1",
      "kind": "heading"
     },
@@ -104,8 +105,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.4,
-      "top": 307,
+      "widthRatio": 0.67,
+      "top": 357,
       "tag": "h1",
       "kind": "heading"
      },
@@ -124,9 +125,9 @@
       "italic": false,
       "mono": false,
       "align": "left",
-      "position": "center",
+      "position": "right",
       "widthRatio": 0.04,
-      "top": 824,
+      "top": 724,
       "tag": "span",
       "kind": "heading"
      },
@@ -145,11 +146,116 @@
       "italic": false,
       "mono": false,
       "align": "left",
-      "position": "center",
+      "position": "right",
       "widthRatio": 0.03,
-      "top": 824,
+      "top": 724,
       "tag": "span",
       "kind": "heading"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.01,
+      "top": 724,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "25",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 80,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.07,
+      "top": 972,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "425",
+      "words": 1,
+      "chars": 3,
+      "lines": 1,
+      "size": 80,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.1,
+      "top": 972,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "100",
+      "words": 1,
+      "chars": 3,
+      "lines": 1,
+      "size": 80,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.1,
+      "top": 972,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "11",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 80,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.07,
+      "top": 972,
+      "tag": "span",
+      "kind": "statement"
      },
      {
       "text": "상권부터 내 가게, 지원사업까지 한 흐름으로",
@@ -167,30 +273,9 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.4,
+      "widthRatio": 0.41,
       "top": 1356,
       "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
-      "lines": 1,
-      "size": 30,
-      "vw": 2.1,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "center",
-      "widthRatio": 0.04,
-      "top": 1639,
-      "tag": "span",
       "kind": "heading"
      },
      {
@@ -209,8 +294,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.47,
-      "top": 2556,
+      "widthRatio": 0.49,
+      "top": 2676,
       "tag": "h2",
       "kind": "heading"
      },
@@ -231,7 +316,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.31,
-      "top": 2759,
+      "top": 2902,
       "tag": "h3",
       "kind": "heading"
      },
@@ -251,8 +336,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.13,
-      "top": 2890,
+      "widthRatio": 0.12,
+      "top": 3045,
       "tag": "span",
       "kind": "statement"
      },
@@ -272,8 +357,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.13,
-      "top": 2890,
+      "widthRatio": 0.12,
+      "top": 3045,
       "tag": "span",
       "kind": "statement"
      },
@@ -293,8 +378,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.13,
-      "top": 2990,
+      "widthRatio": 0.12,
+      "top": 3157,
       "tag": "span",
       "kind": "statement"
      },
@@ -314,113 +399,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.13,
-      "top": 2997,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "추정은 추정이라고 말합니다",
-      "words": 3,
-      "chars": 14,
-      "lines": 1,
-      "size": 51.8,
-      "vw": 3.6,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.03,
-      "leading": 1.18,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.4,
-      "top": 3713,
-      "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "25",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 68,
-      "vw": 4.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.16,
-      "top": 3761,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "425",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 68,
-      "vw": 4.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.16,
-      "top": 3761,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "100",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 68,
-      "vw": 4.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.16,
-      "top": 3905,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "11",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 68,
-      "vw": 4.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.16,
-      "top": 3905,
+      "widthRatio": 0.12,
+      "top": 3165,
       "tag": "span",
       "kind": "statement"
      },
@@ -441,29 +421,29 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.49,
-      "top": 4989,
+      "top": 4129,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
+      "text": "추정은 추정이라고 말합니다",
+      "words": 3,
+      "chars": 14,
       "lines": 1,
-      "size": 30,
-      "vw": 2.1,
+      "size": 51.8,
+      "vw": 3.6,
       "font": "Pretendard Variable",
       "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
+      "tracking": -0.03,
+      "leading": 1.18,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.04,
-      "top": 5454,
-      "tag": "span",
+      "widthRatio": 0.42,
+      "top": 4664,
+      "tag": "h2",
       "kind": "heading"
      },
      {
@@ -482,8 +462,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.45,
-      "top": 5518,
+      "widthRatio": 0.69,
+      "top": 6068,
       "tag": "h2",
       "kind": "heading"
      },
@@ -503,14 +483,14 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.86,
-      "top": 6411,
+      "widthRatio": 0.91,
+      "top": 6973,
       "tag": "p",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 20,
+     "count": 19,
      "maxLines": 2,
      "over2Lines": 0,
      "statements": 9,
@@ -537,12 +517,13 @@
       22,
       26,
       30,
+      32,
       52,
-      68,
       76,
+      80,
       248
      ],
-     "sizeCount": 13,
+     "sizeCount": 14,
      "notLoaded": [],
      "body": {
       "font": "Pretendard Variable",
@@ -550,9 +531,9 @@
       "leading": 1.6,
       "weight": 400,
       "tracking": 0,
-      "contrast": 17.4
+      "contrast": 18.4
      },
-     "measureChars": 58,
+     "measureChars": 61,
      "max": {
       "size": 248,
       "vw": 17.2,
@@ -566,7 +547,7 @@
      "microLabels": 0,
      "microLabelShare": 0,
      "microSamples": [],
-     "upperShare": 0.05,
+     "upperShare": 0.06,
      "centerShare": 0,
      "smallText": 0
     },
@@ -582,61 +563,57 @@
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#eef3fa",
-       "top": 2396,
+       "color": "#121513",
+       "top": 108,
        "hsl": {
-        "h": 215,
-        "s": 0.55,
-        "l": 0.96
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
        }
       },
       {
-       "color": "#0a1f4a",
-       "top": 4572,
+       "color": "#eef0ee",
+       "top": 1180,
        "hsl": {
-        "h": 220,
-        "s": 0.76,
-        "l": 0.16
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
        }
       }
      ],
      "textColors": [
       {
-       "color": "#0e1a2e",
-       "share": 0.38
+       "color": "#141614",
+       "share": 0.35
       },
       {
-       "color": "#46546b",
-       "share": 0.34
-      },
-      {
-       "color": "#b9c7e3",
-       "share": 0.19
+       "color": "#b7bdb5",
+       "share": 0.26
       },
       {
        "color": "#ffffff",
-       "share": 0.08
+       "share": 0.2
       },
       {
-       "color": "#0f3a8c",
-       "share": 0.01
+       "color": "#4f544e",
+       "share": 0.19
       }
      ],
      "button": {
-      "bg": "#0f3a8c",
+      "bg": "#15803d",
       "hsl": {
-       "h": 219,
-       "s": 0.81,
-       "l": 0.3
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
       },
       "fg": "#ffffff"
      },
      "lowContrast": []
     },
     "buttons": {
-     "count": 6,
-     "inHero": 3,
-     "radius": 0,
+     "count": 4,
+     "inHero": 2,
+     "radius": "pill",
      "height": 52,
      "withShadow": 0,
      "withGradient": 0,
@@ -644,13 +621,12 @@
      "upper": 0,
      "heroLabels": [
       "내 가게 진단",
-      "내 가게 진단받기",
-      "상권 신호등 보기"
+      "내 가게 진단받기"
      ]
     },
     "surfaces": {
      "shadowStatic": 0,
-     "shadowOverlay": 2,
+     "shadowOverlay": 1,
      "shadowSamples": [],
      "gradients": 0,
      "scrims": 0,
@@ -661,24 +637,24 @@
      "outlinedBoxes": 0,
      "dashed": 0,
      "blurred": 0,
-     "roundedBoxes": 0,
-     "boxRadius": 0,
-     "squareMedia": 4,
-     "roundedMedia": 0,
-     "mediaRadius": 0,
+     "roundedBoxes": 9,
+     "boxRadius": 20,
+     "squareMedia": 2,
+     "roundedMedia": 2,
+     "mediaRadius": 20,
      "textShadow": 0,
      "cardRows": []
     },
     "heroMedia": [
      {
       "type": "img",
-      "ratio": 0.36
+      "ratio": 0.92
      }
     ],
     "nav": {
-     "links": 7,
+     "links": 6,
      "fixed": true,
-     "height": 108,
+     "height": 72,
      "floatingPill": false,
      "blur": false
     },
@@ -691,9 +667,9 @@
      "w": 1440,
      "h": 900
     },
-    "pageH": 6860,
+    "pageH": 7422,
     "margins": {
-     "left": 104,
+     "left": 64,
      "right": 104
     },
     "sections": [
@@ -701,19 +677,19 @@
       "sel": "div#main",
       "tag": "div",
       "top": 108,
-      "height": 5967,
-      "words": 427,
-      "media": 5,
+      "height": 6529,
+      "words": 376,
+      "media": 4,
       "middle": 0,
       "heading": {
-       "text": "폐업 신호를,",
-       "size": 76,
-       "tag": "h1"
+       "text": "25",
+       "size": 80,
+       "tag": "span"
       },
-      "left": 104,
-      "right": 87,
-      "textLeft": 104,
-      "textRight": 96,
+      "left": 64,
+      "right": 102,
+      "textLeft": 64,
+      "textRight": 102,
       "fullBleed": true,
       "footer": false,
       "hero": true,
@@ -721,9 +697,9 @@
       "pinned": true
      },
      {
-      "sel": "footer.on-navy.bg-navy",
+      "sel": "footer.on-night.bg-night",
       "tag": "footer",
-      "top": 6075,
+      "top": 6637,
       "height": 785,
       "words": 96,
       "media": 0,
@@ -733,10 +709,10 @@
        "size": 248,
        "tag": "p"
       },
-      "left": 104,
-      "right": 156,
-      "textLeft": 104,
-      "textRight": 156,
+      "left": 64,
+      "right": 140,
+      "textLeft": 64,
+      "textRight": 140,
       "fullBleed": false,
       "footer": true,
       "hero": false,
@@ -749,26 +725,30 @@
      {
       "text": "폐업 신호를, 먼저 읽어 드립니다",
       "size": 76,
-      "top": 307,
+      "top": 357,
       "firstScreen": true
      }
     ],
     "edgeText": [],
     "edges": [
      {
-      "x": 104,
-      "n": 11
+      "x": 64,
+      "n": 10
      },
      {
-      "x": 738,
+      "x": 753,
       "n": 1
      },
      {
-      "x": 832,
+      "x": 768,
       "n": 1
      },
      {
-      "x": 864,
+      "x": 852,
+      "n": 1
+     },
+     {
+      "x": 892,
       "n": 1
      }
     ],
@@ -777,13 +757,8 @@
     "stage": false,
     "explains": true,
     "slivers": [],
-    "voidShare": 0.1,
-    "voidBox": {
-     "x": 0,
-     "y": 120,
-     "w": 720,
-     "h": 180
-    }
+    "voidShare": 0,
+    "voidBox": null
    },
    "app": null,
    "consoleErrors": []
@@ -794,20 +769,20 @@
    "load": "load",
    "screens": 9,
    "filled": [
-    0.66,
-    0.43,
-    0.68,
-    0.93,
-    0.47,
-    0.63,
-    0.8,
-    0.55,
-    0.81
+    0.79,
+    0.54,
+    0.89,
+    0.61,
+    0.65,
+    0.79,
+    0.49,
+    0.96,
+    0.96
    ],
    "motion": {
-    "elements": 39,
-    "css": 13,
-    "transitions": 26,
+    "elements": 47,
+    "css": 18,
+    "transitions": 29,
     "scripted": 0,
     "videos": 0,
     "playingVideos": 0
@@ -818,26 +793,26 @@
      "h": 1024
     },
     "page": {
-     "height": 8786,
-     "screens": 8.6,
-     "words": 759,
+     "height": 8727,
+     "screens": 8.5,
+     "words": 562,
      "img": 4,
      "video": 0,
      "canvas": 0,
-     "svg": 24,
-     "sections": 7,
+     "svg": 25,
+     "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
-     "uiFragments": 10,
+     "uiFragments": 3,
      "uiAbuse": false,
      "realPictures": 4,
      "videoCount": 0,
-     "uiPictures": 6,
+     "uiPictures": 2,
      "pictureSamples": [
       "image?url=%2Fphotos%2Fgwangjang-market-seoul-02.",
       "image?url=%2Fphotos%2Fnamdaemun-market-in-seoul-",
-      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01.",
-      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul."
+      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul.",
+      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01."
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -861,8 +836,8 @@
      "mono": false,
      "align": "left",
      "position": "center",
-     "widthRatio": 0.92,
-     "top": 164,
+     "widthRatio": 0.9,
+     "top": 302,
      "tag": "h1",
      "kind": "heading"
     },
@@ -890,8 +865,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 164,
+      "widthRatio": 0.9,
+      "top": 302,
       "tag": "h1",
       "kind": "heading"
      },
@@ -910,9 +885,9 @@
       "italic": false,
       "mono": false,
       "align": "left",
-      "position": "left",
+      "position": "right",
       "widthRatio": 0.08,
-      "top": 1132,
+      "top": 780,
       "tag": "span",
       "kind": "heading"
      },
@@ -931,11 +906,116 @@
       "italic": false,
       "mono": false,
       "align": "left",
-      "position": "left",
+      "position": "right",
       "widthRatio": 0.05,
-      "top": 1132,
+      "top": 780,
       "tag": "span",
       "kind": "heading"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.03,
+      "top": 780,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "25",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.08,
+      "top": 999,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "425",
+      "words": 1,
+      "chars": 3,
+      "lines": 1,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.11,
+      "top": 999,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "100",
+      "words": 1,
+      "chars": 3,
+      "lines": 1,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.11,
+      "top": 1135,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "11",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.08,
+      "top": 1135,
+      "tag": "span",
+      "kind": "statement"
      },
      {
       "text": "상권부터 내 가게, 지원사업까지 한 흐름으로",
@@ -953,8 +1033,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 1655,
+      "widthRatio": 0.9,
+      "top": 1420,
       "tag": "h2",
       "kind": "heading"
      },
@@ -974,8 +1054,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.77,
-      "top": 1849,
+      "widthRatio": 0.75,
+      "top": 1646,
       "tag": "span",
       "kind": "statement"
      },
@@ -995,8 +1075,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.83,
-      "top": 1970,
+      "widthRatio": 0.81,
+      "top": 1783,
       "tag": "span",
       "kind": "statement"
      },
@@ -1016,8 +1096,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.83,
-      "top": 2090,
+      "widthRatio": 0.81,
+      "top": 1919,
       "tag": "span",
       "kind": "statement"
      },
@@ -1037,8 +1117,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.83,
-      "top": 2238,
+      "widthRatio": 0.81,
+      "top": 2083,
       "tag": "span",
       "kind": "statement"
      },
@@ -1058,31 +1138,10 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.83,
-      "top": 2386,
+      "widthRatio": 0.81,
+      "top": 2247,
       "tag": "span",
       "kind": "statement"
-     },
-     {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
-      "lines": 1,
-      "size": 30,
-      "vw": 3.9,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.07,
-      "top": 2627,
-      "tag": "span",
-      "kind": "heading"
      },
      {
       "text": "우리 구 상권 신호등, 직접 짚어 보세요",
@@ -1100,8 +1159,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 3309,
+      "widthRatio": 0.9,
+      "top": 3190,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1121,8 +1180,8 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.84,
-      "top": 4207,
+      "widthRatio": 0.8,
+      "top": 4100,
       "tag": "h3",
       "kind": "heading"
      },
@@ -1142,8 +1201,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.37,
-      "top": 4339,
+      "widthRatio": 0.34,
+      "top": 4243,
       "tag": "span",
       "kind": "statement"
      },
@@ -1163,8 +1222,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.37,
-      "top": 4339,
+      "widthRatio": 0.34,
+      "top": 4243,
       "tag": "span",
       "kind": "statement"
      },
@@ -1184,8 +1243,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.37,
-      "top": 4439,
+      "widthRatio": 0.34,
+      "top": 4355,
       "tag": "span",
       "kind": "statement"
      },
@@ -1205,113 +1264,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.37,
-      "top": 4446,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "추정은 추정이라고 말합니다",
-      "words": 3,
-      "chars": 14,
-      "lines": 1,
-      "size": 30,
-      "vw": 3.9,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.03,
-      "leading": 1.18,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "center",
-      "widthRatio": 0.92,
-      "top": 4990,
-      "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "25",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 44,
-      "vw": 5.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.38,
-      "top": 5520,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "425",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 44,
-      "vw": 5.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.38,
-      "top": 5520,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "100",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 44,
-      "vw": 5.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.38,
-      "top": 5639,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "11",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 44,
-      "vw": 5.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.38,
-      "top": 5639,
+      "widthRatio": 0.34,
+      "top": 4363,
       "tag": "span",
       "kind": "statement"
      },
@@ -1331,8 +1285,29 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 6847,
+      "widthRatio": 0.9,
+      "top": 5346,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "추정은 추정이라고 말합니다",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 6234,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1352,30 +1327,9 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 7153,
+      "widthRatio": 0.9,
+      "top": 7279,
       "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
-      "lines": 1,
-      "size": 30,
-      "vw": 3.9,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.07,
-      "top": 7491,
-      "tag": "span",
       "kind": "heading"
      },
      {
@@ -1394,14 +1348,14 @@
       "mono": false,
       "align": "left",
       "position": "center",
-      "widthRatio": 0.92,
-      "top": 8427,
+      "widthRatio": 0.9,
+      "top": 8369,
       "tag": "p",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 25,
+     "count": 24,
      "maxLines": 2,
      "over2Lines": 0,
      "statements": 14,
@@ -1424,15 +1378,16 @@
       15,
       17,
       18,
+      19,
       20,
       22,
       26,
       30,
       42,
-      44,
+      48,
       134
      ],
-     "sizeCount": 12,
+     "sizeCount": 13,
      "notLoaded": [],
      "body": {
       "font": "Pretendard Variable",
@@ -1440,9 +1395,9 @@
       "leading": 1.6,
       "weight": 400,
       "tracking": 0,
-      "contrast": 17.4
+      "contrast": 18.4
      },
-     "measureChars": 68,
+     "measureChars": 72,
      "max": {
       "size": 134.4,
       "vw": 17.5,
@@ -1456,7 +1411,7 @@
      "microLabels": 0,
      "microLabelShare": 0,
      "microSamples": [],
-     "upperShare": 0.05,
+     "upperShare": 0.06,
      "centerShare": 0,
      "smallText": 0
     },
@@ -1472,70 +1427,57 @@
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#eef3fa",
-       "top": 2523,
+       "color": "#121513",
+       "top": 108,
        "hsl": {
-        "h": 215,
-        "s": 0.55,
-        "l": 0.96
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
        }
       },
       {
-       "color": "#ffffff",
-       "top": 2567,
+       "color": "#eef0ee",
+       "top": 1292,
        "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 1
-       }
-      },
-      {
-       "color": "#0a1f4a",
-       "top": 6308,
-       "hsl": {
-        "h": 220,
-        "s": 0.76,
-        "l": 0.16
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
        }
       }
      ],
      "textColors": [
       {
-       "color": "#0e1a2e",
-       "share": 0.39
+       "color": "#141614",
+       "share": 0.35
       },
       {
-       "color": "#46546b",
-       "share": 0.34
-      },
-      {
-       "color": "#b9c7e3",
-       "share": 0.19
+       "color": "#b7bdb5",
+       "share": 0.26
       },
       {
        "color": "#ffffff",
-       "share": 0.08
+       "share": 0.21
       },
       {
-       "color": "#0f3a8c",
-       "share": 0.01
+       "color": "#4f544e",
+       "share": 0.18
       }
      ],
      "button": {
-      "bg": "#0f3a8c",
+      "bg": "#15803d",
       "hsl": {
-       "h": 219,
-       "s": 0.81,
-       "l": 0.3
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
       },
       "fg": "#ffffff"
      },
      "lowContrast": []
     },
     "buttons": {
-     "count": 6,
-     "inHero": 3,
-     "radius": 0,
+     "count": 4,
+     "inHero": 2,
+     "radius": "pill",
      "height": 52,
      "withShadow": 0,
      "withGradient": 0,
@@ -1543,13 +1485,12 @@
      "upper": 0,
      "heroLabels": [
       "내 가게 진단",
-      "내 가게 진단받기",
-      "상권 신호등 보기"
+      "내 가게 진단받기"
      ]
     },
     "surfaces": {
      "shadowStatic": 0,
-     "shadowOverlay": 2,
+     "shadowOverlay": 1,
      "shadowSamples": [],
      "gradients": 0,
      "scrims": 0,
@@ -1560,24 +1501,24 @@
      "outlinedBoxes": 0,
      "dashed": 0,
      "blurred": 0,
-     "roundedBoxes": 0,
-     "boxRadius": 0,
-     "squareMedia": 4,
-     "roundedMedia": 0,
-     "mediaRadius": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 20,
+     "squareMedia": 2,
+     "roundedMedia": 2,
+     "mediaRadius": 20,
      "textShadow": 0,
      "cardRows": []
     },
     "heroMedia": [
      {
       "type": "img",
-      "ratio": 0.45
+      "ratio": 0.87
      }
     ],
     "nav": {
-     "links": 3,
+     "links": 2,
      "fixed": true,
-     "height": 108,
+     "height": 72,
      "floatingPill": false,
      "blur": false
     },
@@ -1590,29 +1531,29 @@
      "w": 768,
      "h": 1024
     },
-    "pageH": 8786,
+    "pageH": 8727,
     "margins": {
-     "left": 31,
-     "right": 31
+     "left": 38,
+     "right": 38
     },
     "sections": [
      {
       "sel": "div#main",
       "tag": "div",
       "top": 108,
-      "height": 7972,
-      "words": 427,
-      "media": 5,
+      "height": 7914,
+      "words": 376,
+      "media": 4,
       "middle": 0,
       "heading": {
-       "text": "폐업 신호를,",
-       "size": 41,
-       "tag": "h1"
+       "text": "25",
+       "size": 48,
+       "tag": "span"
       },
-      "left": 31,
-      "right": 31,
-      "textLeft": 31,
-      "textRight": 44,
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 67,
       "fullBleed": true,
       "footer": false,
       "hero": true,
@@ -1620,9 +1561,9 @@
       "pinned": false
      },
      {
-      "sel": "footer.on-navy.bg-navy",
+      "sel": "footer.on-night.bg-night",
       "tag": "footer",
-      "top": 8080,
+      "top": 8022,
       "height": 705,
       "words": 96,
       "media": 0,
@@ -1632,10 +1573,10 @@
        "size": 134,
        "tag": "p"
       },
-      "left": 31,
-      "right": 39,
-      "textLeft": 31,
-      "textRight": 39,
+      "left": 38,
+      "right": 42,
+      "textLeft": 38,
+      "textRight": 42,
       "fullBleed": false,
       "footer": true,
       "hero": false,
@@ -1648,18 +1589,18 @@
      {
       "text": "폐업 신호를, 먼저 읽어 드립니다",
       "size": 41,
-      "top": 164,
+      "top": 302,
       "firstScreen": true
      }
     ],
     "edgeText": [],
     "edges": [
      {
-      "x": 31,
+      "x": 38,
       "n": 13
      },
      {
-      "x": 63,
+      "x": 78,
       "n": 1
      }
     ],
@@ -1680,22 +1621,22 @@
    "load": "load",
    "screens": 11,
    "filled": [
-    0.54,
-    0.63,
-    0.56,
-    0.65,
-    0.86,
-    0.53,
-    0.73,
-    0.86,
-    0.61,
-    0.86,
+    0.99,
+    0.62,
+    0.84,
+    0.6,
+    0.64,
+    0.85,
+    0.64,
+    0.64,
+    0.99,
+    0.99,
     0.99
    ],
    "motion": {
-    "elements": 36,
-    "css": 11,
-    "transitions": 25,
+    "elements": 44,
+    "css": 16,
+    "transitions": 28,
     "scripted": 0,
     "videos": 0,
     "playingVideos": 0
@@ -1706,26 +1647,26 @@
      "h": 844
     },
     "page": {
-     "height": 8887,
-     "screens": 10.5,
-     "words": 749,
+     "height": 8930,
+     "screens": 10.6,
+     "words": 542,
      "img": 4,
      "video": 0,
      "canvas": 0,
-     "svg": 24,
-     "sections": 7,
+     "svg": 25,
+     "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
-     "uiFragments": 10,
+     "uiFragments": 3,
      "uiAbuse": false,
      "realPictures": 4,
      "videoCount": 0,
-     "uiPictures": 6,
+     "uiPictures": 2,
      "pictureSamples": [
       "image?url=%2Fphotos%2Fgwangjang-market-seoul-02.",
       "image?url=%2Fphotos%2Fnamdaemun-market-in-seoul-",
-      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01.",
-      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul."
+      "image?url=%2Fphotos%2Fled-shop-in-euljiro-seoul.",
+      "image?url=%2Fphotos%2Fgwangjang-market-seoul-01."
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -1750,7 +1691,7 @@
      "align": "left",
      "position": "center",
      "widthRatio": 0.9,
-     "top": 164,
+     "top": 290,
      "tag": "h1",
      "kind": "heading"
     },
@@ -1778,7 +1719,7 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.34,
+      "widthRatio": 0.35,
       "top": 54,
       "tag": "a",
       "kind": "heading"
@@ -1800,51 +1741,93 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 164,
+      "top": 290,
       "tag": "h1",
       "kind": "heading"
      },
      {
-      "text": "111",
+      "text": "25",
       "words": 1,
-      "chars": 3,
+      "chars": 2,
       "lines": 1,
-      "size": 30,
-      "vw": 7.7,
+      "size": 48,
+      "vw": 12.3,
       "font": "Pretendard Variable",
       "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
+      "tracking": -0.045,
+      "leading": 1,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "left",
       "widthRatio": 0.15,
-      "top": 1167,
+      "top": 940,
       "tag": "span",
-      "kind": "heading"
+      "kind": "statement"
      },
      {
-      "text": "13",
+      "text": "425",
       "words": 1,
-      "chars": 2,
+      "chars": 3,
       "lines": 1,
-      "size": 30,
-      "vw": 7.7,
+      "size": 48,
+      "vw": 12.3,
       "font": "Pretendard Variable",
       "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.23,
+      "top": 940,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "100",
+      "words": 1,
+      "chars": 3,
+      "lines": 1,
+      "size": 48,
+      "vw": 12.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.1,
-      "top": 1167,
+      "widthRatio": 0.23,
+      "top": 1076,
       "tag": "span",
-      "kind": "heading"
+      "kind": "statement"
+     },
+     {
+      "text": "11",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 48,
+      "vw": 12.3,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.15,
+      "top": 1076,
+      "tag": "span",
+      "kind": "statement"
      },
      {
       "text": "상권부터 내 가게, 지원사업까지 한 흐름으로",
@@ -1863,7 +1846,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 1714,
+      "top": 1361,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1884,7 +1867,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.6,
-      "top": 1971,
+      "top": 1649,
       "tag": "span",
       "kind": "statement"
      },
@@ -1905,7 +1888,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.72,
-      "top": 2146,
+      "top": 1841,
       "tag": "span",
       "kind": "statement"
      },
@@ -1926,7 +1909,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.72,
-      "top": 2294,
+      "top": 2005,
       "tag": "span",
       "kind": "statement"
      },
@@ -1947,7 +1930,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.72,
-      "top": 2469,
+      "top": 2196,
       "tag": "span",
       "kind": "statement"
      },
@@ -1968,30 +1951,9 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.72,
-      "top": 2644,
+      "top": 2387,
       "tag": "span",
       "kind": "statement"
-     },
-     {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
-      "lines": 1,
-      "size": 30,
-      "vw": 7.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.14,
-      "top": 2912,
-      "tag": "span",
-      "kind": "heading"
      },
      {
       "text": "우리 구 상권 신호등, 직접 짚어 보세요",
@@ -2010,7 +1972,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 3464,
+      "top": 3087,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2031,7 +1993,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.77,
-      "top": 4192,
+      "top": 3831,
       "tag": "h3",
       "kind": "heading"
      },
@@ -2051,8 +2013,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.29,
-      "top": 4323,
+      "widthRatio": 0.27,
+      "top": 3974,
       "tag": "span",
       "kind": "statement"
      },
@@ -2072,8 +2034,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.29,
-      "top": 4323,
+      "widthRatio": 0.27,
+      "top": 3974,
       "tag": "span",
       "kind": "statement"
      },
@@ -2093,8 +2055,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.29,
-      "top": 4423,
+      "widthRatio": 0.27,
+      "top": 4086,
       "tag": "span",
       "kind": "statement"
      },
@@ -2114,113 +2076,8 @@
       "mono": false,
       "align": "left",
       "position": "right",
-      "widthRatio": 0.29,
-      "top": 4430,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "추정은 추정이라고 말합니다",
-      "words": 3,
-      "chars": 14,
-      "lines": 1,
-      "size": 30,
-      "vw": 7.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.03,
-      "leading": 1.18,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "center",
-      "widthRatio": 0.9,
-      "top": 4990,
-      "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "25",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 44,
-      "vw": 11.3,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.34,
-      "top": 5508,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "425",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 44,
-      "vw": 11.3,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.34,
-      "top": 5508,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "100",
-      "words": 1,
-      "chars": 3,
-      "lines": 1,
-      "size": 44,
-      "vw": 11.3,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.34,
-      "top": 5627,
-      "tag": "span",
-      "kind": "statement"
-     },
-     {
-      "text": "11",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 44,
-      "vw": 11.3,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "right",
-      "widthRatio": 0.34,
-      "top": 5627,
+      "widthRatio": 0.27,
+      "top": 4094,
       "tag": "span",
       "kind": "statement"
      },
@@ -2241,7 +2098,28 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 6465,
+      "top": 4908,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "추정은 추정이라고 말합니다",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 5742,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2262,29 +2140,8 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 6798,
+      "top": 6996,
       "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "B",
-      "words": 1,
-      "chars": 1,
-      "lines": 1,
-      "size": 30,
-      "vw": 7.7,
-      "font": "Pretendard Variable",
-      "weight": 700,
-      "tracking": 0,
-      "leading": 1.2,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.14,
-      "top": 7262,
-      "tag": "span",
       "kind": "heading"
      },
      {
@@ -2304,13 +2161,13 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.9,
-      "top": 8497,
+      "top": 8540,
       "tag": "p",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 26,
+     "count": 22,
      "maxLines": 2,
      "over2Lines": 0,
      "statements": 14,
@@ -2333,15 +2190,16 @@
       15,
       17,
       18,
+      19,
       20,
       22,
       26,
       30,
       40,
-      44,
+      48,
       68
      ],
-     "sizeCount": 12,
+     "sizeCount": 13,
      "notLoaded": [],
      "body": {
       "font": "Pretendard Variable",
@@ -2349,7 +2207,7 @@
       "leading": 1.6,
       "weight": 400,
       "tracking": 0,
-      "contrast": 17.4
+      "contrast": 18.4
      },
      "measureChars": 41,
      "max": {
@@ -2365,7 +2223,7 @@
      "microLabels": 0,
      "microLabelShare": 0,
      "microSamples": [],
-     "upperShare": 0.05,
+     "upperShare": 0.06,
      "centerShare": 0,
      "smallText": 0
     },
@@ -2381,79 +2239,57 @@
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#f6f8fb",
-       "top": 1313,
+       "color": "#121513",
+       "top": 108,
        "hsl": {
-        "h": 216,
-        "s": 0.38,
-        "l": 0.97
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
        }
       },
       {
-       "color": "#eef3fa",
-       "top": 2808,
+       "color": "#eef0ee",
+       "top": 1233,
        "hsl": {
-        "h": 215,
-        "s": 0.55,
-        "l": 0.96
-       }
-      },
-      {
-       "color": "#ffffff",
-       "top": 2836,
-       "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 1
-       }
-      },
-      {
-       "color": "#0a1f4a",
-       "top": 6079,
-       "hsl": {
-        "h": 220,
-        "s": 0.76,
-        "l": 0.16
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
        }
       }
      ],
      "textColors": [
       {
-       "color": "#0e1a2e",
-       "share": 0.39
+       "color": "#141614",
+       "share": 0.35
       },
       {
-       "color": "#46546b",
-       "share": 0.34
-      },
-      {
-       "color": "#b9c7e3",
-       "share": 0.19
+       "color": "#b7bdb5",
+       "share": 0.27
       },
       {
        "color": "#ffffff",
-       "share": 0.07
+       "share": 0.21
       },
       {
-       "color": "#0f3a8c",
-       "share": 0.01
+       "color": "#4f544e",
+       "share": 0.17
       }
      ],
      "button": {
-      "bg": "#0f3a8c",
+      "bg": "#15803d",
       "hsl": {
-       "h": 219,
-       "s": 0.81,
-       "l": 0.3
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
       },
       "fg": "#ffffff"
      },
      "lowContrast": []
     },
     "buttons": {
-     "count": 6,
-     "inHero": 3,
-     "radius": 0,
+     "count": 4,
+     "inHero": 2,
+     "radius": "pill",
      "height": 52,
      "withShadow": 0,
      "withGradient": 0,
@@ -2461,13 +2297,12 @@
      "upper": 0,
      "heroLabels": [
       "내 가게 진단",
-      "내 가게 진단받기",
-      "상권 신호등 보기"
+      "내 가게 진단받기"
      ]
     },
     "surfaces": {
      "shadowStatic": 0,
-     "shadowOverlay": 1,
+     "shadowOverlay": 0,
      "shadowSamples": [],
      "gradients": 0,
      "scrims": 0,
@@ -2478,24 +2313,24 @@
      "outlinedBoxes": 0,
      "dashed": 0,
      "blurred": 0,
-     "roundedBoxes": 0,
-     "boxRadius": 0,
-     "squareMedia": 4,
-     "roundedMedia": 0,
-     "mediaRadius": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 20,
+     "squareMedia": 2,
+     "roundedMedia": 2,
+     "mediaRadius": 20,
      "textShadow": 0,
      "cardRows": []
     },
     "heroMedia": [
      {
       "type": "img",
-      "ratio": 0.14
+      "ratio": 0.91
      }
     ],
     "nav": {
      "links": 2,
      "fixed": true,
-     "height": 108,
+     "height": 72,
      "floatingPill": false,
      "blur": false
     },
@@ -2508,7 +2343,7 @@
      "w": 390,
      "h": 844
     },
-    "pageH": 8887,
+    "pageH": 8930,
     "margins": {
      "left": 20,
      "right": 20
@@ -2518,17 +2353,17 @@
       "sel": "div#main",
       "tag": "div",
       "top": 108,
-      "height": 7716,
-      "words": 418,
-      "media": 5,
+      "height": 7758,
+      "words": 353,
+      "media": 4,
       "middle": 0,
       "heading": {
-       "text": "폐업 신호를,",
-       "size": 40,
-       "tag": "h1"
+       "text": "25",
+       "size": 48,
+       "tag": "span"
       },
-      "left": 3,
-      "right": 9,
+      "left": 20,
+      "right": 20,
       "textLeft": 20,
       "textRight": 22,
       "fullBleed": true,
@@ -2538,9 +2373,9 @@
       "pinned": false
      },
      {
-      "sel": "footer.on-navy.bg-navy",
+      "sel": "footer.on-night.bg-night",
       "tag": "footer",
-      "top": 7824,
+      "top": 7866,
       "height": 1063,
       "words": 96,
       "media": 0,
@@ -2566,7 +2401,7 @@
      {
       "text": "폐업 신호를, 먼저 읽어 드립니다",
       "size": 40,
-      "top": 164,
+      "top": 290,
       "firstScreen": true
      }
     ],
@@ -2574,14 +2409,14 @@
     "edges": [
      {
       "x": 20,
-      "n": 12
+      "n": 13
      },
      {
       "x": 44,
       "n": 1
      }
     ],
-    "leftBlocks": 13,
+    "leftBlocks": 14,
     "bodySize": 17,
     "stage": false,
     "explains": false,
@@ -2598,7 +2433,7 @@
    "level": "WARN",
    "id": "size-count",
    "width": 1440,
-   "message": "13 different font sizes (13, 14, 15, 17, 18, 20, 22, 26, 30, 52, 68, 76, 248).",
+   "message": "14 different font sizes (13, 14, 15, 17, 18, 20, 22, 26, 30, 32, 52, 76, 80, 248).",
    "fix": "A page needs about five: display, heading, lead, body, small.",
    "alsoAt": [
     768,
@@ -2611,6 +2446,13 @@
    "width": 1440,
    "message": "No video anywhere on the page.",
    "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 64px on the left, 104px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page."
   }
  ],
  "images": [
@@ -2620,7 +2462,8 @@
    "fold": "G:\\BizDoctor\\.taste-skill\\home\\desktop-fold.jpg",
    "pages": [
     "G:\\BizDoctor\\.taste-skill\\home\\desktop-page-01.jpg",
-    "G:\\BizDoctor\\.taste-skill\\home\\desktop-page-02.jpg"
+    "G:\\BizDoctor\\.taste-skill\\home\\desktop-page-02.jpg",
+    "G:\\BizDoctor\\.taste-skill\\home\\desktop-page-03.jpg"
    ],
    "film": []
   },

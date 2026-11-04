@@ -6,23 +6,31 @@
    신호 색 3종은 흰 배경 대비 4.5:1 이상인 값이다(F-SYS-04). 색만으로 전달하지
    말고 아이콘·라벨을 항상 같이 붙인다 — 색각 이상 사용자는 초록/빨강을 못 가른다.
 
-   사이트 톤: 흰 바탕 · 남색 잉크 · 옅은 청색 면. 표면은 선·그림자 대신 톤 차이로 나눈다. */
+   사이트 톤: 흰 바탕 · 거의 검정 잉크 · 옅은 회백색 면, 강조는 신호등 세 색.
+   lamp-* 는 어두운 면 위의 "켜진 불" 전용 채움색이다. 글자색으로 쓰지 않는다.
+   표면은 선·그림자 대신 톤 차이로 나눈다. 사진·패널 모서리는 --radius-card 하나. */
 @theme inline {
   --color-bg: #ffffff;
-  --color-surface: #eef3fa;
-  --color-surface-2: #f6f8fb;
-  --color-fg: #0e1a2e;
-  --color-muted: #46546b;
-  --color-border: #d9e1ec;
-  --color-accent: #0f3a8c;
-  --color-accent-press: #0b2d6e;
-  --color-navy: #0a1f4a;
-  --color-on-navy: #ffffff;
-  --color-on-navy-muted: #b9c7e3;
+  --color-surface: #eef0ee;
+  --color-surface-2: #f6f7f6;
+  --color-fg: #141614;
+  --color-muted: #4f544e;
+  --color-border: #d9ddd9;
+  --color-accent: #15803d;
+  --color-accent-press: #116632;
+  --color-night: #121513;
+  --color-on-night: #ffffff;
+  --color-on-night-muted: #b7bdb5;
 
   --color-signal-green: #15803d;
   --color-signal-yellow: #a16207;
   --color-signal-red: #b91c1c;
+
+  --color-lamp-red: #ef3b2d;
+  --color-lamp-yellow: #f6b90a;
+  --color-lamp-green: #23b25a;
+
+  --radius-card: 1.25rem;
 
   --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
 
@@ -31,7 +39,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -45,7 +53,7 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-on-navy);
+  color: var(--color-on-night);
 }
 
 :focus-visible {
@@ -53,16 +61,16 @@ body {
   outline-offset: 3px;
 }
 
-.on-navy :focus-visible {
-  outline-color: var(--color-on-navy);
+.on-night :focus-visible {
+  outline-color: var(--color-on-night);
 }
 
 /* 사이트 공통 프레임: 바깥 여백 한 쌍만 쓴다. */
 .frame {
   width: 100%;
-  max-width: 82rem;
+  max-width: 90rem;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
 }
 
 .display {
@@ -88,6 +96,7 @@ body {
 
 /* 버튼: 각진 평면 한 가지. 누름은 살짝 줄어드는 것으로만 알린다. */
 .btn {
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -110,24 +119,24 @@ body {
 }
 .btn-primary {
   background: var(--color-accent);
-  color: var(--color-on-navy);
+  color: var(--color-on-night);
 }
 .btn-primary:hover {
   background: var(--color-accent-press);
 }
 .btn-quiet {
   background: var(--color-surface);
-  color: var(--color-accent);
+  color: var(--color-fg);
 }
 .btn-quiet:hover {
-  background: #dfe8f5;
+  background: #e2e5e2;
 }
 .btn-light {
-  background: var(--color-on-navy);
-  color: var(--color-navy);
+  background: rgb(255 255 255 / 0.14);
+  color: var(--color-on-night);
 }
 .btn-light:hover {
-  background: var(--color-surface);
+  background: rgb(255 255 255 / 0.24);
 }
 
 .link-under {
@@ -240,6 +249,76 @@ html.js [data-reveal].is-in {
   }
 }
 
+/* 신호등: 빨강 → 노랑 → 초록 순서로 불이 옮겨 간다. 꺼진 불도 모양은 남는다. */
+.lamp {
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.22;
+  animation: lamp 6s steps(1, end) infinite;
+  animation-delay: calc(var(--l, 0) * 2s);
+}
+@keyframes lamp {
+  0% {
+    opacity: 1;
+  }
+  33.33% {
+    opacity: 0.22;
+  }
+}
+
+/* 막대: InView 가 is-in 을 붙이면 차례로 차오른다 */
+html.js .bar {
+  transform-origin: left center;
+  animation: bar-grow 1100ms var(--ease-out-expo) both paused;
+  animation-delay: calc(150ms + var(--b, 0) * 70ms);
+}
+html.js .bar-v {
+  transform-origin: center bottom;
+  animation-name: bar-grow-v;
+}
+html.js .is-in .bar {
+  animation-play-state: running;
+}
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes bar-grow-v {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* 추이 그래프: 선이 그려지고, 점이 찍히고, 면이 차오른다 */
+html.js .trend .trend-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1800ms var(--ease-out-expo);
+  transition-delay: calc(var(--k, 0) * 250ms);
+}
+html.js .trend .trend-dot {
+  opacity: 0;
+  transition: opacity 400ms;
+  transition-delay: calc(400ms + var(--d, 0) * 90ms);
+}
+html.js .trend .trend-area {
+  opacity: 0;
+  transition: opacity 1200ms 900ms;
+}
+.trend-area {
+  opacity: 0.08;
+}
+html.js .trend.is-in .trend-line {
+  stroke-dashoffset: 0;
+}
+html.js .trend.is-in .trend-dot {
+  opacity: 1;
+}
+html.js .trend.is-in .trend-area {
+  opacity: 0.08;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -253,7 +332,22 @@ html.js [data-reveal].is-in {
   .photo-open,
   .photo-drift,
   .bob,
-  .parallax {
+  .parallax,
+  .lamp,
+  html.js .bar {
     animation: none !important;
+  }
+  html.js .trend .trend-line,
+  html.js .trend .trend-dot,
+  html.js .trend .trend-area {
+    transition: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  html.js .trend .trend-area {
+    opacity: 0.08;
+  }
+  .lamp {
+    opacity: 1;
   }
 }

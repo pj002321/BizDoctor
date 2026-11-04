@@ -16,22 +16,22 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-bg">
-      <div className="on-navy bg-navy text-[0.8125rem] text-on-navy-muted">
+    <>
+      <div className="on-night bg-night text-[0.8125rem] text-on-night-muted">
         <div className="frame flex h-9 items-center justify-between gap-4">
           <p className="truncate">
             서울시 상권분석서비스 2023 Q1 – 2025 Q3 · 425개 행정동 기준
           </p>
           <Link
             href="/service#limits"
-            className="link-under hidden shrink-0 text-on-navy sm:inline"
+            className="link-under hidden shrink-0 text-on-night sm:inline"
           >
             계산 방법과 한계
           </Link>
         </div>
       </div>
 
-      <div className="bg-bg">
+      <header className="sticky top-0 z-40 bg-bg">
         <div className="frame flex h-[4.5rem] items-center justify-between gap-6">
           <Link
             href="/"
@@ -75,7 +75,7 @@ export default function SiteHeader() {
             </Link>
             <button
               type="button"
-              className="grid size-11 place-items-center bg-surface lg:hidden"
+              className="grid size-11 place-items-center rounded-full bg-surface lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
@@ -129,19 +129,19 @@ export default function SiteHeader() {
             </li>
           </ul>
         </nav>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
 
-/** 신호등 세 칸을 세로로 세운 표지. 색은 남색 한 가지(신호 색은 결과 화면 전용). */
+/** 신호등 세 칸을 세로로 세운 표지. */
 function Mark() {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-      <rect width="28" height="28" fill="var(--color-accent)" />
-      <circle cx="14" cy="7.5" r="3" fill="#fff" opacity="0.45" />
-      <circle cx="14" cy="14" r="3" fill="#fff" opacity="0.7" />
-      <circle cx="14" cy="20.5" r="3" fill="#fff" />
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+      <rect width="30" height="30" rx="9" fill="var(--color-night)" />
+      <circle cx="15" cy="7.8" r="3.3" fill="var(--color-lamp-red)" />
+      <circle cx="15" cy="15" r="3.3" fill="var(--color-lamp-yellow)" />
+      <circle cx="15" cy="22.2" r="3.3" fill="var(--color-lamp-green)" />
     </svg>
   );
 }

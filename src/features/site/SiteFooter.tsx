@@ -3,11 +3,11 @@ import credits from "./data/photo-credits.json";
 
 export default function SiteFooter() {
   return (
-    <footer className="on-navy bg-navy text-on-navy-muted">
+    <footer className="on-night bg-night text-on-night-muted">
       <div className="frame pt-20 pb-10">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <p className="max-w-md text-on-navy">
+            <p className="max-w-md text-on-night">
               서울시 상권 통계로 소상공인의 경영 위기를 미리 읽고, 맞는 2026년
               정부 지원사업을 찾아 드립니다.
             </p>
@@ -17,7 +17,7 @@ export default function SiteFooter() {
             </p>
           </div>
           <nav aria-label="서비스">
-            <h2 className="font-semibold text-on-navy">서비스</h2>
+            <h2 className="font-semibold text-on-night">서비스</h2>
             <ul className="mt-4 grid gap-2">
               <li>
                 <Link className="link-under" href="/market">
@@ -42,7 +42,7 @@ export default function SiteFooter() {
             </ul>
           </nav>
           <div>
-            <h2 className="font-semibold text-on-navy">데이터 출처</h2>
+            <h2 className="font-semibold text-on-night">데이터 출처</h2>
             <ul className="mt-4 grid gap-2 text-sm">
               <li>서울시 상권분석서비스 (점포-행정동, 2023–2025)</li>
               <li>KOSIS 사업체운영 애로사항</li>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
 
         <p
           aria-hidden="true"
-          className="mt-20 text-[clamp(4rem,17.5vw,15.5rem)] leading-[0.8] font-bold tracking-[-0.055em] text-on-navy"
+          className="mt-20 text-[clamp(4rem,17.5vw,15.5rem)] leading-[0.8] font-bold tracking-[-0.055em] text-on-night"
         >
           BizDoctor
         </p>
