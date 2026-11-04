@@ -43,6 +43,7 @@ if __name__ == "__main__":
     print(f"기준일 {AS_OF} | 문항 {len(items)} (정답 있는 문항 {sum(bool(i.gold_doc_ids) for i in items)})")
     print("| mode | hit@3 | MRR | 마감 노출 |")
     print("|---|---|---|---|")
+    failed = False
     for mode in args.modes:
         h, r, e = score(mode, items, expired)
         print(f"| {mode} | {h:.2f} | {r:.2f} | {e:.2f} |")
