@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { type ReactNode, useState } from "react";
-import { Arrow } from "./icons";
+import { Arrow } from "@/components/icons";
 
 export type ServiceItem = {
   title: string;

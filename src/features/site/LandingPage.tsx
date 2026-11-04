@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import CountUp from "./CountUp";
+import CountUp from "@/components/CountUp";
+import { Arrow, Check, SignalShape } from "@/components/icons";
+import Lamps from "@/components/Lamps";
 import data from "./data/seoul.json";
 import {
   GradeFragment,
@@ -8,8 +10,6 @@ import {
   ReportFragment,
   SolutionsFragment,
 } from "./fragments";
-import { Arrow, Check, SignalShape } from "./icons";
-import Lamps from "./Lamps";
 import SeoulSignalMap from "./SeoulSignalMap";
 import ServiceList, { type ServiceItem } from "./ServiceList";
 

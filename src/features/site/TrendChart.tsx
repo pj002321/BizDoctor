@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import CountUp from "./CountUp";
+import CountUp from "@/components/CountUp";
 import data from "./data/seoul.json";
 
 const W = 560;

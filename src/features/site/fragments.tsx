@@ -4,9 +4,9 @@
  * 상권 수치는 data/seoul.json(실제 CSV 추출본), 진단·리포트는 "예시"라고 적은 표본 값이다.
  */
 
-import CountUp from "./CountUp";
+import CountUp from "@/components/CountUp";
+import InView from "@/components/InView";
 import data from "./data/seoul.json";
-import InView from "./InView";
 
 const panel = "rounded-[var(--radius-card)] bg-bg p-6 sm:p-8";
 
