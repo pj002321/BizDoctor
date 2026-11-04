@@ -1,0 +1,37 @@
+name: eval
+
+on:
+  pull_request:
+    paths:
+      - "ai-service/**"
+  workflow_dispatch:  # Actions 탭에서 손으로도 돌릴 수 있게
+
+jobs:
+  ai-service:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-service
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      EMBED_MODEL: text-embedding-3-small
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ai-service/pyproject.toml
+      - run: pip install -e ".[dev]"
+
+      - name: pytest
+        run: pytest -q --ignore=tests/test_domain.py  # 옛 guardrail API 테스트, A7 정리 전까지 제외
+
+      - name: 골든셋 형식 검사
+        run: python -m eval.golden
+
+      - name: 검색 회귀 (rrf_tag)
+        # ponytail: 공용 Supabase 인덱스를 채점한다 — retrieve.py 변경은 잡지만 청커·공고 변경은 재색인 전엔 반영 안 됨
+        run: python -m eval.run --modes rrf_tag --fail-under 1.0

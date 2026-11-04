@@ -6,6 +6,8 @@ python -m eval.run --modes rrf rrf_tag # mode select
 
 import argparse
 import json
+import sys
+
 from datetime import date
 from statistics import mean
 
@@ -34,6 +36,7 @@ def score(mode: str, items, expired: set[str]) -> tuple[float,float,float]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--modes",nargs="+", choices=list(MODES), default=list(MODES))
+    parser.add_argument("--fail-under", type=float, help="hit@3 가 이보다 낮은 모드가 있으면 종료 코드1(CI)")
     args = parser.parse_args()
 
     items, expired = load_golden(), expired_ids()
@@ -43,3 +46,6 @@ if __name__ == "__main__":
     for mode in args.modes:
         h, r, e = score(mode, items, expired)
         print(f"| {mode} | {h:.2f} | {r:.2f} | {e:.2f} |")
+        if e > 0 or (args.fail_under is not None and h < args.fail_under):
+            failed = True
+    sys.exit(1 if failed else 0)
