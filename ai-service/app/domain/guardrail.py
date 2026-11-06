@@ -1,53 +1,64 @@
-# Last updated: 2026-10-15
-"""규칙 가드레일 - 답변의 금액,비율,사업명이 검색 근거에 있는지 대조한다.
-
-근거에 없는 숫자는 LLM이 지어낸 것으로 본다. 같은 값도 표기가 여러 가지라서
-숫자와 단위를 분리하여 비교한다. 예를 들어, 1억 2천만원은 1억 2천만 원, 1억2천만원, 1억2천만 원 등으로 표기될 수 있다. 
-따라서 숫자와 단위를 분리하여 비교한다.
-
-사업명은 문자열로 대조하지 않는다. LLM 은 사업명 대신 doc_id 를 고르고(구조화 출력),
-화면의 사업명은 DB 에서 채운다. 그래서 doc_id 가 검색 결과 안에 있는지만 본다.
-자유 문장 속에 지어낸 사업명은 9단계 Claude 교차 검증이 잡는다.
-"""
-
-from __future__ import annotations
+"""리포트의 금액·비율·날짜·수치·「사업명」이 근거에 있는지 대조한다 (F-LLM-02). 표기만 다른 같은 값은 통과."""
 
 import re
-from decimal import Decimal
 
-SMALL = {"천": 1000, "백": 100, "십": 10}
-BIG = {"조": 1000000000000, "억": 100000000, "만": 10000}
+_UNITS = {"억": 10**8, "천만": 10**7, "백만": 10**6, "만": 10**4, "천": 10**3}
 
-MONEY = re.compile(r"(?:\d[\d,]*(?:\.\d+)?\s*[조억만천백십]*\s*)+원")
-TOKEN = re.compile(r"\d[\d,]*(?:\.\d+)?|[조억만천백십]")
-RATE = re.compile(r"(\d+(?:\.\d+)?)\s*(%p|%포인트|%)")
-
-def _won(expr: str) -> Decimal:
-    """금액 문자열을 Decimal로 변환한다."""
-    total = group = Decimal(0)
-    cur: Decimal | None = None
-    for token in TOKEN.findall(expr):
-        if token in SMALL:
-            group += (cur or 1) * SMALL[token]
-            cur = None
-        elif token in BIG:
-            total += (group + (cur or 0) or 1) * BIG[token]
-            group, cur = Decimal(0), None
-        else:
-            cur = Decimal(token.replace(",", ""))
-    return total + group + (cur or 0)
+_MONEY = re.compile(r"\d[\d,]*(?:\.\d+)?\s*(?:억|천만|백만|만|천)?(?:\s*\d[\d,]*\s*(?:천만|백만|만|천))*\s*원")  # "1억 400만원"
+_MONEY_PART = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(억|천만|백만|만|천)?")
+_PERCENT = re.compile(r"(\d+(?:\.\d+)?)\s*(%p|%)")  # %p 와 % 는 다른 값
+_ISO_DATE = re.compile(r"(\d{4})-(\d{2})-(\d{2})")
+_KO_DATE = re.compile(r"(?:(\d{4})\s*년\s*)?(\d{1,2})\s*월\s*(\d{1,2})\s*일")
+_COUNT = re.compile(r"(\d[\d,]*)\s*(인|건|곳|개월|년|일|점|세)")  # 자격 조건 수치
+_NAME = re.compile(r"「([^」]+)」")  # 「」 밖 사업명은 9스텝 교차 검증이 본다
 
 
-def extract_numbers(text: str) -> set[tuple[str, Decimal]]:
-    """금액은 ("원", 원 단위), 비율은 ("%", 값) · ("%p", 값). 0.2% 와 0.2%p 는 다른 값이다."""
-    found = {("원", _won(m)) for m in MONEY.findall(text)}
-    found |= {("%p" if unit != "%" else "%", Decimal(v)) for v, unit in RATE.findall(text)}
-    return found
+def _won(phrase: str) -> int:
+    """'1억 400만원' → 104000000"""
+    return round(sum(float(n.replace(",", "")) * _UNITS.get(u, 1) for n, u in _MONEY_PART.findall(phrase)))
 
 
-def check(answer: str, cited_ids: list[str], evidence: list[str], allowed_ids: set[str]) -> list[str]:
-    """위반 메시지 목록. 비어 있으면 통과. evidence 에는 조각 본문과 limit_text·rate_text 를 넣는다."""
-    known = set().union(*(extract_numbers(e) for e in evidence))
-    problems = [f"근거에 없는 숫자: {v.normalize():f}{unit}" for unit, v in sorted(extract_numbers(answer) - known)]
-    problems += [f"검색 결과에 없는 문서: {d}" for d in cited_ids if d not in allowed_ids]
-    return problems
+def _facts(text: str) -> dict[str, set]:
+    """대조할 값을 종류별로 뽑는다. 날짜를 먼저 지워야 '18일' 이 수치로 안 잡힌다."""
+    no_dates = _KO_DATE.sub(" ", _ISO_DATE.sub(" ", text))
+    return {
+        "금액": {_won(m) for m in _MONEY.findall(no_dates)},
+        "비율": {(float(n), u) for n, u in _PERCENT.findall(no_dates)},
+        "날짜": {(int(y), int(m), int(d)) for y, m, d in _ISO_DATE.findall(text)}
+              | {(int(y) if y else None, int(m), int(d)) for y, m, d in _KO_DATE.findall(text)},
+        "수치": {(int(n.replace(",", "")), u) for n, u in _COUNT.findall(no_dates)},
+        "사업명": set(_NAME.findall(text)),
+    }
+
+
+def check(report: str, context: str) -> list[str]:
+    """리포트에만 있고 근거엔 없는 값 목록. 비면 통과."""
+    got, allowed = _facts(report), _facts(context)
+    bad = [f"금액 {v:,}원" for v in sorted(got["금액"] - allowed["금액"])]
+    bad += [f"비율 {n:g}{u}" for n, u in sorted(got["비율"] - allowed["비율"])]
+
+    allowed_md = {(m, d) for _, m, d in allowed["날짜"]}  # 연도 없이 쓴 날짜는 월·일만 비교
+    for y, m, d in sorted(got["날짜"], key=str):
+        if not ((y, m, d) in allowed["날짜"] if y else (m, d) in allowed_md):
+            bad.append(f"날짜 {y}-{m:02}-{d:02}" if y else f"날짜 {m}월 {d}일")
+
+    bad += [f"수치 {n}{u}" for n, u in sorted(got["수치"] - allowed["수치"])]
+    bad += [f"사업명 「{n}」" for n in sorted(got["사업명"] - allowed["사업명"])]
+    return bad
+
+
+def _squash(s: str) -> str:
+    return re.sub(r"\s+", "", s)
+
+
+def unsupported_claims(claims: list[dict], context: str) -> list[str]:
+    """교차 검증 판정 중 통과 못 한 주장을 고른다.
+    supported 라도 인용이 근거 원문에 없으면 판정을 믿지 않는다.
+    인용이 여러 개(' | ' 로 이음)면 하나라도 원문에 없으면 실패."""
+    ctx = _squash(context)
+
+    def quoted(evidence: str) -> bool:
+        parts = [_squash(p) for p in evidence.split("|")]
+        return all(parts) and all(p in ctx for p in parts)
+
+    return [c["claim"] for c in claims if c["verdict"] != "supported" or not quoted(c["evidence"])]

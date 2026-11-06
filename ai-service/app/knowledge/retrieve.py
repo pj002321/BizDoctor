@@ -10,6 +10,16 @@ from sqlalchemy import text
 from app.core.db import get_engine
 from app.knowledge.embed import embed
 
+from datetime import date
+
+# 모드 -> (벡터, 키워드 가중과 태그 우선)
+MODES = {
+    "vector": (1,0,False),
+    "keyword": (0,1,False),
+    "rrf": (1,1,False),
+    "rrf_tag": (1,1,True),
+}
+
 # RRF 상수. 순위 1위와 10위의 차이를 완만하게 만든다. 논문 기본값.
 RRF_K = 60
 
@@ -22,35 +32,63 @@ SEARCH = text("""
     ),
     active AS (
         SELECT * FROM policy_doc
-        WHERE apply_end IS NULL OR apply_end >= (now() AT TIME ZONE 'Asia/Seoul')::date
+        WHERE apply_end IS NULL
+           OR apply_end >= coalesce(CAST(:as_of AS date), (now() AT TIME ZONE 'Asia/Seoul')::date)
     ),
     scored AS (
         SELECT c.doc_id, c.section, c.body,
-               1.0 / (:rrf_k + rank() OVER (ORDER BY c.embedding <=> q.v))
-             + CASE WHEN c.fts @@ q.k
-                    THEN 1.0 / (:rrf_k + rank() OVER (ORDER BY ts_rank(c.fts, q.k) DESC))
-                    ELSE 0 END AS score
+               :w_vec * 1.0 / (:rrf_k + rank() OVER (ORDER BY c.embedding <=> q.v))
+            + CASE WHEN c.fts @@ q.k
+                   THEN :w_kw * 1.0 / (:rrf_k + rank() OVER (ORDER BY ts_rank(c.fts, q.k) DESC))
+                   ELSE 0 END AS score
         FROM policy_chunk c JOIN active a USING (doc_id), q
         WHERE c.embedding IS NOT NULL
     ),
     best AS (
-        SELECT DISTINCT ON (doc_id) * FROM scored ORDER BY doc_id, score DESC
+        SELECT DISTINCT ON (doc_id) *
+        FROM scored
+        WHERE score > 0
+        ORDER BY doc_id, score DESC
+    ),
+    must_read AS (
+        SELECT b.doc_id, string_agg(c.body, E'\n' ORDER BY c.chunk_index) AS must_read
+        FROM best b JOIN policy_chunk c USING (doc_id)
+        WHERE c.section IN ('지원대상', '신청방법') AND c.section <> b.section
+        GROUP BY b.doc_id
     )
-    SELECT a.doc_id, a.title, a.agency, a.source_url, a.limit_text, a.rate_text,
-           a.apply_end, a.risk_type_tags, b.section, b.body AS evidence, b.score
-    FROM best b JOIN active a USING (doc_id)
-    ORDER BY coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false) DESC, b.score DESC
+    SELECT a.doc_id
+         , a.title
+         , a.agency
+         , a.source_url
+         , a.limit_text
+         , a.rate_text
+         , a.apply_start
+         , a.apply_end
+         , a.risk_type_tags
+         , b.section
+         , b.body AS evidence
+         , m.must_read
+         , b.score
+    FROM best b JOIN active a USING (doc_id) LEFT JOIN must_read m USING (doc_id)
+    ORDER BY (:tag_first AND coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false)) DESC, b.score DESC
     LIMIT :top_k
 """)
 
 
 
-def retrieve(query: str, risk_type: str | None = None, top_k: int = 3) -> list[tuple[dict, float]]:
+def retrieve(query: str, risk_type: str | None = None, top_k: int = 3,
+             mode: str = "rrf_tag", as_of: date | None = None) -> list[tuple[dict, float]]:
     """질의와 진단 유형으로 접수 중인 공고 top_k 개를 고른다. 공고마다 가장 잘 맞는 조각 하나가 근거로 붙는다.
+    mode 는 MODES 중 하나, as_of 는 마감 기준일(없으면 오늘).
     """
 
+    w_vec, w_kw, tag_first = MODES[mode]
     with get_engine().connect() as conn:
         rows = conn.execute(SEARCH, {
+            "w_vec": w_vec,
+            "w_kw":w_kw,
+            "tag_first":tag_first,
+            "as_of":as_of,
             "embedding": str(embed([query])[0]),
             "keywords": " or ".join(query.split()),  # 기본은 AND 라 문장 전체가 다 있어야 걸린다
             "risk_type": risk_type,

@@ -1,0 +1,1448 @@
+{
+ "url": "http://localhost:3100/market",
+ "at": "2026-11-04T16:29:47.443Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.58,
+    0.8,
+    0.91
+   ],
+   "motion": {
+    "elements": 12,
+    "css": 12,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2013,
+     "screens": 2.2,
+     "words": 300,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 8,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 52,
+     "vw": 3.6,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 188,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "상권 신호등",
+     "words": 2,
+     "lines": 1,
+     "size": 51.8,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "상권 신호등",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 188,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 248,
+      "vw": 17.2,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.91,
+      "top": 1564,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      52,
+      248
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 20,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 61,
+     "max": {
+      "size": 248,
+      "vw": 17.2,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.03,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#121513",
+       "top": 1228,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.47
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.25
+      },
+      {
+       "color": "#141614",
+       "share": 0.18
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.09
+      },
+      {
+       "color": "#15803d",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#eef0ee",
+      "hsl": {
+       "h": 120,
+       "s": 0.06,
+       "l": 0.94
+      },
+      "fg": "#141614"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 6,
+     "radius": "pill",
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단",
+      "음식점",
+      "개인 서비스",
+      "부동산",
+      "전문 서비스"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "svg",
+      "ratio": 0.2
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2013,
+    "margins": {
+     "left": 64,
+     "right": 85
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1120,
+      "words": 114,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "상권 신호등",
+       "size": 52,
+       "tag": "h1"
+      },
+      "left": 64,
+      "right": 85,
+      "textLeft": 64,
+      "textRight": 85,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1228,
+      "height": 785,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BizDoctor",
+       "size": 248,
+       "tag": "p"
+      },
+      "left": 64,
+      "right": 140,
+      "textLeft": 64,
+      "textRight": 140,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "상권 신호등",
+      "size": 52,
+      "top": 188,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 64,
+      "n": 1
+     },
+     {
+      "x": 768,
+      "n": 1
+     },
+     {
+      "x": 863,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 3,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.1,
+    "voidBox": {
+     "x": 720,
+     "y": 360,
+     "w": 720,
+     "h": 180
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 64,
+     "right": 85
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 52,
+     "vw": 3.6,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 188,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 0,
+     "radii": [],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 4,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      52,
+      248
+     ]
+    },
+    "title": {
+     "text": "상권 신호등",
+     "size": 52,
+     "top": 188
+    },
+    "colourShare": 0.087
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.7,
+    0.44,
+    0.73
+   ],
+   "motion": {
+    "elements": 12,
+    "css": 12,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2566,
+     "screens": 2.5,
+     "words": 292,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 8,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 30,
+     "vw": 3.9,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "상권 신호등",
+     "words": 2,
+     "lines": 1,
+     "size": 30,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "상권 신호등",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 164,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 134.4,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2207,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      30,
+      134
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 81,
+     "max": {
+      "size": 134.4,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#eef0ee",
+       "top": 108,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
+       }
+      },
+      {
+       "color": "#121513",
+       "top": 1860,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.48
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.24
+      },
+      {
+       "color": "#141614",
+       "share": 0.18
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.09
+      }
+     ],
+     "button": {
+      "bg": "#eef0ee",
+      "hsl": {
+       "h": 120,
+       "s": 0.06,
+       "l": 0.94
+      },
+      "fg": "#141614"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 6,
+     "radius": "pill",
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단",
+      "음식점",
+      "개인 서비스",
+      "부동산",
+      "전문 서비스"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "svg",
+      "ratio": 0.37
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2566,
+    "margins": {
+     "left": 38,
+     "right": 38
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1752,
+      "words": 114,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "상권 신호등",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 49,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1860,
+      "height": 705,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BizDoctor",
+       "size": 134,
+       "tag": "p"
+      },
+      "left": 38,
+      "right": 42,
+      "textLeft": 38,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "상권 신호등",
+      "size": 30,
+      "top": 164,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 3,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 37,
+     "right": 38
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 30,
+     "vw": 3.9,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 0,
+     "radii": [],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 4,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      30,
+      134
+     ]
+    },
+    "title": {
+     "text": "상권 신호등",
+     "size": 30,
+     "top": 164
+    },
+    "colourShare": 0.157
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.8,
+    0.44,
+    0.99,
+    0.99
+   ],
+   "motion": {
+    "elements": 12,
+    "css": 12,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 2834,
+     "screens": 3.4,
+     "words": 289,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 8,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 30,
+     "vw": 7.7,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "상권 신호등",
+     "words": 2,
+     "lines": 1,
+     "size": 30,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.35,
+      "top": 54,
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "상권 신호등",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 164,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 68.3,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2444,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 3,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      30,
+      68
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 41,
+     "max": {
+      "size": 68.3,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#eef0ee",
+       "top": 108,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
+       }
+      },
+      {
+       "color": "#121513",
+       "top": 1770,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.49
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.24
+      },
+      {
+       "color": "#141614",
+       "share": 0.19
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.08
+      }
+     ],
+     "button": {
+      "bg": "#eef0ee",
+      "hsl": {
+       "h": 120,
+       "s": 0.06,
+       "l": 0.94
+      },
+      "fg": "#141614"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 6,
+     "radius": "pill",
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단",
+      "음식점",
+      "개인 서비스",
+      "부동산",
+      "전문 서비스"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 2834,
+    "margins": {
+     "left": 20,
+     "right": 25
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1662,
+      "words": 114,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "상권 신호등",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 35,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1770,
+      "height": 1063,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "서비스",
+       "size": 17,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 30,
+      "textLeft": 20,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "상권 신호등",
+      "size": 30,
+      "top": 164,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 3,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 19,
+     "right": 20
+    },
+    "hero": {
+     "text": "상권 신호등",
+     "words": 2,
+     "chars": 6,
+     "lines": 1,
+     "size": 30,
+     "vw": 7.7,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 0,
+     "radii": [],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 4,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      30,
+      68
+     ]
+    },
+    "title": {
+     "text": "상권 신호등",
+     "size": 30,
+     "top": 164
+    },
+    "colourShare": 0.028
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "app-title-size",
+   "width": 1440,
+   "message": "The h1 is 52px (\"상권 신호등\").",
+   "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+   "alsoAt": [
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "colour-sprawl",
+   "width": 768,
+   "message": "16% of the first screen is strongly coloured.",
+   "fix": "Keep the screen neutral and spend colour on data and status: the studied screens sit near 3%, and only tinted styles reach 10–15%, as pale tints rather than saturated fills."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "G:\\BizDoctor\\.taste-skill\\market\\desktop-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\market\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "G:\\BizDoctor\\.taste-skill\\market\\tablet-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\market\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "G:\\BizDoctor\\.taste-skill\\market\\mobile-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\market\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
