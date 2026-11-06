@@ -5,6 +5,12 @@ from app.domain.signal import RISK_TYPE_QUERY
 from app.graph.state import ReportState
 from app.knowledge.retrieve import retrieve
 
+BROAD_QUERY = "소상공인 경영안정 자금 지원 제도"
+
+NO_DOCS_REPORT = (
+    "지금 접수 중인 지원사업 중 이 상황에 맞는 공고를 찾지 못했습니다."
+    "기업마당(bizinfo.go.kr)이나 소상공인24에서 새 공고를 확인해 보세요."
+)
 
 def retrieve_docs(state: ReportState) -> dict:
     """공고 찾아오기: 검색어가 없으면 유형별로 질의를 함"""
@@ -27,3 +33,13 @@ def route_after_grade(state: ReportState) -> str:
     if state["docs"]:
         return "generate"
     return "no_docs" if state.get("relaxed") else "rewrite_query"
+
+
+def rewrite_query(state: ReportState) -> dict:
+    """검색 조건을 넓혀 한 번 더 찾게 함."""
+    return {"relaxed": True, "query": f"{state['query']} {BROAD_QUERY}"}
+
+
+def no_docs(state: ReportState) -> dict:
+    """맞는 공고가 없다고 알리고 끝낸다. LLM을 부르지 않음"""
+    return {"report": NO_DOCS_REPORT,"outcome": "no_docs"}
