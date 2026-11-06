@@ -51,3 +51,14 @@ def test_인용이_근거에_없으면_supported_라도_실패():
         {"claim": "온라인 신청", "verdict": "unsupported", "evidence": ""},
     ]
     assert unsupported_claims(claims, CTX) == ["누구나 승인", "한도 1억원", "온라인 신청"]
+
+
+def test_여러_곳을_합친_주장은_인용을_모두_대조():
+    claims = [
+        {"claim": "4.5% 고정금리, 최대 5,000만원", "verdict": "supported",
+         "evidence": "연 4.5% 고정금리 | 기업당 최대 5,000만원"},                 # 둘 다 원문에 있음
+        {"claim": "4.5%, 한도 1억원", "verdict": "supported",
+         "evidence": "연 4.5% 고정금리 | 기업당 최대 1억원"},                     # 하나가 지어낸 인용
+        {"claim": "빈 인용 섞임", "verdict": "supported", "evidence": "연 4.5% 고정금리 | "},
+    ]
+    assert unsupported_claims(claims, CTX) == ["4.5%, 한도 1억원", "빈 인용 섞임"]

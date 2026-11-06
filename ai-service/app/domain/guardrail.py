@@ -52,9 +52,13 @@ def _squash(s: str) -> str:
 
 
 def unsupported_claims(claims: list[dict], context: str) -> list[str]:
-    """교차 검증 판정 중 통과 못 한 주장. supported 라도 인용이 근거 원문에 없으면 판정을 믿지 않는다."""
+    """교차 검증 판정 중 통과 못 한 주장을 고른다.
+    supported 라도 인용이 근거 원문에 없으면 판정을 믿지 않는다.
+    인용이 여러 개(' | ' 로 이음)면 하나라도 원문에 없으면 실패."""
     ctx = _squash(context)
-    return [
-        c["claim"] for c in claims
-        if c["verdict"] != "supported" or not _squash(c["evidence"]) or _squash(c["evidence"]) not in ctx
-    ]
+
+    def quoted(evidence: str) -> bool:
+        parts = [_squash(p) for p in evidence.split("|")]
+        return all(parts) and all(p in ctx for p in parts)
+
+    return [c["claim"] for c in claims if c["verdict"] != "supported" or not quoted(c["evidence"])]

@@ -1,6 +1,7 @@
 import pytest
 from app.graph.nodes import grade_docs, route_after_grade, no_docs, rewrite_query
 from app.graph.graph import build_graph
+from app.domain.report_context import docs_context
 import app.graph.nodes as n
 
 
@@ -65,3 +66,8 @@ def test_그래프_공고없으면_LLM없이_종료(monkeypatch):
     monkeypatch.setattr(n, "write_report", lambda ctx, fb: pytest.fail("LLM 을 부르면 안 된다"))
     out = build_graph().invoke({"signal": SIGNAL})
     assert out["outcome"] == "no_docs" and out["relaxed"]
+
+
+def test_필수_항목은_근거에_붙는다():
+    d = _doc(1, ["매출_폭락형"]) | {"must_read": "[공고1 · 신청방법] ols.semas.or.kr"}
+    assert "필수 항목: [공고1 · 신청방법] ols.semas.or.kr" in docs_context([d])

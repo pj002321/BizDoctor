@@ -29,6 +29,8 @@ def docs_context(docs: list[dict]) -> str:
             f"링크: {d['source_url']}",
             f"근거 항목({d['section']}): {d['evidence']}",
         ]
+        if d.get("must_read"):
+            lines.append(f"필수 항목: {d['must_read']}")
     return "\n".join(lines)
 
 

@@ -39,7 +39,8 @@ if __name__ == "__main__":
             if ANTHROPIC_API_KEY:
                 claims, bad = verify(text, ctx)
                 faithful.append(1 - len(bad) / len(claims) if claims else 1.0)
-
+        if bad:
+            print(f"    x 근거 없음: {bad}")
         print(f"[{item.id} · {item.type}] {'거절' if refused else '답변'} {'✓' if refusals[-1] else '✗'} | {text[:80]}")
 
     print()

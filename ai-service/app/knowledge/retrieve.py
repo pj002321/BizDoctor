@@ -45,10 +45,16 @@ SEARCH = text("""
         WHERE c.embedding IS NOT NULL
     ),
     best AS (
-        SELECT DISTINCT ON (doc_id) * 
-        FROM scored 
+        SELECT DISTINCT ON (doc_id) *
+        FROM scored
         WHERE score > 0
         ORDER BY doc_id, score DESC
+    ),
+    must_read AS (
+        SELECT b.doc_id, string_agg(c.body, E'\n' ORDER BY c.chunk_index) AS must_read
+        FROM best b JOIN policy_chunk c USING (doc_id)
+        WHERE c.section IN ('지원대상', '신청방법') AND c.section <> b.section
+        GROUP BY b.doc_id
     )
     SELECT a.doc_id
          , a.title
@@ -61,8 +67,9 @@ SEARCH = text("""
          , a.risk_type_tags
          , b.section
          , b.body AS evidence
+         , m.must_read
          , b.score
-    FROM best b JOIN active a USING (doc_id)
+    FROM best b JOIN active a USING (doc_id) LEFT JOIN must_read m USING (doc_id)
     ORDER BY (:tag_first AND coalesce(CAST(:risk_type AS text) = ANY(a.risk_type_tags), false)) DESC, b.score DESC
     LIMIT :top_k
 """)
