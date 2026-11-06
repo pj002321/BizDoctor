@@ -71,7 +71,13 @@ export default function SiteFooter() {
               </li>
             ))}
           </ul>
-          <p className="mt-4">© 2026 BizDoctor · 상권 신호등 프로젝트</p>
+          <p className="mt-4">
+            문의 · 허재성 ·{" "}
+            <a className="link-under" href="mailto:t55300354@gmail.com">
+              t55300354@gmail.com
+            </a>
+          </p>
+          <p>© 2026 BizDoctor · 상권 신호등 프로젝트</p>
         </div>
       </div>
     </footer>
