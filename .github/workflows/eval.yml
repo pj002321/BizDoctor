@@ -27,7 +27,7 @@ jobs:
       - run: pip install -e ".[dev]"
 
       - name: pytest
-        run: pytest -q --ignore=tests/test_generate.py  # 옛 generate.py 테스트, A7 정리 전까지 제외
+        run: pytest -q
 
       - name: 골든셋 형식 검사
         run: python -m eval.golden
