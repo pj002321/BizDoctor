@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import CountUp from "./CountUp";
+import CountUp from "@/components/CountUp";
+import { Arrow, MARKET_SIGNAL, SignalShape } from "@/components/icons";
 import data from "./data/seoul.json";
-import { Arrow, MARKET_SIGNAL, SignalShape } from "./icons";
 
 type Counts = {
   g: number;

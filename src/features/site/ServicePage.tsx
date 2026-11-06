@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Arrow, MARKET_SIGNAL, SignalShape } from "@/components/icons";
+import Lamps from "@/components/Lamps";
 import { GradeFragment, RankingFragment, ReportFragment } from "./fragments";
-import { Arrow, MARKET_SIGNAL, SignalShape } from "./icons";
-import Lamps from "./Lamps";
 import TrendChart from "./TrendChart";
 
 const i = (n: number) => ({ ["--i" as string]: n });

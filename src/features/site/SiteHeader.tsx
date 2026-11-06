@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Arrow } from "./icons";
+import { Arrow } from "@/components/icons";
 
 const NAV = [
   { href: "/market", label: "상권 신호등" },
