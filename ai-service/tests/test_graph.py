@@ -1,5 +1,8 @@
+import pytest
 from app.graph.nodes import grade_docs, route_after_grade, no_docs, rewrite_query
+from app.graph.graph import build_graph
 import app.graph.nodes as n
+
 
 SIGNAL = {"risk_level": "RED", "risk_type": "매출_폭락형", "risk_type_confidence": 0.6, "score": 30}
 
@@ -47,3 +50,18 @@ def test_다시_써서_감수_통과하면_regenerated(monkeypatch):
     state = {"context": "근거", "report": "초안", "attempts": 2}
     state |= n.cross_check(state)
     assert n.route_after_check(state) == "ok" and state["outcome"] == "regenerated"
+
+
+def test_그래프_한번에_통과(monkeypatch):
+    monkeypatch.setattr(n, "retrieve", lambda q, rt: [(_doc(1, ["매출_폭락형"]), 0.03)])
+    monkeypatch.setattr(n, "write_report", lambda ctx, fb: ("초안", []))
+    monkeypatch.setattr(n, "verify", lambda r, c: ([], []))
+    out = build_graph().invoke({"signal": SIGNAL})
+    assert out["outcome"] == "passed" and out["attempts"] == 1
+
+
+def test_그래프_공고없으면_LLM없이_종료(monkeypatch):
+    monkeypatch.setattr(n, "retrieve", lambda q, rt: [])
+    monkeypatch.setattr(n, "write_report", lambda ctx, fb: pytest.fail("LLM 을 부르면 안 된다"))
+    out = build_graph().invoke({"signal": SIGNAL})
+    assert out["outcome"] == "no_docs" and out["relaxed"]
