@@ -1,4 +1,5 @@
 from app.graph.nodes import grade_docs, route_after_grade, no_docs, rewrite_query
+import app.graph.nodes as n
 
 SIGNAL = {"risk_level": "RED", "risk_type": "매출_폭락형", "risk_type_confidence": 0.6, "score": 30}
 
@@ -28,3 +29,21 @@ def test_재검색은_한번만_하고_없으면_종료():
     assert state["relaxed"] and state["query"].startswith("q ")
     assert route_after_grade(state) == "no_docs"      # 넓혀도 0건이면 다시 돌지 않는다
     assert no_docs(state)["outcome"] == "no_docs"
+
+
+def test_두번_다_위반이면_폴백(monkeypatch):
+    monkeypatch.setattr(n, "write_report", lambda ctx, fb: ("초안", ["한도 7억"]))
+    state = {"signal": SIGNAL, "context": "근거", "docs": [(_doc(1, ["매출_폭락형"]), 0.03)]}
+    state |= n.generate(state)
+    assert n.route_after_check(state) == "retry"
+    state |= n.generate(state)
+    assert n.route_after_check(state) == "fallback"   # 세 번째는 없다
+    state |= n.fallback(state)
+    assert state["outcome"] == "fallback" and "「공고1」" in state["report"]
+
+
+def test_다시_써서_감수_통과하면_regenerated(monkeypatch):
+    monkeypatch.setattr(n, "verify", lambda r, c: ([], []))
+    state = {"context": "근거", "report": "초안", "attempts": 2}
+    state |= n.cross_check(state)
+    assert n.route_after_check(state) == "ok" and state["outcome"] == "regenerated"
