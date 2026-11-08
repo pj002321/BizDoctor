@@ -80,3 +80,9 @@ class DiagnosisPublicView(BaseModel):
     solutions: list[Solution]
     created_at: datetime
     expires_at: datetime | None
+
+
+class ReportRequest(BaseModel):
+    """리포트 요청: 프론트는 diagnosisId(camelCase)로 보낸다."""
+    model_config = ConfigDict(extra="forbid")
+    diagnosis_id: UUID = Field(alias="diagnosisId")

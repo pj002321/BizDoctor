@@ -1,0 +1,23 @@
+{"id": "rt-01", "type": "위기_유형", "question": "대출 이자가 너무 부담돼요. 받을 수 있는 지원이 있나요?", "risk_type": "고금리_과다채무형", "gold_doc_ids": ["semas-2026-refinance"]}
+{"id": "cond-01", "type": "조건", "question": "폐업한 지 좀 됐는데 폐업 지원 받을 수 있나요?", "gold_doc_ids": ["semas-2026-hope-closing"], "gold_facts": [{"doc_id": "semas-2026-hope-closing", "section": "지원대상", "value": "폐업일이 2023년 1월 1일 이후"}]}
+{"id": "num-01", "type": "수치", "question": "경영안정 바우처는 얼마까지 받을 수 있나요?", "gold_doc_ids": ["sbiz24-2026-stability-voucher"], "gold_facts": [{"doc_id": "sbiz24-2026-stability-voucher", "section": "지원한도", "value": "1개사당 25만원 한도"}]}
+{"id": "exp-01", "type": "마감_함정", "question": "온라인판로 지원사업 2차 신청하고 싶어요"}
+{"id": "exp-02", "type": "마감_함정", "question": "스마트상점 기술보급사업 신청하고 싶어요"}
+{"id": "oos-01", "type": "범위_밖", "question": "청년 전세자금 대출 조건 알려주세요"}
+{"id": "rt-02", "type": "위기_유형", "question": "손님이 갑자기 반토막 나서 운영자금이 바닥났어요", "risk_type": "매출_폭락형", "gold_doc_ids": ["mss-2025-656-general"]}
+{"id": "rt-03", "type": "위기_유형", "question": "몇 달째 매출이 제자리라 운영비를 빌릴 곳이 필요해요", "risk_type": "단기_매출_정체형", "gold_doc_ids": ["mss-2025-656-general"]}
+{"id": "rt-04", "type": "위기_유형", "question": "가스비랑 기름값이 올라서 고정비가 감당이 안 돼요", "risk_type": "원가_상승_부담형", "gold_doc_ids": ["sbiz24-2026-stability-voucher"]}
+{"id": "rt-05", "type": "위기_유형", "question": "주변 가게들이 다 빠져서 가게를 정리할까 고민 중이에요", "risk_type": "상권_침체_붕괴형", "gold_doc_ids": ["semas-2026-hope-closing"]}
+{"id": "cond-02", "type": "조건", "question": "바우처 받으려면 작년 매출이 얼마 이하여야 하나요?", "gold_doc_ids": ["sbiz24-2026-stability-voucher"], "gold_facts": [{"doc_id": "sbiz24-2026-stability-voucher", "section": "지원대상", "value": "1억 400만원 미만"}]}
+{"id": "cond-03", "type": "조건", "question": "대환대출에 신용점수 기준이 있나요?", "gold_doc_ids": ["semas-2026-refinance"], "gold_facts": [{"doc_id": "semas-2026-refinance", "section": "지원대상", "value": "919점 이하"}]}
+{"id": "cond-04", "type": "조건", "question": "경영안정 바우처에 법인카드도 등록되나요?", "gold_doc_ids": ["sbiz24-2026-stability-voucher"], "gold_facts": [{"doc_id": "sbiz24-2026-stability-voucher", "section": "유의사항", "value": "법인카드는 안 된다"}]}
+{"id": "cond-05", "type": "조건", "question": "폐업 지원 받으려면 장사를 최소 얼마나 했어야 하나요?", "gold_doc_ids": ["semas-2026-hope-closing"], "gold_facts": [{"doc_id": "semas-2026-hope-closing", "section": "지원대상", "value": "사업 운영기간이 60일 이상"}]}
+{"id": "num-02", "type": "수치", "question": "대환대출로 갈아타면 금리가 몇 %예요?", "gold_doc_ids": ["semas-2026-refinance"], "gold_facts": [{"doc_id": "semas-2026-refinance", "section": "금리및조건", "value": "연 4.5% 고정금리"}]}
+{"id": "num-03", "type": "수치", "question": "대환대출은 최대 얼마까지 돼요?", "gold_doc_ids": ["semas-2026-refinance"], "gold_facts": [{"doc_id": "semas-2026-refinance", "section": "지원한도", "value": "기업당 최대 5,000만원"}]}
+{"id": "num-04", "type": "수치", "question": "일반경영안정자금 한도가 얼마예요?", "gold_doc_ids": ["mss-2025-656-general"], "gold_facts": [{"doc_id": "mss-2025-656-general", "section": "지원한도", "value": "업체당 최대 7천만원"}]}
+{"id": "num-05", "type": "수치", "question": "비수도권 가게면 정책자금 금리를 얼마나 깎아주나요?", "gold_doc_ids": ["mss-2025-656-general"], "gold_facts": [{"doc_id": "mss-2025-656-general", "section": "금리및조건", "value": "0.2%p 인하"}]}
+{"id": "exp-03", "type": "마감_함정", "question": "가게에 서빙로봇 들이는 거 지원받을 수 있나요?"}
+{"id": "exp-04", "type": "마감_함정", "question": "TV홈쇼핑 입점 지원사업 있나요?"}
+{"id": "oos-02", "type": "범위_밖", "question": "음식점 위생교육은 어디서 받아요?"}
+{"id": "oos-03", "type": "범위_밖", "question": "사업자등록은 어떻게 하나요?"}
+{"id": "oos-04", "type": "범위_밖", "question": "부가세 신고 기한이 언제예요?"}

@@ -1,0 +1,1537 @@
+{
+ "url": "http://localhost:3100/diagnosis",
+ "at": "2026-11-04T16:30:41.013Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.83,
+    0.69,
+    0.89
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2054,
+     "screens": 2.3,
+     "words": 372,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 5,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 52,
+     "vw": 3.6,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 188,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "lines": 1,
+     "size": 51.8,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "내 가게 진단 등급",
+      "words": 4,
+      "chars": 10,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.39,
+      "top": 188,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "결과는 여기에 나옵니다",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 992,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 248,
+      "vw": 17.2,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.91,
+      "top": 1605,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 3,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      52,
+      248
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 20,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 54,
+     "max": {
+      "size": 248,
+      "vw": 17.2,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.03,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#eef0ee",
+       "top": 108,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
+       }
+      },
+      {
+       "color": "#121513",
+       "top": 1269,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.5
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.22
+      },
+      {
+       "color": "#141614",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.1
+      },
+      {
+       "color": "#15803d",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#15803d",
+      "hsl": {
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단",
+      "진단 등급 보기"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 20,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2054,
+    "margins": {
+     "left": 64,
+     "right": 104
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1161,
+      "words": 98,
+      "media": 0,
+      "middle": 159,
+      "heading": {
+       "text": "내 가게 진단 등급",
+       "size": 52,
+       "tag": "h1"
+      },
+      "left": 64,
+      "right": 104,
+      "textLeft": 64,
+      "textRight": 104,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1269,
+      "height": 785,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BizDoctor",
+       "size": 248,
+       "tag": "p"
+      },
+      "left": 64,
+      "right": 140,
+      "textLeft": 64,
+      "textRight": 140,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "내 가게 진단 등급",
+      "size": 52,
+      "top": 188,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 64,
+      "n": 4
+     },
+     {
+      "x": 766,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 20,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.2,
+    "voidBox": {
+     "x": 0,
+     "y": 540,
+     "w": 720,
+     "h": 360
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 64,
+     "right": 84
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 52,
+     "vw": 3.6,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 188,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       20,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      52,
+      248
+     ]
+    },
+    "title": {
+     "text": "내 가게 진단 등급",
+     "size": 52,
+     "top": 188
+    },
+    "colourShare": 0.022
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.82,
+    0.69,
+    0.74
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2187,
+     "screens": 2.1,
+     "words": 364,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 5,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 30,
+     "vw": 3.9,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "lines": 1,
+     "size": 30,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "내 가게 진단 등급",
+      "words": 4,
+      "chars": 10,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 164,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "결과는 여기에 나옵니다",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 1272,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 134.4,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1829,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 3,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      30,
+      134
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 64,
+     "max": {
+      "size": 134.4,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#eef0ee",
+       "top": 108,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
+       }
+      },
+      {
+       "color": "#f6f7f6",
+       "top": 524,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.97
+       }
+      },
+      {
+       "color": "#121513",
+       "top": 1482,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.51
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.21
+      },
+      {
+       "color": "#141614",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.1
+      },
+      {
+       "color": "#15803d",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#15803d",
+      "hsl": {
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 20,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2187,
+    "margins": {
+     "left": 38,
+     "right": 38
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1374,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "내 가게 진단 등급",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 38,
+      "right": 78,
+      "textLeft": 38,
+      "textRight": 78,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1482,
+      "height": 705,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BizDoctor",
+       "size": 134,
+       "tag": "p"
+      },
+      "left": 38,
+      "right": 42,
+      "textLeft": 38,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "내 가게 진단 등급",
+      "size": 30,
+      "top": 164,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 4
+     },
+     {
+      "x": 78,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 38,
+     "right": 38
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 30,
+     "vw": 3.9,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       20,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      30,
+      134
+     ]
+    },
+    "title": {
+     "text": "내 가게 진단 등급",
+     "size": 30,
+     "top": 164
+    },
+    "colourShare": 0.006
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.94,
+    0.71,
+    0.81,
+    0.99
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 2952,
+     "screens": 3.5,
+     "words": 361,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 5,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 30,
+     "vw": 7.7,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "lines": 1,
+     "size": 30,
+     "font": "Pretendard Variable"
+    },
+    "headings": [
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.35,
+      "top": 54,
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "내 가게 진단 등급",
+      "words": 4,
+      "chars": 10,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 164,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "결과는 여기에 나옵니다",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1652,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BizDoctor",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 68.3,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "weight": 700,
+      "tracking": -0.055,
+      "leading": 0.8,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2562,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Pretendard Variable",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      20,
+      22,
+      30,
+      68
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Pretendard Variable",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.9
+     },
+     "measureChars": 41,
+     "max": {
+      "size": 68.3,
+      "vw": 17.5,
+      "font": "Pretendard Variable",
+      "text": "BizDoctor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#eef0ee",
+       "top": 108,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.94
+       }
+      },
+      {
+       "color": "#f6f7f6",
+       "top": 606,
+       "hsl": {
+        "h": 120,
+        "s": 0.06,
+        "l": 0.97
+       }
+      },
+      {
+       "color": "#121513",
+       "top": 1889,
+       "hsl": {
+        "h": 140,
+        "s": 0.08,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b7bdb5",
+       "share": 0.52
+      },
+      {
+       "color": "#4f544e",
+       "share": 0.21
+      },
+      {
+       "color": "#141614",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.1
+      },
+      {
+       "color": "#15803d",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#15803d",
+      "hsl": {
+       "h": 142,
+       "s": 0.72,
+       "l": 0.29
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "내 가게 진단"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 20,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "pretendard variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 2952,
+    "margins": {
+     "left": 20,
+     "right": 23
+    },
+    "sections": [
+     {
+      "sel": "div#main",
+      "tag": "div",
+      "top": 108,
+      "height": 1781,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "내 가게 진단 등급",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 23,
+      "textLeft": 20,
+      "textRight": 23,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.on-night.bg-night",
+      "tag": "footer",
+      "top": 1889,
+      "height": 1063,
+      "words": 96,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "서비스",
+       "size": 17,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 30,
+      "textLeft": 20,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "내 가게 진단 등급",
+      "size": 30,
+      "top": 164,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 4
+     },
+     {
+      "x": 44,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": {
+     "h": 36
+    },
+    "canvas": {
+     "left": 20,
+     "right": 23
+    },
+    "hero": {
+     "text": "내 가게 진단 등급",
+     "words": 4,
+     "chars": 10,
+     "lines": 1,
+     "size": 30,
+     "vw": 7.7,
+     "font": "Pretendard Variable",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.18,
+     "top": 164,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       20,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      22,
+      30,
+      68
+     ]
+    },
+    "title": {
+     "text": "내 가게 진단 등급",
+     "size": 30,
+     "top": 164
+    },
+    "colourShare": 0.016
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "app-title-size",
+   "width": 1440,
+   "message": "The h1 is 52px (\"내 가게 진단 등급\").",
+   "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+   "alsoAt": [
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "G:\\BizDoctor\\.taste-skill\\diagnosis\\desktop-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\diagnosis\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "G:\\BizDoctor\\.taste-skill\\diagnosis\\tablet-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\diagnosis\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "G:\\BizDoctor\\.taste-skill\\diagnosis\\mobile-fold.jpg",
+   "pages": [
+    "G:\\BizDoctor\\.taste-skill\\diagnosis\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

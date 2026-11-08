@@ -4,23 +4,350 @@
    (text-fg, bg-surface, text-signal-red …). 색 값을 컴포넌트에 직접 쓰지 않는다.
 
    신호 색 3종은 흰 배경 대비 4.5:1 이상인 값이다(F-SYS-04). 색만으로 전달하지
-   말고 아이콘·라벨을 항상 같이 붙인다 — 색각 이상 사용자는 초록/빨강을 못 가른다. */
+   말고 아이콘·라벨을 항상 같이 붙인다 — 색각 이상 사용자는 초록/빨강을 못 가른다.
+
+   사이트 톤: 흰 바탕 · 거의 검정 잉크 · 옅은 회백색 면, 강조는 신호등 세 색.
+   lamp-* 는 어두운 면 위의 "켜진 불" 전용 채움색이다. 글자색으로 쓰지 않는다.
+   표면은 선·그림자 대신 톤 차이로 나눈다. 사진·패널 모서리는 --radius-card 하나. */
 @theme inline {
   --color-bg: #ffffff;
-  --color-surface: #f6f7f9;
-  --color-fg: #111827;
-  --color-muted: #4b5563;
-  --color-border: #e5e7eb;
-  --color-accent: #1d4ed8;
+  --color-surface: #eef0ee;
+  --color-surface-2: #f6f7f6;
+  --color-fg: #141614;
+  --color-muted: #4f544e;
+  --color-border: #d9ddd9;
+  --color-accent: #15803d;
+  --color-accent-press: #116632;
+  --color-night: #121513;
+  --color-on-night: #ffffff;
+  --color-on-night-muted: #b7bdb5;
 
   --color-signal-green: #15803d;
   --color-signal-yellow: #a16207;
   --color-signal-red: #b91c1c;
 
+  --color-lamp-red: #ef3b2d;
+  --color-lamp-yellow: #f6b90a;
+  --color-lamp-green: #23b25a;
+
+  --radius-card: 1.25rem;
+
   --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-fg);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  word-break: keep-all;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-night);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.on-night :focus-visible {
+  outline-color: var(--color-on-night);
+}
+
+/* 사이트 공통 프레임: 바깥 여백 한 쌍만 쓴다. */
+.frame {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+.display {
+  font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.title {
+  font-size: clamp(1.875rem, 3.6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
+}
+
+/* 버튼: 각진 평면 한 가지. 누름은 살짝 줄어드는 것으로만 알린다. */
+.btn {
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  padding: 0 1.5rem;
+  font-weight: 600;
+  transition:
+    background-color 160ms var(--ease-out-expo),
+    color 160ms var(--ease-out-expo),
+    transform 160ms var(--ease-out-expo);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn svg {
+  transition: transform 220ms var(--ease-out-expo);
+}
+.btn:hover svg {
+  transform: translateX(3px);
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-on-night);
+}
+.btn-primary:hover {
+  background: var(--color-accent-press);
+}
+.btn-quiet {
+  background: var(--color-surface);
+  color: var(--color-fg);
+}
+.btn-quiet:hover {
+  background: #e2e5e2;
+}
+.btn-light {
+  background: rgb(255 255 255 / 0.14);
+  color: var(--color-on-night);
+}
+.btn-light:hover {
+  background: rgb(255 255 255 / 0.24);
+}
+
+.link-under {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.3em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: text-decoration-color 160ms;
+}
+.link-under:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ── 모션 ───────────────────────────────────────────────
+   스크립트가 돌 때만(html.js) 숨겼다가 화면에 들어오면 올린다.
+   스크립트가 죽어도 내용은 그대로 보인다. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 900ms var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 히어로: 줄 단위로 밀려 올라오는 헤드라인 */
+.rise-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.rise-line > span {
+  display: block;
+  animation: rise 1000ms var(--ease-out-expo) both;
+  animation-delay: calc(120ms + var(--i, 0) * 110ms);
+}
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+.fade-up {
+  animation: fade-up 900ms var(--ease-out-expo) both;
+  animation-delay: calc(360ms + var(--i, 0) * 90ms);
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* 히어로 사진: 아래에서 위로 열리고, 천천히 당겨진다 */
+.photo-open {
+  animation: photo-open 1300ms var(--ease-out-expo) 200ms both;
+}
+@keyframes photo-open {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.photo-drift {
+  animation: photo-drift 22s ease-in-out infinite alternate;
+}
+@keyframes photo-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+/* 떠 있는 카드: 사진 위에 실제로 떠 있으므로 그림자를 준다 (taste-skill-ignore) */
+.float-card {
+  box-shadow: /* taste-skill-ignore: 사진 위에 떠 있는 카드 */
+    0 18px 40px -12px rgb(10 31 74 / 0.28),
+    0 4px 10px -4px rgb(10 31 74 / 0.12);
+}
+.bob {
+  animation: bob 6s ease-in-out infinite alternate;
+}
+@keyframes bob {
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+/* 사진 띠: 스크롤에 따라 사진이 천천히 움직인다(지원 브라우저만) */
+@supports (animation-timeline: view()) {
+  .parallax {
+    animation: parallax linear both;
+    animation-timeline: view();
+  }
+  @keyframes parallax {
+    from {
+      transform: translateY(-8%) scale(1.12);
+    }
+    to {
+      transform: translateY(8%) scale(1.12);
+    }
+  }
+}
+
+/* 신호등: 빨강 → 노랑 → 초록 순서로 불이 옮겨 간다. 꺼진 불도 모양은 남는다. */
+.lamp {
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.22;
+  animation: lamp 6s steps(1, end) infinite;
+  animation-delay: calc(var(--l, 0) * 2s);
+}
+@keyframes lamp {
+  0% {
+    opacity: 1;
+  }
+  33.33% {
+    opacity: 0.22;
+  }
+}
+
+/* 막대: InView 가 is-in 을 붙이면 차례로 차오른다 */
+html.js .bar {
+  transform-origin: left center;
+  animation: bar-grow 1100ms var(--ease-out-expo) both paused;
+  animation-delay: calc(150ms + var(--b, 0) * 70ms);
+}
+html.js .bar-v {
+  transform-origin: center bottom;
+  animation-name: bar-grow-v;
+}
+html.js .is-in .bar {
+  animation-play-state: running;
+}
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes bar-grow-v {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* 추이 그래프: 선이 그려지고, 점이 찍히고, 면이 차오른다 */
+html.js .trend .trend-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1800ms var(--ease-out-expo);
+  transition-delay: calc(var(--k, 0) * 250ms);
+}
+html.js .trend .trend-dot {
+  opacity: 0;
+  transition: opacity 400ms;
+  transition-delay: calc(400ms + var(--d, 0) * 90ms);
+}
+html.js .trend .trend-area {
+  opacity: 0;
+  transition: opacity 1200ms 900ms;
+}
+.trend-area {
+  opacity: 0.08;
+}
+html.js .trend.is-in .trend-line {
+  stroke-dashoffset: 0;
+}
+html.js .trend.is-in .trend-dot {
+  opacity: 1;
+}
+html.js .trend.is-in .trend-area {
+  opacity: 0.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js [data-reveal] {
+    transform: none;
+    transition: opacity 300ms linear;
+  }
+  .rise-line > span,
+  .fade-up,
+  .photo-open,
+  .photo-drift,
+  .bob,
+  .parallax,
+  .lamp,
+  html.js .bar {
+    animation: none !important;
+  }
+  html.js .trend .trend-line,
+  html.js .trend .trend-dot,
+  html.js .trend .trend-area {
+    transition: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  html.js .trend .trend-area {
+    opacity: 0.08;
+  }
+  .lamp {
+    opacity: 1;
+  }
 }

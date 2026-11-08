@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 
-from app.api import diagnosis, market
+from app.api import diagnosis, market, report
 
 api_router = APIRouter()
 api_router.include_router(market.router)
 api_router.include_router(diagnosis.router)
+api_router.include_router(report.router)
